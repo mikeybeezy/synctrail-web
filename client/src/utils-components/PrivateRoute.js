@@ -15,3 +15,4 @@ function PrivateRoute({ component: Component, roles, ...rest }) {
 }
 
 export { PrivateRoute };
+

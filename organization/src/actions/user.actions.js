@@ -18,7 +18,7 @@ export function userLogin(reqparams, from) {
     try{
       makePOSTRequest('/api/v1/auth', reqparams)
       .then(response => {
-      	if(response.data.status === "ok"){
+        if(response.data.status === "ok"){
           dispatch({type: userConstants.LOGIN_USER, payload: response});
           localStorage.setItem('user', JSON.stringify(response.data.token));
            history.push(from);
@@ -91,7 +91,6 @@ export function resetPassword(reqparams) {
         if(response.data.status === "ok"){
           dispatch({type: userConstants.RESET_PASSWORD, payload: response})
           history.push('/login');
-          dispatch(alertActions.success(response.data.message));
         }else {
           dispatch(alertActions.error(response.data.error));
           dispatch({type: userConstants.RESET_PASSWORD_FAILURE, payload: response.error})

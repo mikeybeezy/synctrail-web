@@ -1,21 +1,20 @@
 import React, {useEffect} from 'react';
 import { connect, useDispatch } from 'react-redux';
+import { Link, useLocation } from 'react-router-dom';
 import { userActions } from '../../../actions';
 import { textInput } from '../../../shared/form-elements'
+import { validation } from '../../../shared/form-validations';
 import { reduxForm, Field } from "redux-form";
 import { Button } from 'react-bootstrap';
 
 function Login(props) {
   const { handleSubmit} = props
   const dispatch = useDispatch();
-
-  useEffect(() => {
-
-  }, []);
-
-
+  const location = useLocation();
+  
   const loginSubmit = (values) => {
-    dispatch(userActions.userLogin(values));
+    const { from } = location.state || { from: { pathname: "/" } };
+    dispatch(userActions.userLogin(values, from));
   }
 
   return (
@@ -24,16 +23,18 @@ function Login(props) {
         <div className="col-lg-4 offset-lg-4">
           <h3 className="text-center">Login</h3>
           <form onSubmit={handleSubmit(loginSubmit)}>
-            <div className="mb-2">
+            <div className="form-group">
               <Field name="email" type="email" component={textInput} label="Email"/>
             </div>
-            <div className="mb-3">
+            <div className="form-group">
               <Field name="password" type="password" component={textInput} label="Password"/>
             </div>
-
             <div className="mb-3 mt-4">
-              <Button variant="secondary" size="lg" type="submit" className="app-btn">Login</Button>
+              <Button variant="primary" size="lg" type="submit" className="app-btn">Login</Button>
             </div>
+            <Link to="/password/new" className="btn btn-link">Forgot Password</Link>
+            <Link to="/confirmation/resend" className="btn btn-link">Re-send confirmation instructions</Link>
+            <Link to="/admin/users/unlock/request" className="btn btn-link">Request unlock email</Link>
           </form>
         </div>
       </div>
@@ -43,6 +44,7 @@ function Login(props) {
 
 Login =  reduxForm({
   form: 'loginform',
+  validate: validation
 })(Login);
 
 
