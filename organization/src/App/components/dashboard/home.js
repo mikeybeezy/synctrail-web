@@ -15,6 +15,7 @@ function Dashboard(props) {
     <main className="d-flex align-items-center text-center">
       <div  className="container">
         <h1> Dashboard </h1>
+        <SharedComp />
         <Button variant="primary" size="lg" onClick={logout}>Logout</Button>
       </div>
     </main>

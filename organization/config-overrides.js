@@ -4,6 +4,7 @@ const {
     override,
     addDecoratorsLegacy,
     babelInclude,
+    removeModuleScopePlugin,
     disableEsLint,
 } = require("customize-cra");
 
@@ -11,6 +12,7 @@ module.exports = function (config, env) {
     return Object.assign(config, override(
         disableEsLint(),
         addDecoratorsLegacy(),
+        removeModuleScopePlugin(),
         /* Makes sure Babel compiles the stuff in the common folder */
         babelInclude([
             path.resolve('src'), // don't forget this
