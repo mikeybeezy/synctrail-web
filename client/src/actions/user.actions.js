@@ -19,9 +19,10 @@ export function userLogin(reqparams, from) {
       makePOSTRequest('/api/v1/auth', reqparams)
       .then(response => {
       	if(response.data.status === "ok"){
-          dispatch({type: userConstants.LOGIN_USER, payload: response});
-          localStorage.setItem('user', JSON.stringify(response.data.token));
-           history.push(from);
+          dispatch({type: userConstants.LOGIN_USER, payload:response});
+          localStorage.setItem('userToken', JSON.stringify(response.data.token));
+           localStorage.setItem('userRole', response.data.user_role);
+           history.push("/");
           dispatch(alertActions.success(response.data.message));
         }else {
           dispatch(alertActions.error(response.data.message));
@@ -38,7 +39,7 @@ export function userLogin(reqparams, from) {
 
 export function logout() {
   return function (dispatch) {
-    const user = localStorage.getItem('user');
+    const user = localStorage.getItem('userToken');
     if(user){
       try{
         localStorage.clear();
