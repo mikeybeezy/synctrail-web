@@ -18,10 +18,11 @@
     "redux": "^4.1.2",
     "redux-form": "^8.3.7",
     "redux-logger": "^3.0.6",
-    "redux-thunk": "^2.4.0"
+    "redux-thunk": "^2.4.0",
+    "shared-lib": "file:../shared-lib"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "react-app-rewired start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
@@ -45,6 +46,8 @@
     ]
   },
   "devDependencies": {
+    "customize-cra": "^0.2.12",
+    "react-app-rewired": "^2.1.0",
     "sass": "^1.43.4",
     "web-vitals": "^2.1.2"
   }
