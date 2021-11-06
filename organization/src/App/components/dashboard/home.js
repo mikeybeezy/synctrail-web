@@ -2,6 +2,7 @@ import React from 'react';
 import { useDispatch } from 'react-redux';
 import { userActions} from '../../../actions';
 import { Button } from 'react-bootstrap';
+import SharedComp from "shared-lib/src/shared-comp";
 
 function Dashboard(props) {
 	const dispatch = useDispatch();
