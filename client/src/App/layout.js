@@ -16,6 +16,10 @@ import ResendConfirmation from './components/auth/resendConfirmation'
 import RequestUnlock from './components/auth/requestUnlock'
 import Confirmation from './components/auth/confirmation'
 
+import ClientList from './components/clients/list'
+import ClientNew from './components/clients/new'
+import ClientEdit from './components/clients/edit'
+
 function App() {
   const dispatch = useDispatch();
   const alert = useSelector((state) => state.alert);
@@ -53,6 +57,9 @@ function App() {
             <Route path='/confirmation/resend' component={ResendConfirmation} />
             <Route exact path='/admin/users/unlock/request' component={RequestUnlock} />
             <Route exact path='/users/confirmation' component={Confirmation} />
+            <PrivateRoute exact path='/admin/clients/list' component={ClientList} />
+            <PrivateRoute exact path='/admin/clients/new' component={ClientNew} />
+            <PrivateRoute exact path='/admin/clients/edit' component={ClientEdit} />
             <Redirect from="*" to="/" />
           </Switch>
         </div>

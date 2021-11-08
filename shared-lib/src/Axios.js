@@ -1,7 +1,7 @@
 import axios from 'axios';
 import humps from 'humps';
 
-// let userToken = () => JSON.parse(localStorage.getItem('user'));
+let userToken = () => JSON.parse(localStorage.getItem('userToken'));
 
 export const convertRequest = (data) => humps.decamelizeKeys(data);
 export const convertResponse = (data) => humps.camelizeKeys(data);
@@ -14,7 +14,7 @@ export const handleResponse = (response) => ({ ...convertResponse(response.data)
 export const errorResponse = (error) => ({ errors: convertResponse(error.response.data.errors) });
 
 axios.interceptors.request.use(async (config) => {
-  // config.headers.Authorization = userToken();
+  config.headers.Authorization = userToken();
   config.headers.post['Content-Type'] = "application/json";
   return config;
 });

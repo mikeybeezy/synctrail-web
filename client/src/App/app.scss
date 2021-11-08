@@ -303,3 +303,20 @@ ol, ul {
   content: "\f077";
   font-size: 12px;
 }
+
+.table {
+  background-color: #fff
+}
+
+table > thead > tr {
+  background-color: #000;
+}
+
+table > thead > tr > th {
+  color: #fff;
+  font-size: 13px;
+}
+
+.table > :not(:first-child) {
+  border-top: 0px
+}

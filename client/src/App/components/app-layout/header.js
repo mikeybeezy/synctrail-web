@@ -1,12 +1,18 @@
-import React from 'react';
-import { useDispatch } from 'react-redux';
+import React, { useState, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { Navbar, Container, Nav, NavDropdown } from 'react-bootstrap';
-import { userActions} from '../../../actions';
+import { userActions, initialActions } from '../../../actions';
 
 function SideNavebar(props) {
   const dispatch = useDispatch();
   const isUserLoggedIn = localStorage.getItem('userToken') ? true : false;
   const isUserRole = localStorage.getItem('userRole')
+
+  const currentUser = useSelector(state => state.initial.currentUser);
+  
+  useEffect(() => {
+    dispatch(initialActions.initialData());
+  }, []);
 
   const openOffcanvas = () => {
     document.body.classList.toggle('active_sidebar');
@@ -42,7 +48,7 @@ function SideNavebar(props) {
                   title={
                     <div className="user_name">
                       <img className="profile-image" src="https://startbootstrap.github.io/startbootstrap-sb-admin-2/img/undraw_profile.svg" alt="user pic"/>
-                      <span>User name</span>
+                      <span>{currentUser && currentUser.username}</span>
                       <span className="fa-icons"> </span>
                     </div>
                   }

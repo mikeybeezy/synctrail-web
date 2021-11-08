@@ -1,10 +1,15 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-import { userActions} from '../../../actions';
+import { initialActions, userActions} from '../../../actions';
 import { Button } from 'react-bootstrap';
+
 
 function Dashboard(props) {
 	const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(initialActions.initialData());
+  }, []);
 
   function logout(response) {
     dispatch(userActions.logout());

@@ -7,5 +7,7 @@ export const userConstants = {
  RESET_PASSWORD_FAILURE: 'password edit failure',
  AUTHENTICATION_FAILURE: "authentication failure",
  CONFIRM_SUCCESS: 'confirmation sucess',
- CONFIRM_FAILURE: 'confirmation failure'
+ CONFIRM_FAILURE: 'confirmation failure',
+ INITIAL_DATA: 'initial data',
+ INITIAL_DATA_ERROR: 'initial data errors',
 };

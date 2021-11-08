@@ -1,11 +1,13 @@
 import { combineReducers } from 'redux';
 import { reducer as formReducer } from 'redux-form';
-import { user } from './user.reducer';
 import { alert } from './alert.reducer';
+import { user } from './user.reducer';
+import { initial } from './initial.reducer';
 
 const rootReducer = combineReducers({
-  user,
   alert,
+  user,
+  initial,
   form: formReducer
 });
 

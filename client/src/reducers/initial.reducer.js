@@ -1,7 +1,7 @@
 import { userConstants } from '../constants';
 const initialState = { loading: false, error: '' };
 
-export function user(state = initialState, action) {
+export function initial(state = initialState, action) {
   switch (action.type) {
     case userConstants.PAGE_LOADING: {
       return { 
@@ -10,20 +10,15 @@ export function user(state = initialState, action) {
       };
     }
 
-    case userConstants.LOGIN_USER: {
+    case userConstants.INITIAL_DATA: {
       return {
         ...state,
-        loginUser: action.payload.data,
-        loading: false
-      }
-    }
-    
-    case userConstants.LOGOUT_USER: {
-      return{
-        loggingIn: false
+        currentUser: action.payload.data,
+        loading: false,
       }
     }
 
+  
     default:
       return state
   }

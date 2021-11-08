@@ -21,8 +21,8 @@ export function userLogin(reqparams, from) {
       	if(response.data.status === "ok"){
           dispatch({type: userConstants.LOGIN_USER, payload:response});
           localStorage.setItem('userToken', JSON.stringify(response.data.token));
-           localStorage.setItem('userRole', response.data.user_role);
-           history.push("/");
+          localStorage.setItem('userRole', response.data.user_role);
+          history.push("/");
           dispatch(alertActions.success(response.data.message));
         }else {
           dispatch(alertActions.error(response.data.message));
@@ -39,19 +39,10 @@ export function userLogin(reqparams, from) {
 
 export function logout() {
   return function (dispatch) {
-    const user = localStorage.getItem('userToken');
-    if(user){
+    const user = localStorage.removeItem('userToken');
+    if(!user){
       try{
-        localStorage.clear();
-        makeDELETERequest(`/api/v1/logout`)
-        .then(response => {
-          dispatch({
-            type: userConstants.LOGOUT_USER,
-            payload: response
-          });
-          history.push("/login");
-          dispatch(alertActions.success(userConstants.LOGOUT_USER));
-        })
+        history.push("/login");
       }catch(e){
         dispatch( {
           type: userConstants.AUTHENTICATION_FAILURE,
