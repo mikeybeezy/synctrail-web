@@ -12,7 +12,9 @@ function Dashboard(props) {
 
   return (
    <div  className="container">
-    <h1> Dashboard </h1>
+    <div className="page_header">
+      <h3> Dashboard </h3>
+    </div>
     <Button variant="primary" onClick={logout}>Logout</Button>
   </div>
   );

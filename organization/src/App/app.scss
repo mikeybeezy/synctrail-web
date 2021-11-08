@@ -180,6 +180,10 @@ ol, ul {
   .main_content .main_content_iner {
     padding: 10px 0px;
   }
+
+  .admin-menu li > a {
+    width: 100% !important;
+  }
 }
 
 
@@ -226,7 +230,7 @@ ol, ul {
   color: #fff;
   display: flex;
   font-size: 14px;
-  width: 190px
+  width: 200px
 }
 
 .admin-menu li > a:hover {
@@ -264,6 +268,7 @@ ol, ul {
 .user_name img {
   margin-right: 10px;
 }
+
 
 .dropdown-menu {
   right: 0 !important

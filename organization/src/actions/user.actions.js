@@ -20,7 +20,8 @@ export function userLogin(reqparams, from) {
       .then(response => {
         if(response.data.status === "ok"){
           dispatch({type: userConstants.LOGIN_USER, payload: response});
-          localStorage.setItem('user', JSON.stringify(response.data.token));
+          localStorage.setItem('userToken', JSON.stringify(response.data.token));
+          localStorage.setItem('userRole', response.data.user_role);
            history.push(from);
           dispatch(alertActions.success(response.data.message));
         }else {
@@ -38,7 +39,7 @@ export function userLogin(reqparams, from) {
 
 export function logout() {
   return function (dispatch) {
-    const user = localStorage.getItem('user');
+    const user = localStorage.getItem('userToken');
     if(user){
       try{
         localStorage.clear();
