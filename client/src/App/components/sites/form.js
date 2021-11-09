@@ -1,36 +1,30 @@
 import React, {useEffect} from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { Button } from 'react-bootstrap';
-import { textInput } from '../../../shared/form-elements'
-import { clientValidation } from '../../../shared/form-validations';
+import { Button , Table} from 'react-bootstrap';
+import { textInput, timepicker } from '../../../shared/form-elements'
 import { reduxForm, Field } from "redux-form";
 
-function ClientForm(props) {
-  const { handleSubmit, editClient, initialize, newForm } = props
+function LocationForm(props) {
+  const { handleSubmit, editSite, initialize, newForm , client_id} = props
   useEffect(() => {
     if(newForm === "newForm") {
-      initialize({ ClientForm: "" })
+      initialize({ LocationForm: "" })
     }
   }, []);
 
   return (
     <form onSubmit={handleSubmit}>
-      <h5 className="py-2">Add Client</h5>
+      <h5 className="py-2">Add Site</h5>
       <div className="row">
-        <div className="col-md-4">
+        <div className="col-md-6">
           <div className="form-group">
-            <Field name="business_name" type="text" component={textInput} label="Client Name"/>
+            <Field name="name" type="text" component={textInput} label="Site Name"/>
           </div>
         </div>
-        <div className="col-md-4">
+        <div className="col-md-6">
           <div className="form-group">
-            <Field name="phone_number" type="text" component={textInput} label="Phone"/>
-          </div>
-        </div>
-        <div className="col-md-4">
-          <div className="form-group">
-            <Field name="email" type="email" component={textInput} label="Email"/>
+            <Field name="code" type="text" component={textInput} label="Site Number"/>
           </div>
         </div>
       </div>
@@ -68,7 +62,8 @@ function ClientForm(props) {
       </div>
       <div className="mb-3 mt-4">
         <Button variant="primary" type="submit">Save</Button>
-        <Link to="/admin/clients/list">
+        
+        <Link to={`/admin/clients/${client_id}/sites`}>
           <Button variant="default">Cancel</Button>
         </Link>
       </div>
@@ -76,13 +71,12 @@ function ClientForm(props) {
   );
 }
 
-ClientForm =  reduxForm({
-  form: 'clientform',
-  validate: clientValidation
-})(ClientForm);
+LocationForm =  reduxForm({
+  form: 'locationform',
+})(LocationForm);
 
-ClientForm = connect(
-  state => ({ initialValues: state.client.editClient }),
-)(ClientForm)
+LocationForm = connect(
+  state => ({ initialValues: state.site.editSite }),
+)(LocationForm)
 
-export default ClientForm
+export default LocationForm

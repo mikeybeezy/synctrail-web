@@ -1,25 +1,31 @@
 import React, { useEffect } from 'react';
-import {connect,  useDispatch, useSelector } from 'react-redux';
+import { connect,  useDispatch } from 'react-redux';
+import { clientActions } from '../../../actions';
 import ClientForm from "../clients/form";
-import { Link } from 'react-router-dom';
 
 function ClientNew(props) {
+  const { clientError } = props
   const dispatch = useDispatch();
   const showResults = (values) => {
-    console.log(values)
+    dispatch(clientActions.newClient(values));
   }
-
   return (
     <div className="container">
-      <ClientForm onSubmit={showResults}
-        newForm="newForm"
-      />
+       {clientError && clientError.error.map((error, index) => {
+          return (
+            <div key={index}>{error}</div>
+          )
+       })}
+      <ClientForm onSubmit={showResults} newForm="newForm"/>
     </div>
   );
 }
 
 const mapStateToProps = (state) => {
-  return {}
+  return {
+    loading: state.client.loading,
+    clientError: state.client.clientError
+  }
 };
 
-export default connect(mapStateToProps,{ })(ClientNew);
+export default connect(mapStateToProps,{ clientActions })(ClientNew);

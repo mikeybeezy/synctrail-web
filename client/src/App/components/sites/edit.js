@@ -1,20 +1,19 @@
 import React, { useEffect } from 'react';
 import { connect,  useDispatch, useSelector } from 'react-redux';
-import { clientActions } from '../../../actions';
+import { siteActions } from '../../../actions';
 import { Link, useParams } from 'react-router-dom';
-import ClientForm from "../clients/form";
+import SiteForm from "../sites/form";
 
 function ClientNew(props) {
   const dispatch = useDispatch();
-  const { client_id } = useParams();
-  const { editClient } = props
-
+  const { client_id, site_id } = useParams();
+  
   useEffect(() => {
-    dispatch(clientActions.editClient(client_id));
+    dispatch(siteActions.editSite(client_id, site_id));
   }, []);
 
   const showResults = (values) => {
-    dispatch(clientActions.updateClient(values, client_id));
+    dispatch(siteActions.updateSite(client_id, site_id, values));
   }
 
   if (props.loading) {
@@ -23,9 +22,9 @@ function ClientNew(props) {
 
   return (
     <div className="container">
-      <ClientForm onSubmit={showResults}
+      <SiteForm onSubmit={showResults}
         newForm="editForm"
-        editClient={editClient && editClient}
+        client_id={client_id}
       />
     </div>
   );
@@ -33,9 +32,8 @@ function ClientNew(props) {
 
 const mapStateToProps = (state) => {
   return {
-    loading: state.client.loading,
-    editClient: state.client.editClient
+    loading: state.site.loading,
   }
 };
 
-export default connect(mapStateToProps,{ clientActions })(ClientNew);
+export default connect(mapStateToProps,{ siteActions })(ClientNew);

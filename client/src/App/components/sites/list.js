@@ -1,16 +1,17 @@
 import React, {useState, useEffect} from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useParams } from 'react-router-dom';
 import { connect, useDispatch } from 'react-redux';
 import { Button , Table} from 'react-bootstrap';
-import { clientActions } from '../../../actions';
+import { siteActions } from '../../../actions';
 import { Popup } from '../../../utils-components';
 
-function ClientList(props) {
+function SiteList(props) {
 	const dispatch = useDispatch();
-  const { clientList } = props
+  const { client_id } = useParams();
+  const { siteList } = props
 
   useEffect(() => {
-    dispatch(clientActions.getClientData());
+    dispatch(siteActions.getSiteData(client_id));
   }, []);
 
   /* Popup Modal */
@@ -23,7 +24,7 @@ function ClientList(props) {
   const handleShow = (id) => setPopUp({show: true, id});
 
   const handleDelete = () => {
-    dispatch(clientActions.destroyClient(popup.id));
+    dispatch(siteActions.destroySite(client_id, popup.id));
     handleClose();
   }
 
@@ -34,18 +35,17 @@ function ClientList(props) {
   return (
    <div  className="container">
       <div className="page_header d-flex align-items-center justify-content-between py-3">
-        <h3>Client List</h3>
-        <Link to="/admin/clients/new">
-          <Button variant="primary" size="sm">Add Client</Button>
+        <h3>Sites List</h3>
+        <Link to={{ pathname: `/admin/clients/${client_id}/site/new`}}>
+          <Button variant="primary">Add Site</Button>
         </Link>
       </div>
       <Table bordered size="sm responsive">
         <thead>
           <tr>
             <th>S.No</th>
-            <th>Business Name</th>
-            <th>Phone</th>
-            <th>Email</th>
+            <th>Name</th>
+            <th>Code</th>
             <th>Address Line 1</th>
             <th>Contact name</th>
             <th>Contact phone</th>
@@ -54,21 +54,20 @@ function ClientList(props) {
           </tr>
         </thead>
         <tbody>
-          {clientList && clientList.length > 0 ? 
-            clientList.map((data, index) => {
+          {siteList && siteList.length > 0 ? 
+            siteList.map((data, index) => {
               return (
                 <tr key={index}>
                   <td>{index + 1}</td>
-                  <td>{data.business_name}</td>
-                  <td>{data.phone_number}</td>
-                  <td>{data.email}</td>
+                  <td>{data.name}</td>
+                  <td>{data.code}</td>
                   <td>{data.address_line_1}</td>
                   <td>{data.contact_person_full_name}</td>
                   <td>{data.contact_person_phone_number}</td>
                   <td>{data.contact_person_email}</td>
                   <td>
                     <div className="d-flex align-items-center justify-content-center">
-                      <Link to={`/admin/clients/${data.id}/edit`}>
+                      <Link to={`/admin/clients/${client_id}/site/${data.id}/edit`}>
                         <i className="fa fa-pencil-square-o" aria-hidden="true"></i>
                       </Link>
                       <div onClick={() => handleShow(data.id)} className="ml-10 cursor-pointer">
@@ -98,9 +97,9 @@ function ClientList(props) {
 
 const mapStateToProps = (state) => {
   return {
-    loading: state.client.loading,
-    clientList: state.client.clientList
+    loading: state.site.loading,
+    siteList: state.site.siteList
   };
 };
 
-export default connect(mapStateToProps, {clientActions })(ClientList);
+export default connect(mapStateToProps, {siteActions })(SiteList);
