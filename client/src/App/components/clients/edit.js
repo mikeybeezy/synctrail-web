@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { connect,  useDispatch, useSelector } from 'react-redux';
+import { connect,  useDispatch } from 'react-redux';
 import { clientActions } from '../../../actions';
 import { Link, useParams } from 'react-router-dom';
 import ClientForm from "../clients/form";

@@ -1,4 +1,3 @@
-import { alertActions } from './';
 import { userConstants } from '../constants';
 import { makeGETRequest } from 'shared-lib/src/Axios';
 

@@ -20,31 +20,31 @@ function ClientForm(props) {
       <div className="row">
         <div className="col-md-4">
           <div className="form-group">
-            <Field name="business_name" type="text" component={textInput} label="Client Name"/>
+            <Field name="business_name" type="text" component={textInput} label="Client Name" placeholder="Client name..."/>
           </div>
         </div>
         <div className="col-md-4">
           <div className="form-group">
-            <Field name="phone_number" type="text" component={textInput} label="Phone"/>
+            <Field name="phone_number" type="number" component={textInput} label="Phone" placeholder="Phone..."/>
           </div>
         </div>
         <div className="col-md-4">
           <div className="form-group">
-            <Field name="email" type="email" component={textInput} label="Email"/>
+            <Field name="email" type="email" component={textInput} label="Email" placeholder="Email..."/>
           </div>
         </div>
       </div>
       <div className="row">
         <div className="col-md-12">
           <div className="form-group">
-            <Field name="address_line_1" type="text" component={textInput} label="Address Line 1"/>
+            <Field name="address_line_1" type="text" component={textInput} label="Address Line 1" placeholder="Address..."/>
           </div>
         </div>
       </div>
       <div className="row">
         <div className="col-md-12">
           <div className="form-group">
-            <Field name="address_line_2" type="text" component={textInput} label="Address Line 2"/>
+            <Field name="address_line_2" type="text" component={textInput} label="Address Line 2" placeholder="Address..."/>
           </div>
         </div>
       </div>
@@ -52,23 +52,23 @@ function ClientForm(props) {
       <div className="row">
         <div className="col-md-4">
           <div className="form-group">
-            <Field name="contact_person_full_name" type="text" component={textInput} label="Name"/>
+            <Field name="contact_person_full_name" type="text" component={textInput} label="Name" placeholder="Name..."/>
           </div>
         </div>
         <div className="col-md-4">
           <div className="form-group">
-            <Field name="contact_person_phone_number" type="text" component={textInput} label="Phone"/>
+            <Field name="contact_person_phone_number" type="number" component={textInput} label="Phone" placeholder="Phone..."/>
           </div>
         </div>
         <div className="col-md-4">
           <div className="form-group">
-            <Field name="contact_person_email" type="email" component={textInput} label="Email"/>
+            <Field name="contact_person_email" type="email" component={textInput} label="Email" placeholder="Email..."/>
           </div>
         </div>
       </div>
-      <div className="mb-3 mt-4">
+      <div className="mb-3 mt-4 form-footer">
         <Button variant="primary" type="submit">Save</Button>
-        <Link to="/admin/clients/list">
+        <Link to="/admin/clients/list" className="px-3">
           <Button variant="default">Cancel</Button>
         </Link>
       </div>

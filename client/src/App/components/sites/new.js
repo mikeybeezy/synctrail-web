@@ -1,7 +1,7 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { connect,  useDispatch } from 'react-redux';
 import { siteActions } from '../../../actions';
-import { Link, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import SiteForm from "../sites/form";
 
 function SiteNew(props) {

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { initialActions, userActions} from '../../../actions';
 import { Button } from 'react-bootstrap';

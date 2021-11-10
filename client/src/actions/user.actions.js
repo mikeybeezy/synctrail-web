@@ -1,7 +1,7 @@
 import { alertActions } from './';
 import { userConstants } from '../constants';
 import { history } from '../helpers';
-import { makePOSTRequest, makeDELETERequest, makePUTRequest, makeGETRequest } from 'shared-lib/src/Axios';
+import { makePOSTRequest, makePUTRequest, makeGETRequest } from 'shared-lib/src/Axios';
 
 export const userActions = {
   userLogin,
