@@ -1,7 +1,7 @@
 import { alertActions } from './';
 import { userConstants } from '../constants';
 import { history } from '../helpers';
-import { makePOSTRequest, makeDELETERequest, makePUTRequest, makeGETRequest } from '../utils/Axios';
+import { makePOSTRequest, makeDELETERequest, makePUTRequest, makeGETRequest } from 'shared-lib/src/Axios';
 
 export const userActions = {
   userLogin,
@@ -19,8 +19,10 @@ export function userLogin(reqparams, from) {
       makePOSTRequest('/api/v1/auth', reqparams)
       .then(response => {
         if(response.data.status === "ok"){
-          dispatch({type: userConstants.LOGIN_USER, payload: response});
-          localStorage.setItem('user', JSON.stringify(response.data.token));
+          dispatch({type: userConstants.LOGIN_USER, payload: response.data});
+          localStorage.setItem('userToken', JSON.stringify(response.data.token));
+          localStorage.setItem('userRole', response.data.user_role);
+          dispatch({type: userConstants.CURRENT_USER_DATA, payload: response.data})
            history.push(from);
           dispatch(alertActions.success(response.data.message));
         }else {
@@ -38,19 +40,10 @@ export function userLogin(reqparams, from) {
 
 export function logout() {
   return function (dispatch) {
-    const user = localStorage.getItem('user');
-    if(user){
+    const user = localStorage.removeItem('userToken');
+    if(!user){
       try{
-        localStorage.clear();
-        makeDELETERequest(`/api/v1/logout`)
-        .then(response => {
-          dispatch({
-            type: userConstants.LOGOUT_USER,
-            payload: response
-          });
-          history.push("/login");
-          dispatch(alertActions.success(userConstants.LOGOUT_USER));
-        })
+        history.push("/login");
       }catch(e){
         dispatch( {
           type: userConstants.AUTHENTICATION_FAILURE,

@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 import { connect, useDispatch } from 'react-redux';
 import { Link, useLocation } from 'react-router-dom';
 import { userActions } from '../../../actions';
@@ -18,7 +18,7 @@ function Login(props) {
   }
 
   return (
-    <main className="d-flex align-items-center">
+    <main className="d-flex align-items-center justify-content-center">
       <div  className="container">
         <div className="col-lg-4 offset-lg-4">
           <h3 className="text-center">Login</h3>

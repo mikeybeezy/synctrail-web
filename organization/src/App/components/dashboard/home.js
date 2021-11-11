@@ -4,19 +4,17 @@ import { userActions} from '../../../actions';
 import { Button } from 'react-bootstrap';
 
 function Dashboard(props) {
-	const dispatch = useDispatch();
+  const dispatch = useDispatch();
 
   function logout(response) {
     dispatch(userActions.logout());
   }
 
   return (
-    <main className="d-flex align-items-center text-center">
-      <div  className="container">
-        <h1> Dashboard </h1>
-        <Button variant="primary" size="lg" onClick={logout}>Logout</Button>
-      </div>
-    </main>
+   <div  className="container">
+    <h3> Dashboard </h3>
+    <Button variant="primary" onClick={logout}>Logout</Button>
+  </div>
   );
 }
 
