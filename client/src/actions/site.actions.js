@@ -34,7 +34,6 @@ export function newSite(reqparams, id) {
   }
 }
 
-
 export function getSiteData(client_id) {
   return dispatch => {
     try{
@@ -55,7 +54,6 @@ export function getSiteData(client_id) {
     }
   }
 }
-
 
 export function destroySite(client_id, id) {
   return function (dispatch) {

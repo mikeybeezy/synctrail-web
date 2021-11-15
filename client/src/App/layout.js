@@ -19,10 +19,13 @@ import Confirmation from './components/auth/confirmation'
 import ClientList from './components/clients/list'
 import ClientNew from './components/clients/new'
 import ClientEdit from './components/clients/edit'
-
 import SiteList from './components/sites/list'
 import SiteNew from './components/sites/new'
 import SiteEdit from './components/sites/edit'
+
+import GuardList from './components/managing-guard/list'
+import GuardNew from './components/managing-guard/new'
+import GuardEdit from './components/managing-guard/edit'
 
 function App() {
   const dispatch = useDispatch();
@@ -67,6 +70,10 @@ function App() {
             <PrivateRoute exact path='/admin/clients/:client_id/sites' component={SiteList} />
             <PrivateRoute exact path='/admin/clients/:client_id/site/new' component={SiteNew} />
             <PrivateRoute exact path='/admin/clients/:client_id/site/:site_id/edit' component={SiteEdit} />
+            <PrivateRoute exact path='/admin/guard/list' component={GuardList} />
+            <PrivateRoute exact path='/admin/guard/new' component={GuardNew} />
+            <PrivateRoute exact path='/admin/guard/:guard_id/edit' component={GuardEdit} />
+
             <Redirect from="*" to="/" />
           </Switch>
         </div>

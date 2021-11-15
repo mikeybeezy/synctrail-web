@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Navbar, Container, Nav, NavDropdown } from 'react-bootstrap';
 import { userActions, initialActions } from '../../../actions';
+import UnknownnProfile from '../../../images/unkown-profile.jpg'
 
 function SideNavebar(props) {
   const dispatch = useDispatch();
@@ -47,7 +48,7 @@ function SideNavebar(props) {
                 <NavDropdown 
                   title={
                     <div className="user_name">
-                      <img className="profile-image" src="https://startbootstrap.github.io/startbootstrap-sb-admin-2/img/undraw_profile.svg" alt="user pic"/>
+                      <img className="profile-image" src={UnknownnProfile} alt="user pic"/>
                       <span>{currentUser && currentUser.username}</span>
                       <span className="fa-icons"> </span>
                     </div>

@@ -7,7 +7,7 @@ import { clientValidation } from '../../../shared/form-validations';
 import { reduxForm, Field } from "redux-form";
 
 function ClientForm(props) {
-  const { handleSubmit, editClient, initialize, newForm } = props
+  const { handleSubmit, initialize, newForm } = props
   useEffect(() => {
     if(newForm === "newForm") {
       initialize({ ClientForm: "" })

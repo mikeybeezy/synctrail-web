@@ -5,8 +5,10 @@ import { user } from './user.reducer';
 import { initial } from './initial.reducer';
 import { client } from './client.reducer';
 import { site } from './site.reducer';
+import { guard } from './guard.reducer';
 
 const rootReducer = combineReducers({
+  guard,
   site,
   client,
   alert,

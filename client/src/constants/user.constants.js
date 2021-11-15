@@ -24,5 +24,13 @@ export const userConstants = {
  SITE_LIST: 'client list',
  DESTROY_SITE: 'delete site',
  EDIT_SITE :'edit site',
- UPDATE_SITE: 'update site'
+ UPDATE_SITE: 'update site',
+
+
+ NEW_GUARD: 'create new guard',
+ GUARD_ERROR :'guard errors',
+ GUARD_DATA: 'guard list',
+ GUARD_DESTROY: 'delete guard',
+ GUARD_EDIT: 'edit guard',
+ GUARD_UPDATE: 'update guard',
 };

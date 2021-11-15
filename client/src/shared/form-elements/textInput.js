@@ -8,6 +8,7 @@ export const textInput = ({
   defaultValue,
   id,
   autoFocus,
+  removeClass,
   meta: { touched, error },
   ...rest
 }) => {
@@ -19,7 +20,7 @@ export const textInput = ({
         type={type}
         placeholder={placeholder}
         id={id}
-        className="form-control"
+        className={removeClass === "false" ? "pointer-events" : 'form-control'}
         autoFocus={autoFocus}
       />
       {touched && error && <span className="form-error">{error}</span>}
