@@ -1,6 +1,5 @@
 import React from "react";
 import DatePicker from "react-datepicker";
-import "react-datepicker/dist/react-datepicker.css";
 
 const renderDatePicker = ({input, label, placeholder,  selected, required, meta: { touched, error, warning, invalid }}) => (
   <div>
@@ -9,6 +8,7 @@ const renderDatePicker = ({input, label, placeholder,  selected, required, meta:
       className="form-control"
       {...input}
       selected={selected}
+      autoComplete='off'
       onChange={value => { input.onChange(value)}}
       onBlur={() => input.onBlur(input.value)}
       required={required}

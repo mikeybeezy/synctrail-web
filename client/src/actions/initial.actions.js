@@ -9,7 +9,7 @@ export function initialData(reqparams) {
       makeGETRequest('/api/v1/get_initialData')
       .then(response => {
         if(response.data.status === "ok"){
-          dispatch({type: userConstants.INITIAL_DATA, payload: response.data})
+          dispatch({type: userConstants.INITIAL_DATA, payload: response})
         }else {
           dispatch({type: userConstants.INITIAL_DATA_ERROR, payload: response.error})
         }

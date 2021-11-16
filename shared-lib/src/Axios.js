@@ -2,6 +2,7 @@ import axios from 'axios';
 import humps from 'humps';
 
 let userToken = () => JSON.parse(localStorage.getItem('userToken'));
+const organiToken = localStorage.getItem('organiToken')
 
 export const convertRequest = (data) => humps.decamelizeKeys(data);
 export const convertResponse = (data) => humps.camelizeKeys(data);
@@ -15,6 +16,7 @@ export const errorResponse = (error) => ({ errors: convertResponse(error.respons
 
 axios.interceptors.request.use(async (config) => {
   config.headers.Authorization = userToken();
+  config.headers.Organization = organiToken
   config.headers.post['Content-Type'] = "application/json";
   return config;
 });

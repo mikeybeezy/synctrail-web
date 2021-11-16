@@ -1,33 +1,47 @@
-import React from "react";
+import React, {useEffect} from "react";
 
-const SelectField = ({ placeholder, input, label, options, optionname,  type, meta: { touched, error } }) => {
+const SelectField = ({ placeholder, formStatus, input, onChange,  label, options, optionname,  type, meta: { touched, error } }) => {
   const [active, setActive] = React.useState(false)
   const [value, setValue] = React.useState()
-  const onChange = (event) => {
+  const [price, setPrice] = React.useState()
+  const checkValue = (event) => {
     setActive(true)
+    const getObject = options && options.find(item => item.name === event.target.value)
+    setPrice(getObject && getObject.price)
+    input.onChange(event)
   }
+
+  useEffect(() => {
+   if(formStatus === "editForm") {
+     setActive(true)
+     const getObject = options && options.find(item => item.name === input.value)
+     setPrice(getObject && getObject.price)
+   }
+  }, []);
+
+
   return (
     <div className="row">
-      <div className="col-md-6">
+      <div className={active === true ? "col-md-8" : "col-md-12"}>
         <label className="mb-1"> {label} </label>
-        <select {...input} className="form-control" onChange={onChange} value={value}>
+        <select {...input} className="form-control" onChange = { (e) => checkValue(e)}>
           <option value="">{label}</option>
           {options && options.map(option => (
-            <option key={option.id} value={option.id}>
+            <option key={option.id} value={option.name} price={option.name}>
               {option.name}
             </option>
           ))}
         </select>
         {touched && error && (<span className="form-error">{error}</span>)}
       </div>
-      <div className="col-md-6">
         {active && 
-          <div>
-            <label className="mb-1">Salary type amout</label>
-            <input type="text" placeholder={placeholder} className="form-control" value="33.33"/>
+          <div className="col-md-4">
+            <div>
+              <label className="mb-1">Salary type amout</label>
+              <input type="text" placeholder={placeholder} className="form-control" value={price} disabled/>
+            </div>
           </div>
         }
-      </div>
     </div>
   )
 }

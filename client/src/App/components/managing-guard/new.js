@@ -25,7 +25,11 @@ function SiteNew(props) {
           <div key={index}>{error}</div>
         )
       })}
-      <NewGuardForm onSubmit={showResults} formStatus="newForm" onSelectGuarntor={handleGuard}/>
+      <NewGuardForm 
+        onSubmit={showResults} 
+        formStatus="newForm" 
+        onSelectGuarntor={handleGuard}
+      />
     </div>
   );
 }

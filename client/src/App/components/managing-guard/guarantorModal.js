@@ -13,12 +13,24 @@ function FormDetails(props) {
         <div className="row">
           <div className="col-md-4">
             <div className="form-group">
-              <Field name="first_name" type="text" component={textInput} label="First Name" placeholder="First name..."/>
+              <Field 
+                name="first_name" 
+                type="text" 
+                component={textInput} 
+                label="First Name" 
+                placeholder="First name..."
+              />
             </div>
           </div>
           <div className="col-md-4">
             <div className="form-group">
-              <Field name="last_name" type="text" component={textInput} label="Last Name" placeholder="Last name..."/>
+              <Field 
+                name="last_name" 
+                type="text" 
+                component={textInput} 
+                label="Last Name" 
+                placeholder="Last name..."
+              />
             </div>
           </div>
           <div className="col-md-4">
@@ -36,29 +48,59 @@ function FormDetails(props) {
         <div className="row">
           <div className="col-md-4">
             <div className="form-group">
-              <Field name="relationship_to_guard" type="text" component={textInput} label="Relationship To Ex (The Guard)" placeholder="Relationship..."/>
+              <Field 
+                name="relationship_to_guard" 
+                type="text" 
+                component={textInput} 
+                label="Relationship To Ex (The Guard)" 
+                placeholder="Relationship..."
+              />
             </div>
           </div>
           <div className="col-md-4">
             <div className="form-group">
-              <Field name="national_id_number" type="number" component={textInput} label="National Id" placeholder="000-000-000-0000..."/>
+              <Field 
+                name="national_id_number" 
+                type="number" 
+                component={textInput} 
+                label="National Id" 
+                placeholder="000-000-000-0000..."
+              />
             </div>
           </div>
           <div className="col-md-4">
             <div className="form-group">
-              <Field name="phone_number" type="number" component={textInput} label="Phone" placeholder="Phone..."/>
+              <Field 
+                name="phone_number" 
+                type="number" 
+                component={textInput} 
+                label="Phone" 
+                placeholder="Phone..."
+              />
             </div>
           </div>
         </div>
         <div className="row">
           <div className="col-md-6">
             <div  className="form-group">
-                <Field name="full_address" type="text" component={textInput} label="Address" placeholder="Address..."/>
+              <Field 
+                name="full_address" 
+                type="text" 
+                component={textInput} 
+                label="Address" 
+                placeholder="Address..."
+              />
             </div>
           </div>
           <div className="col-md-6">
             <div className="form-group">
-              <Field name="email" type="email" component={textInput} label="Email" placeholder="Email..."/>
+              <Field 
+                name="email" 
+                type="email" 
+                component={textInput} 
+                label="Email" 
+                placeholder="Email..."
+              />
             </div>
           </div>
         </div>

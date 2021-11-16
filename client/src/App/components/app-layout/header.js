@@ -4,13 +4,14 @@ import { Navbar, Container, Nav, NavDropdown } from 'react-bootstrap';
 import { userActions, initialActions } from '../../../actions';
 import UnknownnProfile from '../../../images/unkown-profile.jpg'
 
-function SideNavebar(props) {
+function AppHeader(props) {
   const dispatch = useDispatch();
   const isUserLoggedIn = localStorage.getItem('userToken') ? true : false;
   const isUserRole = localStorage.getItem('userRole')
-
+  const organization_id = localStorage.getItem('organiToken')
   const currentUser = useSelector(state => state.initial.currentUser);
-  
+  const organizations = useSelector(state => state.initial.organizations);
+     
   useEffect(() => {
     dispatch(initialActions.initialData());
   }, []);
@@ -25,6 +26,12 @@ function SideNavebar(props) {
 
   function logout(response) {
     dispatch(userActions.logout());
+    localStorage.removeItem('organiToken');
+  }
+
+  const organizationDropdown = (e) => {
+    localStorage.setItem('organiToken', e.target.value);
+    window.location.reload();
   }
 
   return (
@@ -32,7 +39,7 @@ function SideNavebar(props) {
        { isUserLoggedIn ?
           <Navbar bg="dark" variant="dark">
             <Container>
-              <div>
+              <div className="d-flex align-items-center">
                 <div className="sidebar_icon d-lg-none"  onClick={openOffcanvas}>
                  <i className="fa fa-bars"></i>
                 </div>
@@ -44,7 +51,17 @@ function SideNavebar(props) {
                 }
                 { isUserRole !== "admin" ?  <div className="mobile-none logo_text">SyncTrial</div> : null }
               </div>
-              <Nav className="ml-auto">
+              <Nav className="ml-auto align-items-center">
+                <div>
+                  <select className="organization-select"  onChange={organizationDropdown} value={organization_id}>
+                    { organizations && organizations.length > 0 ?
+                        organizations.map((data, index) => (
+                          <option value={data.id} key={data.id}>{data.display_name}</option>
+                        ))
+                      : null
+                    }
+                  </select>
+                </div>
                 <NavDropdown 
                   title={
                     <div className="user_name">
@@ -66,7 +83,7 @@ function SideNavebar(props) {
   );
 }
 
-export default SideNavebar;
+export default AppHeader;
 
 
 

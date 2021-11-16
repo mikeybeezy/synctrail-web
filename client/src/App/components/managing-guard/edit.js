@@ -7,8 +7,8 @@ import NewGuardForm from "../managing-guard/form";
 
 function SiteNew(props) {
   const [guarntorlist, setGuarntorList] = useState([]);
-  const { guardError } = props
   const dispatch = useDispatch();
+  const { guardError } = props
   const { guard_id } = useParams();
 
   useEffect(() => {
@@ -24,7 +24,6 @@ function SiteNew(props) {
     dispatch(guardManagementActions.updateGuard(formData, guard_id));
   }
 
-
   if (props.loading) {
     return <div className="page_loading">Loading..</div>
   }
@@ -36,7 +35,11 @@ function SiteNew(props) {
           <div key={index}>{error}</div>
         )
       })}
-      <NewGuardForm onSubmit={showResults} formStatus="editForm" onSelectGuarntor={handleGuard}/>
+      <NewGuardForm 
+        onSubmit={showResults} 
+        formStatus="editForm" 
+        onSelectGuarntor={handleGuard}
+      />
     </div>
   );
 }

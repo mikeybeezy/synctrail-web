@@ -14,12 +14,12 @@ const FileUpload = ({
     setFile(e.target.files[0])
   }
 
-  const handleClick = event => {
-    hiddenFileInput.current.click();
-  };
+  const handleClick = event => { hiddenFileInput.current.click()}
 
   const removeUpload = (e) => {
-    e.target.value = null;
+    setFile("")
+    hiddenFileInput.current.value = ''
+    onChange("")
   }
   
   return (
@@ -28,7 +28,7 @@ const FileUpload = ({
         <img src={file ? URL.createObjectURL(file) : omitValue && omitValue.url ? omitValue.url : UnknownnImage }  alt="img"/>
       </div>
       <div className="px-2" style={{paddingTop: '85px'}}>
-        <div onClick={removeUpload}><i className="fa fa-trash" aria-hidden="true"></i></div>
+        <div onClick={removeUpload} className="cursor-pointer"><i className="fa fa-trash" aria-hidden="true"></i></div>
         <Button  variant="default" onClick={handleClick}>
           Upload Photo
         </Button>
@@ -41,7 +41,7 @@ const FileUpload = ({
           type="file"
           {...props.input}
           {...props}
-          style={{display:'none'}} 
+          style={{display: 'none'}}
         />
       </div>
     </div>

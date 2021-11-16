@@ -21,7 +21,12 @@ export function userLogin(reqparams, from) {
       	if(response.data.status === "ok"){
           dispatch({type: userConstants.LOGIN_USER, payload:response});
           localStorage.setItem('userToken', JSON.stringify(response.data.token));
+          localStorage.setItem('organiToken', response.data.org_id);
           localStorage.setItem('userRole', response.data.user_role);
+          console.log(response.data.org_id)
+          console.log(response.data.org_id)
+          console.log(response.data.org_id)
+          console.log(response.data.org_id)
           history.push("/");
           dispatch(alertActions.success(response.data.message));
         }else {

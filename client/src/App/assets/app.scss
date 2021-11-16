@@ -192,6 +192,14 @@ h1, h2, h3, h4, h5, h6 {
   .mobile-none {
     display: none
   }
+
+  .main_content .main_content_inner {
+    padding: 15px 0px
+  }
+
+  .main_content .navbar  {
+    padding: 5px 0px
+  }
 }
 
 @media (max-width: 992px) {
@@ -439,4 +447,25 @@ label {
   position: absolute;
   right: 42px;
   padding-top: 9px;
+}
+
+.organization-select {
+  font-size: 13px;
+  border-radius: 3px;
+  background: #fff;
+  padding: 8px 35px 8px 8px;
+  height: 35px
+}
+
+.react-datepicker {
+  box-shadow: 0 2px 4px rgb(15 34 58 / 12%);
+  border: 0px !important
+}
+
+.react-datepicker-popper[data-placement^=bottom] .react-datepicker__triangle::after {
+  display: none !important;
+}
+
+.react-datepicker-popper[data-placement^=bottom] .react-datepicker__triangle::before {
+  display: none !important;
 }

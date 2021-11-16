@@ -1,4 +1,5 @@
-import './app.scss';
+import './assets/app.scss';
+import './assets/datepicker.scss';
 import React, { useEffect } from 'react';
 import { Router, Switch, Route, Redirect } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
@@ -30,6 +31,7 @@ import GuardEdit from './components/managing-guard/edit'
 function App() {
   const dispatch = useDispatch();
   const alert = useSelector((state) => state.alert);
+  const organizations = useSelector(state => state.initial.organizations);
   const isUserLoggedIn = localStorage.getItem('userToken') ? true : false;
   const isMobileScreen = useMediaQuery({ query: '(max-width: 768px)' })
   const isUserRole = localStorage.getItem('userRole')
@@ -48,7 +50,7 @@ function App() {
      <Router history={history}>
       { isUserRole === "admin" ? <Sidebar /> : isMobileScreen ?  <Sidebar /> : null }
       <div className={ !isUserLoggedIn ? "auth_content" : isUserRole === "admin" ? "main_content" : null} >
-        <Header />
+        <Header/>
         <div className= { isUserLoggedIn ? "main_content_inner" : null}>
           {alert.message && (
             <div className={`alert ${alert.type}`}>
@@ -73,7 +75,6 @@ function App() {
             <PrivateRoute exact path='/admin/guard/list' component={GuardList} />
             <PrivateRoute exact path='/admin/guard/new' component={GuardNew} />
             <PrivateRoute exact path='/admin/guard/:guard_id/edit' component={GuardEdit} />
-
             <Redirect from="*" to="/" />
           </Switch>
         </div>

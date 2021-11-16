@@ -1,6 +1,6 @@
 import React, { useEffect} from 'react';
 import { Link } from 'react-router-dom';
-import { connect  } from 'react-redux';
+import { connect, useSelector  } from 'react-redux';
 import { Button } from 'react-bootstrap';
 import { textInput, datePicker, selectPicker, fileUpload } from '../../../shared/form-elements'
 import { guarantorValidation } from '../../../shared/form-validations';
@@ -8,10 +8,9 @@ import { reduxForm, Field } from "redux-form";
 import GuarantorForm from "../managing-guard/guarantorForm";
 import moment from "moment";
 
-const options = [{'id': '1', 'name': 'Annual' }, {'id': '2', 'name': 'Monthly' }, {'id': '3', 'name': 'Weekly' }, {'id': '4', 'name': 'Daily' }, {'id': '5', 'name': 'Hourly' }]
-
 function GuardForm(props) {
   const { handleSubmit, initialize, formStatus } = props
+  const guardSalary = useSelector(state => state.initial.guardSalary);  
   useEffect(() => {
     if(formStatus === "newForm") {
       initialize({ guardform: "" })
@@ -26,12 +25,24 @@ function GuardForm(props) {
       <div className="row">
         <div className="col-md-4">
           <div className="form-group">
-            <Field name="first_name" type="text" component={textInput} label="First Name" placeholder="First name..."/>
+            <Field 
+              name="first_name" 
+              type="text" 
+              component={textInput} 
+              label="First Name" 
+              placeholder="First name..."
+            />
           </div>
         </div>
         <div className="col-md-4">
           <div className="form-group">
-            <Field name="last_name" type="text" component={textInput} label="Last Name" placeholder="Last name..."/>
+            <Field 
+              name="last_name" 
+              type="text" 
+              component={textInput} 
+              label="Last Name" 
+              placeholder="Last name..."
+            />
           </div>
         </div>
         <div className="col-md-4">
@@ -52,17 +63,33 @@ function GuardForm(props) {
       <div className="row">
         <div className="col-md-4">
           <div className="form-group">
-            <Field name="origin_state" type="text" component={textInput} label="State of Origin" placeholder="state of origin..."/>
+            <Field 
+              name="origin_state" 
+              type="text" 
+              component={textInput} 
+              label="State of Origin" placeholder="state of origin..."/>
           </div>
         </div>
         <div className="col-md-4">
           <div className="form-group">
-            <Field name="national_id_number" type="number" component={textInput} label="National Id" placeholder="000-000-000-0000..."/>
+            <Field 
+              name="national_id_number" 
+              type="number" 
+              component={textInput} 
+              label="National Id" 
+              placeholder="000-000-000-0000..."
+            />
           </div>
         </div>
         <div className="col-md-4">
           <div className="form-group">
-            <Field name="phone_number" type="number" component={textInput} label="Phone" placeholder="Phone..."/>
+            <Field 
+              name="phone_number" 
+              type="number" 
+              component={textInput} 
+              label="Phone" 
+              placeholder="Phone..."
+            />
           </div>
         </div>
       </div>
@@ -70,7 +97,13 @@ function GuardForm(props) {
       <div className="row">
         <div className="col-md-12">
           <div  className="form-group">
-              <Field name="full_address" type="text" component={textInput} label="Address" placeholder="Address..."/>
+            <Field 
+              name="full_address" 
+              type="text" 
+              component={textInput} 
+              label="Address" 
+              placeholder="Address..."
+            />
           </div>
         </div>
       </div>
@@ -78,22 +111,46 @@ function GuardForm(props) {
       <div className="row">
         <div className="col-md-6">
           <div className="form-group">
-            <Field name="email" type="email" component={textInput} label="Email" placeholder="Email..."/>
+            <Field 
+              name="email" 
+              type="email" 
+              component={textInput} 
+              label="Email" 
+              placeholder="Email..."
+            />
           </div>
         </div>
         <div className="col-md-6">
           <div className="form-group">
-            <Field name="organization_id_number" type="number" component={textInput} label="Guard ID" placeholder="Guard id..."/>
+            <Field 
+              name="organization_id_number" 
+              type="number" 
+              component={textInput} 
+              label="Guard ID" 
+              placeholder="Guard id..."
+            />
           </div>
         </div>
       </div>
       <div>
-        <Field name="salary" component={selectPicker} label="Salary Type" options={options} placeholder="Salary type..."/>
+        <Field 
+          name="salary_frequency" 
+          component={selectPicker} 
+          label="Salary Type" 
+          options={guardSalary} 
+          placeholder="Salary type..."
+          formStatus={formStatus}
+        />
       </div>
-      <Field name="photo" component={fileUpload} type="file" />
-      
-      <GuarantorForm onSelectGuarntor={handleGuarntor} formStatus={formStatus}/>
-    
+      <Field 
+        name="photo" 
+        component={fileUpload} 
+        type="file" 
+      />
+      <GuarantorForm 
+        onSelectGuarntor={handleGuarntor} 
+        formStatus={formStatus}
+      />
       <div className="mb-3 mt-4 form-footer">
         <Button variant="primary" type="submit">
           {formStatus === "newForm" ? 'Save' : 'Update'}
