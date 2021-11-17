@@ -28,7 +28,7 @@ function NewForm(props) {
             <div className="mb-2">
               <Field name="email" type="email" component={textInput} label="Email"/>
             </div>
-            <div className="mb-3 mt-4">
+            <div className="mb-3 mt-3">
               <Button variant="primary" type="submit" className="app-btn">Send reset password instructions</Button>
             </div>
 

@@ -2,7 +2,7 @@ import React, { useEffect} from 'react';
 import { Link } from 'react-router-dom';
 import { connect, useSelector  } from 'react-redux';
 import { Button } from 'react-bootstrap';
-import { textInput, datePicker, selectPicker, fileUpload } from '../../../shared/form-elements'
+import { textInput, datePicker, selectPicker, fileUpload } from '../../../shared/form-elements';
 import { guarantorValidation } from '../../../shared/form-validations';
 import { reduxForm, Field } from "redux-form";
 import GuarantorForm from "../managing-guard/guarantorForm";
@@ -21,7 +21,7 @@ function GuardForm(props) {
   }
   return (
     <form onSubmit={handleSubmit}>
-      <h5 className="py-2">Add Client</h5>
+      <h5 className="py-2">Guests History</h5>
       <div className="row">
         <div className="col-md-4">
           <div className="form-group">

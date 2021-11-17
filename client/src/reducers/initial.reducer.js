@@ -14,8 +14,6 @@ export function initial(state = initialState, action) {
       return {
         ...state,
         currentUser: action.payload.data.data,
-        guardSalary: action.payload.data.guard_salary,
-        organizations: action.payload.data.organizations,
         loading: false,
       }
     }

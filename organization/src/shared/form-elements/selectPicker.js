@@ -2,7 +2,6 @@ import React, {useEffect} from "react";
 
 const SelectField = ({ placeholder, formStatus, input, onChange,  label, options, optionname,  type, meta: { touched, error } }) => {
   const [active, setActive] = React.useState(false)
-  const [value, setValue] = React.useState()
   const [price, setPrice] = React.useState()
   const checkValue = (event) => {
     setActive(true)
@@ -19,7 +18,6 @@ const SelectField = ({ placeholder, formStatus, input, onChange,  label, options
    }
   }, []);
 
-
   return (
     <div className="row">
       <div className={active === true ? "col-md-8" : "col-md-12"}>
@@ -27,7 +25,7 @@ const SelectField = ({ placeholder, formStatus, input, onChange,  label, options
         <select {...input} className="form-control" onChange = { (e) => checkValue(e)}>
           <option value="">{label}</option>
           {options && options.map(option => (
-            <option key={option.id} value={option.name} price={option.name}>
+            <option key={option.name} value={option.name} price={option.name}>
               {option.name}
             </option>
           ))}

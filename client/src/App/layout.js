@@ -17,21 +17,9 @@ import ResendConfirmation from './components/auth/resendConfirmation'
 import RequestUnlock from './components/auth/requestUnlock'
 import Confirmation from './components/auth/confirmation'
 
-import ClientList from './components/clients/list'
-import ClientNew from './components/clients/new'
-import ClientEdit from './components/clients/edit'
-import SiteList from './components/sites/list'
-import SiteNew from './components/sites/new'
-import SiteEdit from './components/sites/edit'
-
-import GuardList from './components/managing-guard/list'
-import GuardNew from './components/managing-guard/new'
-import GuardEdit from './components/managing-guard/edit'
-
 function App() {
   const dispatch = useDispatch();
   const alert = useSelector((state) => state.alert);
-  const organizations = useSelector(state => state.initial.organizations);
   const isUserLoggedIn = localStorage.getItem('userToken') ? true : false;
   const isMobileScreen = useMediaQuery({ query: '(max-width: 768px)' })
   const isUserRole = localStorage.getItem('userRole')
@@ -66,15 +54,6 @@ function App() {
             <Route path='/confirmation/resend' component={ResendConfirmation} />
             <Route exact path='/admin/users/unlock/request' component={RequestUnlock} />
             <Route exact path='/users/confirmation' component={Confirmation} />
-            <PrivateRoute exact path='/admin/clients/list' component={ClientList} />
-            <PrivateRoute exact path='/admin/clients/new' component={ClientNew} />
-            <PrivateRoute exact path='/admin/clients/:client_id/edit' component={ClientEdit} />
-            <PrivateRoute exact path='/admin/clients/:client_id/sites' component={SiteList} />
-            <PrivateRoute exact path='/admin/clients/:client_id/site/new' component={SiteNew} />
-            <PrivateRoute exact path='/admin/clients/:client_id/site/:site_id/edit' component={SiteEdit} />
-            <PrivateRoute exact path='/admin/guard/list' component={GuardList} />
-            <PrivateRoute exact path='/admin/guard/new' component={GuardNew} />
-            <PrivateRoute exact path='/admin/guard/:guard_id/edit' component={GuardEdit} />
             <Redirect from="*" to="/" />
           </Switch>
         </div>

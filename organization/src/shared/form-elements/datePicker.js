@@ -1,7 +1,7 @@
 import React from "react";
 import DatePicker from "react-datepicker";
 
-const renderDatePicker = ({input, label, placeholder,  selected, required, meta: { touched, error, warning, invalid }}) => (
+const DatePickerRender = ({input, label, placeholder,  selected, required, meta: { touched, error, warning, invalid }}) => (
   <div>
    <label>{label}</label>
     <DatePicker
@@ -20,4 +20,4 @@ const renderDatePicker = ({input, label, placeholder,  selected, required, meta:
   </div>
 );
 
-export default renderDatePicker
+export default DatePickerRender

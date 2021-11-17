@@ -24,7 +24,7 @@ function ClientNew(props) {
   return (
     <div className="container">
       <ClientForm onSubmit={showResults}
-        newForm="editForm"
+        formStatus="editForm"
         editClient={editClient && editClient}
       />
     </div>

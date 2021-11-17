@@ -11,26 +11,4 @@ export const userConstants = {
  CONFIRM_FAILURE: 'confirmation failure',
  INITIAL_DATA: 'initial data',
  INITIAL_DATA_ERROR: 'initial data errors',
-
- NEW_CLIENT: 'create new client',
- CLIENT_ERROR: 'client errors',
- CLIENT_LIST: 'client list',
- DESTROY_CLIENT: 'delete client',
- EDIT_CLIENT: 'edit client',
- UPDATE_CLIENT: 'update client',
-
- NEW_SITE: 'create new site',
- SITE_ERROR: 'site errors',
- SITE_LIST: 'client list',
- DESTROY_SITE: 'delete site',
- EDIT_SITE :'edit site',
- UPDATE_SITE: 'update site',
-
-
- NEW_GUARD: 'create new guard',
- GUARD_ERROR :'guard errors',
- GUARD_DATA: 'guard list',
- GUARD_DESTROY: 'delete guard',
- GUARD_EDIT: 'edit guard',
- GUARD_UPDATE: 'update guard',
 };

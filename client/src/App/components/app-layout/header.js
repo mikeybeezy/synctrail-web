@@ -8,9 +8,7 @@ function AppHeader(props) {
   const dispatch = useDispatch();
   const isUserLoggedIn = localStorage.getItem('userToken') ? true : false;
   const isUserRole = localStorage.getItem('userRole')
-  const organization_id = localStorage.getItem('organiToken')
   const currentUser = useSelector(state => state.initial.currentUser);
-  const organizations = useSelector(state => state.initial.organizations);
      
   useEffect(() => {
     dispatch(initialActions.initialData());
@@ -26,14 +24,7 @@ function AppHeader(props) {
 
   function logout(response) {
     dispatch(userActions.logout());
-    localStorage.removeItem('organiToken');
   }
-
-  const organizationDropdown = (e) => {
-    localStorage.setItem('organiToken', e.target.value);
-    window.location.reload();
-  }
-
   return (
     <div>
        { isUserLoggedIn ?
@@ -52,16 +43,6 @@ function AppHeader(props) {
                 { isUserRole !== "admin" ?  <div className="mobile-none logo_text">SyncTrial</div> : null }
               </div>
               <Nav className="ml-auto align-items-center">
-                <div>
-                  <select className="organization-select"  onChange={organizationDropdown} value={organization_id}>
-                    { organizations && organizations.length > 0 ?
-                        organizations.map((data, index) => (
-                          <option value={data.id} key={data.id}>{data.display_name}</option>
-                        ))
-                      : null
-                    }
-                  </select>
-                </div>
                 <NavDropdown 
                   title={
                     <div className="user_name">

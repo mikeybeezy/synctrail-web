@@ -19,6 +19,7 @@ export const textInput = ({
         type={type}
         placeholder={placeholder}
         id={id}
+        autoComplete="off"
         className="form-control"
         autoFocus={autoFocus}
       />

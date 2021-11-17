@@ -1,4 +1,4 @@
-const guarantorValidation = (values) => {
+const GuarantorValidation = (values) => {
   const errors = {};
   if (!values.email) {
     errors.email = 'required';
@@ -41,4 +41,4 @@ const guarantorValidation = (values) => {
   return errors;
 };
 
-export default guarantorValidation;
+export default GuarantorValidation;

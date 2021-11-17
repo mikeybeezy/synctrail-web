@@ -11,9 +11,7 @@ function EditForm(props) {
 
   const { handleSubmit} = props
   const dispatch = useDispatch();
-  const location = useLocation();
   const query = new URLSearchParams(props.location.search);
-
   const reset_password_token = query.get('reset_password_token');
 
   const formSubmit = (values) => {
@@ -33,7 +31,7 @@ function EditForm(props) {
             <div className="mb-2">
               <Field name="password_confirmation" type="password" component={textInput} label="Confirm New Password"/>
             </div>
-            <div className="mb-3 mt-4">
+            <div className="mb-3 mt-3">
               <Button variant="primary" type="submit" className="app-btn">Change Password</Button>
             </div>
           </form>

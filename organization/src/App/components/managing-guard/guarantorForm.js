@@ -93,6 +93,7 @@ function GuarantorForm(props) {
             onSubmit={showResult} 
             initialValues={singledata && singledata}
             status={status}
+            handleClose={handleClose}
           />
         </Modal.Body>
       </Modal>

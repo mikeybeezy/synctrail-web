@@ -21,7 +21,6 @@ export function newClient(reqparams, from) {
           const client = response.data.data
           dispatch({type: userConstants.NEW_CLIENT, payload:response});
           history.push(`/admin/clients/${client.id}/sites`);
-
           dispatch(alertActions.success(response.data.message));
         }else {
           dispatch({type: userConstants.CLIENT_ERROR, payload:response});
@@ -84,7 +83,7 @@ export function updateClient(reqparams, id) {
       makePUTRequest(`/api/v1/clients/${id}`, reqparams)
       .then(response => {
         if(response.data.status === "ok"){
-          history.push("/admin/clients/list");
+          history.push(`/admin/clients/${id}/sites`);
           dispatch({
             type: userConstants.UPDATE_CLIENT,
             payload: response

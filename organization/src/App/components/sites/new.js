@@ -18,7 +18,7 @@ function SiteNew(props) {
           <div key={index}>{error}</div>
         )
       })}
-      <SiteForm onSubmit={showResults} newForm="newForm" client_id={client_id}/>
+      <SiteForm onSubmit={showResults} formStatus="newForm" client_id={client_id}/>
     </div>
   );
 }

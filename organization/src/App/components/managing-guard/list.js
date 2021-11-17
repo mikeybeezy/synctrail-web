@@ -63,7 +63,7 @@ function GuardList(props) {
                 <tr key={index}>
                   <td className="text-center">{index + 1}</td>
                   <td className="text-center">
-                    <img src={data.photo.url ? data.photo.url : UnknownnImage} style={{ maxWidth: 80, maxHeight: 80, borderRadius: 4 }} alt="img"/>
+                    <img src={data.photo.url ? data.photo.url : UnknownnImage} style={{ maxWidth: 80, maxHeight: 80, borderRadius: 4, height: 55 }} alt="img"/>
                   </td>
                   <td>{data.first_name}</td>
                   <td>{data.last_name}</td>
