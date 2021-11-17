@@ -13,7 +13,7 @@ export function initial(state = initialState, action) {
     case userConstants.INITIAL_DATA: {
       return {
         ...state,
-        currentUser: action.payload.data,
+        currentUser: action.payload.data.data,
         loading: false,
       }
     }

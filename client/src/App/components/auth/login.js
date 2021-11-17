@@ -18,7 +18,7 @@ function Login(props) {
   }
 
   return (
-    <main className="d-flex align-items-center justify-content-center">
+    <main className="d-flex align-items-center">
       <div  className="container">
         <div className="col-lg-4 offset-lg-4">
           <h3 className="text-center">Login</h3>

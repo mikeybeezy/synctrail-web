@@ -3,30 +3,34 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { Button } from 'react-bootstrap';
 import { textInput } from '../../../shared/form-elements'
-import { siteValidation } from '../../../shared/form-validations';
+import { clientValidation } from '../../../shared/form-validations';
 import { reduxForm, Field } from "redux-form";
-import GoogleMap from '../../../images/google-map.png'
 
-function LocationForm(props) {
-  const { handleSubmit, initialize, newForm , client_id} = props
+function ClientForm(props) {
+  const { handleSubmit, initialize, formStatus } = props
   useEffect(() => {
-    if(newForm === "newForm") {
-      initialize({ LocationForm: "" })
+    if(formStatus === "newForm") {
+      initialize({ ClientForm: "" })
     }
   }, []);
 
   return (
     <form onSubmit={handleSubmit}>
-      <h5 className="py-2">Add Site</h5>
+      <h5 className="py-2">Add Client</h5>
       <div className="row">
-        <div className="col-md-6">
+        <div className="col-md-4">
           <div className="form-group">
-            <Field name="name" type="text" component={textInput} label="Site Name" placeholder="Site name..."/>
+            <Field name="business_name" type="text" component={textInput} label="Client Name" placeholder="Client name..."/>
           </div>
         </div>
-        <div className="col-md-6">
+        <div className="col-md-4">
           <div className="form-group">
-            <Field name="code" type="number" component={textInput} label="Site Number" placeholder="Site number..."/>
+            <Field name="phone_number" type="number" component={textInput} label="Phone" placeholder="Phone..."/>
+          </div>
+        </div>
+        <div className="col-md-4">
+          <div className="form-group">
+            <Field name="email" type="email" component={textInput} label="Email" placeholder="Email..."/>
           </div>
         </div>
       </div>
@@ -61,14 +65,10 @@ function LocationForm(props) {
             <Field name="contact_person_email" type="email" component={textInput} label="Email" placeholder="Email..."/>
           </div>
         </div>
-        <div className="google-map">
-          <label>Create Geo Fence</label>
-          <img src={GoogleMap} alt="google-map"/>
-        </div>
       </div>
       <div className="mb-3 mt-4 form-footer">
-        <Button variant="primary" type="submit">Save</Button>
-        <Link to={`/admin/clients/${client_id}/sites`} className="px-3">
+        <Button variant="primary" type="submit"> {formStatus === "newForm" ? "Save" : "Update"}</Button>
+        <Link to="/admin/clients/list" className="px-3">
           <Button variant="default">Cancel</Button>
         </Link>
       </div>
@@ -76,13 +76,13 @@ function LocationForm(props) {
   );
 }
 
-LocationForm =  reduxForm({
-  form: 'locationform',
-  validate: siteValidation
-})(LocationForm);
+ClientForm =  reduxForm({
+  form: 'clientform',
+  validate: clientValidation,
+})(ClientForm);
 
-LocationForm = connect(
-  state => ({ initialValues: state.site.editSite }),
-)(LocationForm)
+ClientForm = connect(
+  state => ({ initialValues: state.client.editClient }),
+)(ClientForm)
 
-export default LocationForm
+export default ClientForm

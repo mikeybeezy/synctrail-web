@@ -29,7 +29,7 @@ function Login(props) {
             <div className="form-group">
               <Field name="password" type="password" component={textInput} label="Password"/>
             </div>
-            <div className="mb-3 mt-4">
+            <div className="mb-3 mt-3">
               <Button variant="primary" size="lg" type="submit" className="app-btn">Login</Button>
             </div>
             <Link to="/password/new" className="btn btn-link">Forgot Password</Link>

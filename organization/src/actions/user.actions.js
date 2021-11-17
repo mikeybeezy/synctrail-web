@@ -1,7 +1,7 @@
 import { alertActions } from './';
 import { userConstants } from '../constants';
 import { history } from '../helpers';
-import { makePOSTRequest, makeDELETERequest, makePUTRequest, makeGETRequest } from 'shared-lib/src/Axios';
+import { makePOSTRequest, makePUTRequest, makeGETRequest } from 'shared-lib/src/Axios';
 
 export const userActions = {
   userLogin,
@@ -19,11 +19,15 @@ export function userLogin(reqparams, from) {
       makePOSTRequest('/api/v1/auth', reqparams)
       .then(response => {
         if(response.data.status === "ok"){
-          dispatch({type: userConstants.LOGIN_USER, payload: response.data});
+          dispatch({type: userConstants.LOGIN_USER, payload:response});
           localStorage.setItem('userToken', JSON.stringify(response.data.token));
+          localStorage.setItem('organiToken', response.data.org_id);
           localStorage.setItem('userRole', response.data.user_role);
-          dispatch({type: userConstants.CURRENT_USER_DATA, payload: response.data})
-           history.push(from);
+          console.log(response.data.org_id)
+          console.log(response.data.org_id)
+          console.log(response.data.org_id)
+          console.log(response.data.org_id)
+          history.push("/");
           dispatch(alertActions.success(response.data.message));
         }else {
           dispatch(alertActions.error(response.data.message));
@@ -44,6 +48,8 @@ export function logout() {
     if(!user){
       try{
         history.push("/login");
+        localStorage.removeItem('organiToken');
+        localStorage.removeItem('userRole');
       }catch(e){
         dispatch( {
           type: userConstants.AUTHENTICATION_FAILURE,
@@ -84,6 +90,7 @@ export function resetPassword(reqparams) {
         if(response.data.status === "ok"){
           dispatch({type: userConstants.RESET_PASSWORD, payload: response})
           history.push('/login');
+          dispatch(alertActions.success(response.data.message));
         }else {
           dispatch(alertActions.error(response.data.error));
           dispatch({type: userConstants.RESET_PASSWORD_FAILURE, payload: response.error})

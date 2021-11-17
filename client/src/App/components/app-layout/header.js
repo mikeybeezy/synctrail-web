@@ -2,14 +2,14 @@ import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Navbar, Container, Nav, NavDropdown } from 'react-bootstrap';
 import { userActions, initialActions } from '../../../actions';
+import UnknownnProfile from '../../../images/unkown-profile.jpg'
 
-function SideNavebar(props) {
+function AppHeader(props) {
   const dispatch = useDispatch();
   const isUserLoggedIn = localStorage.getItem('userToken') ? true : false;
   const isUserRole = localStorage.getItem('userRole')
-
   const currentUser = useSelector(state => state.initial.currentUser);
-  
+     
   useEffect(() => {
     dispatch(initialActions.initialData());
   }, []);
@@ -25,13 +25,12 @@ function SideNavebar(props) {
   function logout(response) {
     dispatch(userActions.logout());
   }
-
   return (
     <div>
        { isUserLoggedIn ?
           <Navbar bg="dark" variant="dark">
             <Container>
-              <div>
+              <div className="d-flex align-items-center">
                 <div className="sidebar_icon d-lg-none"  onClick={openOffcanvas}>
                  <i className="fa fa-bars"></i>
                 </div>
@@ -43,11 +42,11 @@ function SideNavebar(props) {
                 }
                 { isUserRole !== "admin" ?  <div className="mobile-none logo_text">SyncTrial</div> : null }
               </div>
-              <Nav className="ml-auto">
+              <Nav className="ml-auto align-items-center">
                 <NavDropdown 
                   title={
                     <div className="user_name">
-                      <img className="profile-image" src="https://startbootstrap.github.io/startbootstrap-sb-admin-2/img/undraw_profile.svg" alt="user pic"/>
+                      <img className="profile-image" src={UnknownnProfile} alt="user pic"/>
                       <span>{currentUser && currentUser.username}</span>
                       <span className="fa-icons"> </span>
                     </div>
@@ -65,7 +64,7 @@ function SideNavebar(props) {
   );
 }
 
-export default SideNavebar;
+export default AppHeader;
 
 
 

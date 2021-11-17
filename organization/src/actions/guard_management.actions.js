@@ -1,29 +1,27 @@
 import { alertActions } from './';
-import { userConstants } from '../constants';
 import { history } from '../helpers';
-import { makePOSTRequest, makeDELETERequest, makePUTRequest, makeGETRequest } from 'shared-lib/src/Axios';
+import { userConstants } from '../constants';
+import { makeFormDataPOSTRequest, makeGETRequest, makeDELETERequest, makeFormDataPUTRequest } from 'shared-lib/src/Axios';
 
-export const clientActions = { 
-  newClient, 
-  getClientData, 
-  destroyClient , 
-  editClient,
-  updateClient
-}
+export const guardManagementActions = { 
+  newGuard, 
+  getGuardData, 
+  destroyGuard,
+  editGuard,
+  updateGuard
+};
 
-export function newClient(reqparams, from) {
+export function newGuard(reqparams, guarndor_form) {
   return dispatch => {
     try{
-      dispatch({ type: userConstants.PAGE_LOADING });
-      makePOSTRequest('/api/v1/clients', reqparams)
+      makeFormDataPOSTRequest('/api/v1/gurds_management', reqparams)
       .then(response => {
-      	if(response.data.status === "ok"){
-          const client = response.data.data
-          dispatch({type: userConstants.NEW_CLIENT, payload:response});
-          history.push(`/admin/clients/${client.id}/sites`);
+        if(response.data.status === "ok"){
+          dispatch({type: userConstants.NEW_GUARD, payload:response});
+          history.push(`/admin/guard/list`);
           dispatch(alertActions.success(response.data.message));
         }else {
-          dispatch({type: userConstants.CLIENT_ERROR, payload:response});
+          dispatch({type: userConstants.GUARD_ERROR, payload:response});
         }
       })
     }catch(e){
@@ -35,14 +33,14 @@ export function newClient(reqparams, from) {
   }
 }
 
-export function getClientData(reqparams) {
+export function getGuardData() {
   return dispatch => {
     try{
       dispatch({ type: userConstants.PAGE_LOADING });
-      makeGETRequest('/api/v1/clients')
+      makeGETRequest('/api/v1/gurds_management')
       .then(response => {
         if(response.data.status === "ok"){
-          dispatch({type: userConstants.CLIENT_LIST, payload: response})
+          dispatch({type: userConstants.GUARD_DATA, payload: response})
         }else {
           dispatch(alertActions.error(response.data.error));
         }
@@ -56,14 +54,14 @@ export function getClientData(reqparams) {
   }
 }
 
-export function editClient(id) {
+export function editGuard(id) {
   return function (dispatch) {
     try{
       dispatch({ type: userConstants.PAGE_LOADING });
-      makeGETRequest(`/api/v1/clients/${id}`)
+      makeGETRequest(`/api/v1/gurds_management/${id}`)
       .then(response => {
         dispatch({
-          type: userConstants.EDIT_CLIENT,
+          type: userConstants.GUARD_EDIT,
           payload: response
         })
       })
@@ -76,20 +74,21 @@ export function editClient(id) {
   }
 }
 
-export function updateClient(reqparams, id) {
+export function updateGuard(reqparams, id) {
   return function (dispatch) {
     try{
       dispatch({ type: userConstants.PAGE_LOADING });
-      makePUTRequest(`/api/v1/clients/${id}`, reqparams)
+      makeFormDataPUTRequest(`/api/v1/gurds_management/${id}`, reqparams)
       .then(response => {
         if(response.data.status === "ok"){
-          history.push("/admin/clients/list");
           dispatch({
-            type: userConstants.UPDATE_CLIENT,
+            type: userConstants.GUARD_UPDATE,
             payload: response
           })
+          history.push(`/admin/guard/list`);
+          dispatch(alertActions.success(response.data.message));
         }else{
-          dispatch({type: userConstants.CLIENT_ERROR, payload:response});
+          dispatch({type: userConstants.GUARD_ERROR, payload:response});
         }
       })
     }catch(e){
@@ -101,14 +100,15 @@ export function updateClient(reqparams, id) {
   }
 }
 
-export function destroyClient(id) {
+
+export function destroyGuard(id) {
   return function (dispatch) {
     try{
       dispatch({ type: userConstants.PAGE_LOADING });
-      makeDELETERequest(`/api/v1/clients/${id}`)
+      makeDELETERequest(`/api/v1/gurds_management/${id}`)
       .then(response => {
         dispatch({
-          type: userConstants.DESTROY_CLIENT,
+          type: userConstants.GUARD_DESTROY,
           payload: response
         })
         dispatch(alertActions.success(response.data.message));
