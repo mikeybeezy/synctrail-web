@@ -6,6 +6,7 @@ export const initialActions = { initialData };
 export function initialData(reqparams) {
   return dispatch => {
     try{
+      dispatch({ type: userConstants.PAGE_LOADING });
       makeGETRequest('/api/v1/get_initialData')
       .then(response => {
         if(response.data.status === "ok"){

@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+import { connect, useDispatch } from 'react-redux';
 import { initialActions, userActions} from '../../../actions';
 import { Button } from 'react-bootstrap';
 
@@ -15,6 +15,10 @@ function Dashboard(props) {
     dispatch(userActions.logout());
   }
 
+  if (props.loading) {
+    return <div className="page_loading">Loading..</div>
+  }
+
   return (
    <div  className="container">
     <div className="page_header">
@@ -25,4 +29,10 @@ function Dashboard(props) {
   );
 }
 
-export default Dashboard
+const mapStateToProps = (state) => {
+  return {
+    loading: state.initial.loading,
+  };
+};
+
+export default connect(mapStateToProps, {initialActions, userActions  })(Dashboard);
