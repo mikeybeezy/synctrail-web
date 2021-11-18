@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "start": "cd $PROJECT_PATH && yarn start",
-    "build": "cd $PROJECT_PATH && yarn && yarn build",
+    "build": "cd $PROJECT_PATH && yarn install && yarn build",
     "test": "cd $PROJECT_PATH && yarn test",
     "eject": "cd $PROJECT_PATH && yarn eject"
   }
