@@ -6,6 +6,7 @@
     "axios": "^0.24.0",
     "bootstrap": "^5.1.1",
     "cra-template": "1.1.2",
+    "customize-cra": "^0.2.12",
     "dotenv": "^10.0.0",
     "font-awesome": "^4.7.0",
     "history": "^4.10.1",
@@ -14,6 +15,7 @@
     "node-sass": "^6.0.1",
     "rc-time-picker": "^3.7.3",
     "react": "^17.0.2",
+    "react-app-rewired": "^2.1.8",
     "react-bootstrap": "^2.0.1",
     "react-datepicker": "^4.3.0",
     "react-dom": "^17.0.2",
@@ -25,7 +27,9 @@
     "redux-form": "^8.3.7",
     "redux-logger": "^3.0.6",
     "redux-thunk": "^2.4.0",
-    "shared-lib": "file:../shared-lib"
+    "sass": "^1.43.4",
+    "shared-lib": "file:../shared-lib",
+    "web-vitals": "^2.1.2"
   },
   "scripts": {
     "start": "serve -s build",
@@ -53,9 +57,5 @@
     ]
   },
   "devDependencies": {
-    "customize-cra": "^0.2.12",
-    "react-app-rewired": "^2.1.8",
-    "sass": "^1.43.4",
-    "web-vitals": "^2.1.2"
   }
 }
