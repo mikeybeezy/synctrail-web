@@ -7,11 +7,5 @@
     "build": "cd $PROJECT_PATH && yarn install && yarn build",
     "test": "cd $PROJECT_PATH && yarn test",
     "eject": "cd $PROJECT_PATH && yarn eject"
-  },
-  "cacheDirectories": [
-    "client/node_modules",
-    "organization/node_modules",
-    "platform/node_modules",
-    "shared-lib/node_modules"
-  ]
+  }
 }
