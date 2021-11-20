@@ -2,8 +2,8 @@ import React from 'react';
 import { connect, useDispatch } from 'react-redux';
 import { useLocation } from 'react-router-dom';
 import { userActions } from '../../../actions';
-import { textInput } from '../../../shared/form-elements'
-import { validation } from '../../../shared/form-validations';
+import { textInput } from 'shared-lib/src/form-elements';
+import { validation } from 'shared-lib/src/validation';
 import { reduxForm, Field } from "redux-form";
 import { Button } from 'react-bootstrap';
 

@@ -23,10 +23,6 @@ export function userLogin(reqparams, from) {
           localStorage.setItem('userToken', JSON.stringify(response.data.token));
           localStorage.setItem('organiToken', response.data.org_id);
           localStorage.setItem('userRole', response.data.user_role);
-          console.log(response.data.org_id)
-          console.log(response.data.org_id)
-          console.log(response.data.org_id)
-          console.log(response.data.org_id)
           history.push("/");
           dispatch(alertActions.success(response.data.message));
         }else {

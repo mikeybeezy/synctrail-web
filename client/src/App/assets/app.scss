@@ -9,6 +9,17 @@ $theme-colors: (
 );
 
 
+$font-family-sans-serif: "Lato", sans-serif;
+
+$link-color: map-get($theme-colors, "primary");
+$link-decoration: none;
+
+
+.selected {
+  color: #fff !important;
+  background: #1d2636 !important;
+}
+
 * {
   padding: 0;
   margin: 0;
@@ -44,16 +55,18 @@ main {
   height: 100vh
 }
 
-.app-btn {
-  width: 100%
+.container .app-btn {
+  width: 100%;
+  padding: 9px !important;
+  font-size: 13px !important;
 }
 
 #root .alert {
   position: absolute;
   right: 0;
   padding: 1px 11px;
-  right: 20px;
-  top: 0px;
+  right: 31px;
+  top: 5px;
 }
 
 .alert .btn-close {
@@ -78,6 +91,15 @@ main {
 .form-control:focus {
   border-color: #403866 !important;
   box-shadow: 0 0 0 0.0rem rgba(13, 110, 253, 0.25) !important;
+}
+
+select.form-control { -webkit-appearance: menulist; }
+
+.alert-success {
+  color: #0f5132;
+  background-color: #d1e7dd;
+  border-color: #badbcc;
+  font-size: 14px;
 }
 
 :focus {
@@ -149,7 +171,7 @@ h1, h2, h3, h4, h5, h6 {
   margin: 0;
   z-index: 22;
   border-radius: 0px;
-  padding: 15px 20px;
+  padding: 20px 20px;
 }
 
 .main_content .navbar {
@@ -402,6 +424,7 @@ label {
 .file-upload img {
   width: 100%;
   height: 100%;
+  border-radius: 5px;
 }
 
 .custom-modal .modal-header {
