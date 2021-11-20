@@ -2,7 +2,8 @@ import React  from 'react';
 import { connect, useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { userActions } from '../../../actions';
-import { textInput } from '../../../shared/form-elements'
+import { textInput } from 'shared-lib/src/form-elements';
+import { validation } from 'shared-lib/src/validation';
 import { reduxForm, Field, reset } from "redux-form";
 import { Button } from 'react-bootstrap';
 
@@ -40,6 +41,7 @@ function ResendConfirmation(props) {
 
 ResendConfirmation =  reduxForm({
   form: 'confirmationForm',
+  validate: validation
 })(ResendConfirmation);
 
 
