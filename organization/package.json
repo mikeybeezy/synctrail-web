@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@babel/plugin-proposal-decorators": "7.12.1",
     "axios": "^0.24.0",
     "bootstrap": "^5.1.1",
     "cra-template": "1.1.2",
@@ -28,8 +29,7 @@
     "redux-logger": "^3.0.6",
     "redux-thunk": "^2.4.0",
     "sass": "^1.43.4",
-    "shared-lib": "file:../shared-lib",
-    "web-vitals": "^2.1.2"
+    "shared-lib": "file:../shared-lib/"
   },
   "scripts": {
     "start": "serve -s build",
@@ -57,5 +57,6 @@
     ]
   },
   "devDependencies": {
+    "web-vitals": "^2.1.2"
   }
 }
