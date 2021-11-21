@@ -6,8 +6,7 @@ let userToken = () => JSON.parse(localStorage.getItem('userToken'));
 export const convertRequest = (data) => humps.decamelizeKeys(data);
 export const convertResponse = (data) => humps.camelizeKeys(data);
 
-const API_URL = "http://localhost:3000"
-// const API_URL = process.env.REACT_APP_API_URL;
+const API_URL = process.env.REACT_APP_API_URL;
 const formatURL = (uri) => `${API_URL}${uri}`;
 
 export const handleResponse = (response) => ({ ...convertResponse(response.data) });
@@ -15,6 +14,7 @@ export const errorResponse = (error) => ({ errors: convertResponse(error.respons
 
 axios.interceptors.request.use(async (config) => {
   config.headers.Authorization = userToken();
+  config.headers.OrganizationToekn = localStorage.getItem('organiToken')
   config.headers.post['Content-Type'] = "application/json";
   return config;
 });

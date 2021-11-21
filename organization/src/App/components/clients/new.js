@@ -16,7 +16,7 @@ function ClientNew(props) {
             <div key={index}>{error}</div>
           )
        })}
-      <ClientForm onSubmit={showResults} newForm="newForm"/>
+      <ClientForm onSubmit={showResults} formStatus="newForm"/>
     </div>
   );
 }

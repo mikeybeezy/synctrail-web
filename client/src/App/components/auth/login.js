@@ -2,8 +2,8 @@ import React from 'react';
 import { connect, useDispatch } from 'react-redux';
 import { Link, useLocation } from 'react-router-dom';
 import { userActions } from '../../../actions';
-import { textInput } from '../../../shared/form-elements'
-import { validation } from '../../../shared/form-validations';
+import { textInput } from 'shared-lib/src/form-elements';
+import { validation } from 'shared-lib/src/validation';
 import { reduxForm, Field } from "redux-form";
 import { Button } from 'react-bootstrap';
 
@@ -18,7 +18,7 @@ function Login(props) {
   }
 
   return (
-    <main className="d-flex align-items-center justify-content-center">
+    <main className="d-flex align-items-center">
       <div  className="container">
         <div className="col-lg-4 offset-lg-4">
           <h3 className="text-center">Login</h3>

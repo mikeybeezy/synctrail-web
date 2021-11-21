@@ -1,12 +1,20 @@
-import React from 'react';
-import { useDispatch } from 'react-redux';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { Navbar, Container, Nav, NavDropdown } from 'react-bootstrap';
-import { userActions} from '../../../actions';
+import { userActions, initialActions } from '../../../actions';
+import UnknownnProfile from '../../../images/unkown-profile.jpg'
 
-function SideNavebar(props) {
+function AppHeader(props) {
   const dispatch = useDispatch();
   const isUserLoggedIn = localStorage.getItem('userToken') ? true : false;
   const isUserRole = localStorage.getItem('userRole')
+  const organization_id = localStorage.getItem('organiToken')
+  const currentUser = useSelector(state => state.initial.currentUser);
+  const organizations = useSelector(state => state.initial.organizations);
+     
+  useEffect(() => {
+    dispatch(initialActions.initialData());
+  }, []);
 
   const openOffcanvas = () => {
     document.body.classList.toggle('active_sidebar');
@@ -20,12 +28,17 @@ function SideNavebar(props) {
     dispatch(userActions.logout());
   }
 
+  const organizationDropdown = (e) => {
+    localStorage.setItem('organiToken', e.target.value);
+    window.location.reload();
+  }
+
   return (
     <div>
        { isUserLoggedIn ?
           <Navbar bg="dark" variant="dark">
             <Container>
-              <div>
+              <div className="d-flex align-items-center">
                 <div className="sidebar_icon d-lg-none"  onClick={openOffcanvas}>
                  <i className="fa fa-bars"></i>
                 </div>
@@ -37,12 +50,22 @@ function SideNavebar(props) {
                 }
                 { isUserRole !== "admin" ?  <div className="mobile-none logo_text">SyncTrial</div> : null }
               </div>
-              <Nav className="ml-auto">
+              <Nav className="ml-auto align-items-center">
+                <div>
+                  <select className="organization-select"  onChange={organizationDropdown} value={organization_id}>
+                    { organizations && organizations.length > 0 ?
+                        organizations.map((data, index) => (
+                          <option value={data.id} key={index}>{data.display_name}</option>
+                        ))
+                      : null
+                    }
+                  </select>
+                </div>
                 <NavDropdown 
                   title={
                     <div className="user_name">
-                      <img className="profile-image" src="https://startbootstrap.github.io/startbootstrap-sb-admin-2/img/undraw_profile.svg" alt="user pic"/>
-                      <span>User name</span>
+                      <img className="profile-image" src={UnknownnProfile} alt="user pic"/>
+                      <span>{currentUser && currentUser.username}</span>
                       <span className="fa-icons"> </span>
                     </div>
                   }
@@ -59,7 +82,7 @@ function SideNavebar(props) {
   );
 }
 
-export default SideNavebar;
+export default AppHeader;
 
 
 

@@ -23,7 +23,7 @@ function ClientNew(props) {
   return (
     <div className="container">
       <SiteForm onSubmit={showResults}
-        newForm="editForm"
+        formStatus="editForm"
         client_id={client_id}
       />
     </div>

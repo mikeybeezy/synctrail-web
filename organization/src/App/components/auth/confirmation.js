@@ -1,8 +1,6 @@
 import React, { useEffect } from 'react';
-import { Link } from 'react-router-dom';
-import { connect, useDispatch, useSelector } from 'react-redux';
+import { connect, useDispatch } from 'react-redux';
 import { userActions } from '../../../actions';
-import { history } from '../../../helpers';
 
 function ConfirmPage(props) {
 

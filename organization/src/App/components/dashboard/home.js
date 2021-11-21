@@ -1,21 +1,38 @@
-import React from 'react';
-import { useDispatch } from 'react-redux';
-import { userActions} from '../../../actions';
+import React, { useEffect } from 'react';
+import { connect, useDispatch } from 'react-redux';
+import { initialActions, userActions} from '../../../actions';
 import { Button } from 'react-bootstrap';
+
 
 function Dashboard(props) {
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(initialActions.initialData());
+  }, []);
 
   function logout(response) {
     dispatch(userActions.logout());
   }
 
+  if (props.loading) {
+    return <div className="page_loading">Loading..</div>
+  }
+
   return (
    <div  className="container">
-    <h3> Dashboard </h3>
+    <div className="page_header">
+      <h3> Dashboard </h3>
+    </div>
     <Button variant="primary" onClick={logout}>Logout</Button>
   </div>
   );
 }
 
-export default Dashboard
+const mapStateToProps = (state) => {
+  return {
+    loading: state.initial.loading,
+  };
+};
+
+export default connect(mapStateToProps, {initialActions, userActions  })(Dashboard);
