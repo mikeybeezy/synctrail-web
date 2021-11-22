@@ -1,8 +1,8 @@
 import React  from 'react';
 import { Button } from 'react-bootstrap';
-import { textInput, datePicker } from '../../../shared/form-elements'
+import { textInput, datePicker } from 'shared-lib/src/form-elements';
 import { reduxForm, Field } from "redux-form";
-import { guarantorValidation } from '../../../shared/form-validations';
+import { guarantorValidation } from 'shared-lib/src/validation';
 import moment from "moment";
 
 function FormDetails(props) {

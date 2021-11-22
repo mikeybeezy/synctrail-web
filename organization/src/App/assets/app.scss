@@ -51,6 +51,17 @@ button, input {
   border: none;
 }
 
+button:focus {
+  outline: none;
+  box-shadow:none !important;
+}
+
+a:focus:not(:focus-visible) {
+ outline: none !important;
+}
+
+*:focus {outline:none !important}
+
 main {
   height: 100vh
 }
@@ -520,4 +531,10 @@ label {
 
 .client-list > div > span {
   color: #222;
+}
+
+.close_modal {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
 }

@@ -30,7 +30,6 @@ function ClientShow(props) {
 
 const mapStateToProps = (state) => {
   return {
-    loading: state.client.loading,
     currentClient: state.client.editClient
   }
 };

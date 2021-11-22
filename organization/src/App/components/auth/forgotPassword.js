@@ -2,10 +2,10 @@ import React from 'react';
 import { connect, useDispatch } from 'react-redux';
 import { Link, useLocation } from 'react-router-dom';
 import { userActions } from '../../../actions';
-import { textInput } from '../../../shared/form-elements'
 import { reduxForm, Field, reset } from "redux-form";
 import { Button } from 'react-bootstrap';
-import { validation } from '../../../shared/form-validations';
+import { textInput } from 'shared-lib/src/form-elements';
+import { validation } from 'shared-lib/src/validation';
 
 function NewForm(props) {
 

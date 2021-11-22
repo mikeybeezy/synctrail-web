@@ -2,8 +2,8 @@ import React, {useEffect} from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { Button } from 'react-bootstrap';
-import { textInput } from '../../../shared/form-elements'
-// import { siteValidation } from '../../../shared/form-validations';
+import { textInput } from 'shared-lib/src/form-elements';
+import { siteValidation } from 'shared-lib/src/validation';
 import { reduxForm, Field } from "redux-form";
 import GoogleMap from '../../../images/google-map.png'
 
@@ -78,7 +78,7 @@ function LocationForm(props) {
 
 LocationForm =  reduxForm({
   form: 'locationform',
-  // validate: siteValidation
+  validate: siteValidation
 })(LocationForm);
 
 LocationForm = connect(

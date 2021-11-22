@@ -7,7 +7,8 @@ export const tourActions = {
   newTour,
   getTourData,
   editTour,
-  updateTour
+  updateTour,
+  destroyTour
 }
 
 export function newTour(reqparams, clientId) {
@@ -96,6 +97,32 @@ export function updateTour(reqparams, clientId, tourId, ) {
     }catch(e){
       dispatch( {
         type: userConstants.PROJECT_FAILURE,
+        payload: console.log(e),
+      })
+    }
+  }
+}
+
+
+export function destroyTour(client_id, id) {
+  return function (dispatch) {
+    try{
+      dispatch({ type: userConstants.PAGE_LOADING });
+      makeDELETERequest(`/api/v1/clients/${client_id}/tours/${id}`)
+      .then(response => {
+        if(response.data.status === "ok"){
+          dispatch({
+            type: userConstants.TOUR_DESTROY,
+            payload: response
+          })
+          dispatch(alertActions.success(response.data.message));
+        }else {
+          dispatch(alertActions.error(response.data.error));
+        }
+      })
+    }catch(e){
+      dispatch( {
+        type: userConstants.AUTHENTICATION_FAILURE,
         payload: console.log(e),
       })
     }
