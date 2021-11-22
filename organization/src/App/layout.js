@@ -78,9 +78,9 @@ function App() {
             <PrivateRoute exact path='/admin/guard/list' component={GuardList} />
             <PrivateRoute exact path='/admin/guard/new' component={GuardNew} />
             <PrivateRoute exact path='/admin/guard/:guard_id/edit' component={GuardEdit} />
-            <PrivateRoute exact path='/admin/tours/list' component={TourList} />
-            <PrivateRoute exact path='/admin/tours/new' component={TourNew} />
-            <PrivateRoute exact path='/admin/tours/:location/edit' component={TourEdit} />
+            <PrivateRoute exact path='/admin/clients/:client_id/tours' component={TourList} />
+            <PrivateRoute exact path='/admin/clients/:client_id/tours/new' component={TourNew} />
+            <PrivateRoute exact path='/admin/clients/:client_id/tours/:tour_id/edit' component={TourEdit} />
             <Redirect from="*" to="/" />
           </Switch>
         </div>

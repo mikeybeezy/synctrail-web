@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import { connect, useDispatch } from 'react-redux';
 import { Button , Table} from 'react-bootstrap';
 import { tourActions } from '../../../actions';
@@ -8,9 +8,10 @@ import { Popup } from '../../../utils-components';
 function ClientList(props) {
 	const dispatch = useDispatch();
   const { tourData } = props
+   const { client_id } = useParams();
 
   useEffect(() => {
-    dispatch(tourActions.getTourData());
+    dispatch(tourActions.getTourData(client_id));
   }, []);
 
   /* Popup Modal */
@@ -35,21 +36,15 @@ function ClientList(props) {
    <div  className="container">
       <div className="page_header d-flex align-items-center justify-content-between py-3">
         <h3>Tours</h3>
-        <Link to="/admin/tours/new">
+        <Link to={`/admin/clients/${client_id}/tours/new`}>
           <Button variant="primary" size="sm">Add Tour</Button>
         </Link>
       </div>
       <Table bordered size="sm responsive">
         <thead>
           <tr>
-            <th className="text-center">S.No</th>
-            <th>Site Name</th>
-            <th>Site Number</th>
-            <th>Address Line 1</th>
-            <th>Address Line 2</th>
-            <th>Contact name</th>
-            <th>Contact phone</th>
-            <th>Contact email</th>
+            <th className="text-center" style={{width: '5%'}}>S.No</th>
+            <th>Tour Name</th>
             <th style={{width: '5%'}} className="text-center">Actions</th>
           </tr>
         </thead>
@@ -59,16 +54,10 @@ function ClientList(props) {
               return (
                 <tr key={index}>
                   <td className="text-center">{index + 1}</td>
-                  <td>{data.name}</td>
-                  <td>{data.code}</td>
-                  <td>{data.address_line_1}</td>
-                  <td>{data.address_line_2}</td>
-                  <td>{data.contact_person_full_name}</td>
-                  <td>{data.contact_person_phone_number}</td>
-                  <td>{data.contact_person_email}</td>
+                  <td>{data.name}{data.id}</td>
                   <td>
                     <div className="d-flex align-items-center justify-content-center">
-                      <Link to={`/admin/tours/${data.id}/edit`}>
+                      <Link to={`/admin/clients/${client_id}/tours/${data.id}/edit`}>
                         <i className="fa fa-pencil-square-o" aria-hidden="true"></i>
                       </Link>
                       <div onClick={() => handleShow(data.id)} className="ml-10 cursor-pointer">

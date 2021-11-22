@@ -21,7 +21,18 @@ export function tour(state = initialState, action) {
       return {
         ...state,
         loading: false,
-        tourData: action.payload.data.data
+        tourData: action.payload.data.data,
+        currentlocation: action.payload.data.location
+      }
+    }
+
+    case userConstants.TOUR_EDIT: {
+      return {
+        ...state,
+        loading: false,
+        currentTourData: action.payload.data.data,
+        tourStop: action.payload.data.tour_stops,
+        currentlocation: action.payload.data.location
       }
     }
 
