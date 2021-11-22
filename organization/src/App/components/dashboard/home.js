@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { connect, useDispatch } from 'react-redux';
-import { initialActions, userActions} from '../../../actions';
+import { initialActions} from '../../../actions';
 import { Button } from 'react-bootstrap';
 
 
@@ -11,10 +11,6 @@ function Dashboard(props) {
     dispatch(initialActions.initialData());
   }, []);
 
-  function logout(response) {
-    dispatch(userActions.logout());
-  }
-
   if (props.loading) {
     return <div className="page_loading">Loading..</div>
   }
@@ -24,7 +20,6 @@ function Dashboard(props) {
     <div className="page_header">
       <h3> Dashboard </h3>
     </div>
-    <Button variant="primary" onClick={logout}>Logout</Button>
   </div>
   );
 }
@@ -35,4 +30,4 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps, {initialActions, userActions  })(Dashboard);
+export default connect(mapStateToProps, { initialActions })(Dashboard);

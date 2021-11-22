@@ -1,0 +1,20 @@
+export const userConstants = {
+  PAGE_LOADING: 'Loading...',
+  LOGIN_USER: 'Login user',
+  LOGOUT_USER: 'logout user',
+  NEW_PASSWORD: 'create new password',
+  NEW_PASSWORD_FAILURE: 'new password failure',
+  RESET_PASSWORD: "password edit",
+  RESET_PASSWORD_FAILURE: 'password edit failure',
+  AUTHENTICATION_FAILURE: "authentication failure",
+  CONFIRM_SUCCESS: 'confirmation sucess',
+  CONFIRM_FAILURE: 'confirmation failure',
+  INITIAL_DATA: 'initial data',
+  INITIAL_DATA_ERROR: 'initial data errors',
+
+  NEW_ORGANIZATION: 'new organization',
+  GET_ORGANIZATION: 'get organization',
+  EDIT_ORGANIZATION: 'edit organization',
+  UPDATE_ORGANIZATION: 'update organization',
+  DESTROY_ORGANIZATION: 'destroy organization',
+};

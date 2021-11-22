@@ -6,8 +6,10 @@ import { initial } from './initial.reducer';
 import { client } from './client.reducer';
 import { site } from './site.reducer';
 import { guard } from './guard.reducer';
+import { tour } from './tour.reducer';
 
 const rootReducer = combineReducers({
+  tour,
   guard,
   site,
   client,

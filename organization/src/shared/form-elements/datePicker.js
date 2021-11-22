@@ -14,6 +14,9 @@ const DatePickerRender = ({input, label, placeholder,  selected, required, meta:
       required={required}
       placeholderText={placeholder}
       dateForm="MM/DD/YYYY"
+      dropdownMode="select"
+      showMonthDropdown
+      showYearDropdown
     />
     {touched && (error && <br/>)}
     {touched && ((error && <span className="form-error">{error}</span>) || (warning && <span>{warning}</span>))}

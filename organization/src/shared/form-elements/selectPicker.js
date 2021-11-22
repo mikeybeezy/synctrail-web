@@ -35,7 +35,7 @@ const SelectField = ({ placeholder, formStatus, input, onChange,  label, options
         {active && 
           <div className="col-md-4">
             <div>
-              <label className="mb-1">Salary type amout</label>
+              <label className="mb-1">Salary</label>
               <input type="text" placeholder={placeholder} className="form-control" value={price} disabled/>
             </div>
           </div>

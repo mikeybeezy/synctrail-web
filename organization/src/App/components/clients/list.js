@@ -34,7 +34,7 @@ function ClientList(props) {
   return (
    <div  className="container">
       <div className="page_header d-flex align-items-center justify-content-between py-3">
-        <h3>Client List</h3>
+        <h3>Clients</h3>
         <Link to="/admin/clients/new">
           <Button variant="primary" size="sm">Add Client</Button>
         </Link>
@@ -50,7 +50,7 @@ function ClientList(props) {
             <th>Contact name</th>
             <th>Contact phone</th>
             <th>Contact email</th>
-            <th style={{width: '5%'}} className="text-center">Actions</th>
+            <th style={{width: '20%'}} className="text-center">Actions</th>
           </tr>
         </thead>
         <tbody>
@@ -74,6 +74,12 @@ function ClientList(props) {
                       <div onClick={() => handleShow(data.id)} className="ml-10 cursor-pointer">
                        <i className="fa fa-trash-o" aria-hidden="true"></i>
                       </div>
+                      <Link to={`/admin/clients/${data.id}/sites`} className="ml-10 cursor-pointer link-list">
+                        Add Sites
+                      </Link>
+                      <Link to={`/admin/clients/${data.id}/tours`} className="ml-10 cursor-pointer link-list">
+                        Add Tours
+                      </Link>
                     </div>
                   </td>
                 </tr>

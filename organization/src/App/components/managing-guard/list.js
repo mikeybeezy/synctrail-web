@@ -35,7 +35,7 @@ function GuardList(props) {
   return (
    <div  className="container">
       <div className="page_header d-flex align-items-center justify-content-between py-3">
-        <h4>Guard Management | Create / Edit Guard Data</h4>
+        <h4>Guards</h4>
         <Link to="/admin/guard/new">
           <Button variant="primary">Add Guard</Button>
         </Link>
