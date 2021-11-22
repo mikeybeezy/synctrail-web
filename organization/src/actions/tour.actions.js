@@ -53,7 +53,7 @@ export function getTourData() {
   }
 }
 
-export function editClient(id) {
+export function editTour(id) {
   return function (dispatch) {
     try{
       dispatch({ type: userConstants.PAGE_LOADING });
