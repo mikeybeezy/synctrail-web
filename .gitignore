@@ -1,0 +1,4 @@
+/client/.env
+/organization/.env
+/platform/.env
+/shared-lib/.env
