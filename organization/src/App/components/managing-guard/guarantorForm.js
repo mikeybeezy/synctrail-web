@@ -74,7 +74,7 @@ function GuarantorForm(props) {
   return (
     <div className="mt-4">
       <div className="d-flex align-items-center justify-content-between mb-2">
-        <h5>Add Guarntor</h5>
+        <h5>Add Guarantor</h5>
         <Button onClick={() => handleShow("newForm")} variant="default">Add</Button>
       </div>
       <Modal
@@ -85,7 +85,9 @@ function GuarantorForm(props) {
         className="custom-modal"
         centered>
         <Modal.Header>
-          <Modal.Title id="example-custom-modal-styling-title"> Add Guarntor </Modal.Title>
+          <Modal.Title id="example-custom-modal-styling-title"> 
+            {status === "new" ? ' Add Guarantor' : 'Update Guarantor'} 
+          </Modal.Title>
           <CloseButton variant="white" onClick={handleClose}/>
         </Modal.Header>
         <Modal.Body>

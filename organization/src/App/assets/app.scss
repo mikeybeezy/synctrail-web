@@ -61,6 +61,15 @@ main {
   font-size: 13px !important;
 }
 
+.remove_btn {
+  padding: 5px 10px;
+  font-size: 13px;
+  background-color: #cb0b1d;
+  border-radius: 3px;
+  color: #ccc;
+  cursor: pointer;
+}
+
 #root .alert {
   position: absolute;
   right: 0;
@@ -491,4 +500,11 @@ label {
 
 .react-datepicker-popper[data-placement^=bottom] .react-datepicker__triangle::before {
   display: none !important;
+}
+
+
+.row-space {
+  border-bottom: 1px solid #ddd;
+  padding-bottom: 25px;
+  padding-top: 20px;
 }

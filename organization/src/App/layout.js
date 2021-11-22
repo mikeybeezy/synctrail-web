@@ -28,6 +28,10 @@ import GuardList from './components/managing-guard/list'
 import GuardNew from './components/managing-guard/new'
 import GuardEdit from './components/managing-guard/edit'
 
+import TourList from './components/tours/list'
+import TourNew from './components/tours/new'
+import TourEdit from './components/tours/edit'
+
 function App() {
   const dispatch = useDispatch();
   const alert = useSelector((state) => state.alert);
@@ -74,6 +78,9 @@ function App() {
             <PrivateRoute exact path='/admin/guard/list' component={GuardList} />
             <PrivateRoute exact path='/admin/guard/new' component={GuardNew} />
             <PrivateRoute exact path='/admin/guard/:guard_id/edit' component={GuardEdit} />
+            <PrivateRoute exact path='/admin/tours/list' component={TourList} />
+            <PrivateRoute exact path='/admin/tours/new' component={TourNew} />
+            <PrivateRoute exact path='/admin/tours/:location/edit' component={TourEdit} />
             <Redirect from="*" to="/" />
           </Switch>
         </div>
