@@ -59,7 +59,11 @@ function ClientList(props) {
               return (
                 <tr key={index}>
                   <td>{index + 1}</td>
-                  <td>{data.business_name}</td>
+                  <td>
+                    <Link to={`/admin/clients/${data.id}/show`}  className="link-list">
+                      {data.business_name}
+                    </Link>
+                  </td>
                   <td>{data.phone_number}</td>
                   <td>{data.email}</td>
                   <td>{data.address_line_1}</td>
@@ -75,10 +79,10 @@ function ClientList(props) {
                        <i className="fa fa-trash-o" aria-hidden="true"></i>
                       </div>
                       <Link to={`/admin/clients/${data.id}/sites`} className="ml-10 cursor-pointer link-list">
-                        Add Sites
+                        Sites
                       </Link>
                       <Link to={`/admin/clients/${data.id}/tours`} className="ml-10 cursor-pointer link-list">
-                        Add Tours
+                        Tours
                       </Link>
                     </div>
                   </td>
