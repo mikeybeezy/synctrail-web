@@ -538,3 +538,58 @@ label {
   align-items: center;
   justify-content: flex-end;
 }
+
+.search_history {
+  width: 100%;
+  border: 1px solid #ddd;
+  border-radius: 3px;
+  padding: 8px 10px;
+}
+
+.conversation-btn {
+  width: 160px;
+  padding: 9px;
+  margin-left: 10px
+}
+
+.histroy-header {
+  display: flex;
+  align-items: center;
+}
+
+.message-row {
+  border-bottom: 1px solid #ddd;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+.conversation-user {
+  font-size: 14px;
+  color: #222;
+  font-weight: 500;
+}
+
+.conversation-message {
+  font-size: 13px;
+  color: #787878;
+}
+
+.conversation-date {
+  font-size: 12px;
+  color: #787878
+}
+
+.message-row .btn-primary {
+  padding: 2px 10px 3px;
+  font-size: 12px;
+}
+
+.unreact_count {
+  width: 25px;
+  height: 25px;
+  background-color: #ddd;
+  border-radius: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
