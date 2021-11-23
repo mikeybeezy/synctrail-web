@@ -593,3 +593,89 @@ label {
   align-items: center;
   justify-content: center;
 }
+
+.chat-bot {
+  border: 1px solid #ddd;
+  height: 86vh;
+  border-radius: 4px;
+  min-height: 500px;
+  background-color: #fff;
+}
+
+.cht-header {
+  height: 50px;
+  padding: 10px 15px;;
+  border-bottom: 1px solid #ddd;
+  display: flex;
+  align-items:center
+}
+
+.conversation-user-list {
+  border-right: 1px solid #ddd;
+  height: 86vh;
+  min-height: 500px;
+}
+
+.conver-user-img {
+  width: 30px;
+  max-height: 30px;
+  height: 35px;
+  border-radius: 100px;
+  margin-right: 10px;
+}
+
+.box {
+  height: 70vh;
+  border-radius: 3px;
+  overflow-y: auto;
+}
+
+.box .inner {
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  flex-basis: 100%;
+  height: 100%;
+  align-content: flex-end;
+  min-height: min-content;
+  padding-top: 15px;
+}
+
+.box .reference {
+  display: flex;
+  flex-direction: row;
+  flex-basis: 100%;
+}
+
+.chat-left {
+  display: flex;
+  flex: 1;
+  flex-direction: row;
+  margin-bottom: 20px;
+}
+
+.chat-text {
+  padding: 5px 10px 3px;
+  border-radius: 2px;
+  background: #ddd;
+  position: relative;
+}
+
+.chat-body {
+  margin: 0px 15px;
+}
+
+.chat-right {
+  display: flex;
+  flex: 1;
+  flex-direction: row;
+  margin-bottom: 20px;
+  justify-content: flex-end;
+}
+
+
+.chat-image {
+  width: 100px;
+  height: 100px;
+  border-radius: 3px;
+}
