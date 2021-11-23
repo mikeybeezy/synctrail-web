@@ -20,6 +20,7 @@ import Confirmation from './components/auth/confirmation'
 import ClientList from './components/clients/list'
 import ClientNew from './components/clients/new'
 import ClientEdit from './components/clients/edit'
+import ClientShow from './components/clients/show'
 import SiteList from './components/sites/list'
 import SiteNew from './components/sites/new'
 import SiteEdit from './components/sites/edit'
@@ -72,6 +73,7 @@ function App() {
             <PrivateRoute exact path='/admin/clients/list' component={ClientList} />
             <PrivateRoute exact path='/admin/clients/new' component={ClientNew} />
             <PrivateRoute exact path='/admin/clients/:client_id/edit' component={ClientEdit} />
+            <PrivateRoute exact path='/admin/clients/:client_id/show' component={ClientShow} />
             <PrivateRoute exact path='/admin/clients/:client_id/sites' component={SiteList} />
             <PrivateRoute exact path='/admin/clients/:client_id/site/new' component={SiteNew} />
             <PrivateRoute exact path='/admin/clients/:client_id/site/:site_id/edit' component={SiteEdit} />

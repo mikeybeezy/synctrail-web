@@ -5,7 +5,8 @@ import  RenderForm  from '../tours/shared/renderForm';
 import { Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { textInput, selectPicker } from '../../../shared/form-elements'
+import { textInput } from 'shared-lib/src/form-elements';
+import { tourValidation } from 'shared-lib/src/validation';
 
 function Form(props) {
   const { handleSubmit, formStatus, initialize, tourId,  clientId, currentTourData, tourStop, loading } = props
@@ -61,6 +62,7 @@ function Form(props) {
 
 Form =  reduxForm({
   form: 'userform',
+  validate: tourValidation
 })(Form);
 
 export default Form

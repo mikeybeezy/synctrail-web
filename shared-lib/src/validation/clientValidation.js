@@ -41,7 +41,6 @@ const clientValidation = (values) => {
     errors.contact_person_email = 'required validate email';
   }
  
-
   return errors;
 };
 

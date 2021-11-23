@@ -1,10 +1,6 @@
 import React from "react";
 import { Field } from "redux-form";
-import { textInput, selectField } from '../../../../shared/form-elements'
-
-
-const location_d = [{'id' :1, 'name': 'testing'}]
-
+import { textInput, selectField } from 'shared-lib/src/form-elements';
 
 class renderWorkspace extends React.Component {
   render() {

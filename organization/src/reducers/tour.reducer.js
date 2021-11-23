@@ -36,6 +36,16 @@ export function tour(state = initialState, action) {
       }
     }
 
+
+    case userConstants.TOUR_DESTROY: {
+      let id = action.payload.data.data.id
+      return {
+        ...state,
+        tourData: state.tourData.filter(item => item.id !== id),
+        loading: false,
+      }
+    }
+
     default:
       return state
   }

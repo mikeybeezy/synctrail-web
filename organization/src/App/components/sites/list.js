@@ -28,14 +28,14 @@ function SiteList(props) {
     handleClose();
   }
 
-  if (props.loading) {
-    return <div className="page_loading">Loading..</div>
-  }
+  // if (props.loading) {
+  //   return <div className="page_loading">Loading..</div>
+  // }
 
   return (
    <div  className="container">
       <div className="page_header d-flex align-items-center justify-content-between py-3">
-        <h3>Sites List</h3>
+        <h5>Sites</h5>
         <Link to={{ pathname: `/admin/clients/${client_id}/site/new`}}>
           <Button variant="primary">Add Site</Button>
         </Link>
@@ -43,7 +43,7 @@ function SiteList(props) {
       <Table bordered size="sm responsive">
         <thead>
           <tr>
-            <th>S.No</th>
+            <th className="text-center" style={{width: '3%'}}>S.No</th>
             <th>Name</th>
             <th>Code</th>
             <th>Address Line 1</th>
@@ -58,7 +58,7 @@ function SiteList(props) {
             siteList.map((data, index) => {
               return (
                 <tr key={index}>
-                  <td>{index + 1}</td>
+                  <td className="text-center">{index + 1}</td>
                   <td>{data.name}</td>
                   <td>{data.code}</td>
                   <td>{data.address_line_1}</td>

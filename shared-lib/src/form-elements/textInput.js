@@ -12,7 +12,7 @@ export const textInput = ({
   ...rest
 }) => {
   return (
-    <div>
+    <div className="form-group">
       { label ?  <label className="mb-1" style={{ fontSize: "14px" }}> {label}</label> : null}
       <input
         {...input}

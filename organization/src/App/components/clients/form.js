@@ -2,8 +2,8 @@ import React, {useEffect} from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { Button } from 'react-bootstrap';
-import { textInput } from '../../../shared/form-elements'
-import { clientValidation } from '../../../shared/form-validations';
+import { textInput } from 'shared-lib/src/form-elements';
+import { clientValidation } from 'shared-lib/src/validation';
 import { reduxForm, Field } from "redux-form";
 
 function ClientForm(props) {

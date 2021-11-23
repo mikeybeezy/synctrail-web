@@ -24,18 +24,18 @@ function ClientList(props) {
   const handleShow = (id) => setPopUp({show: true, id});
 
   const handleDelete = () => {
-    // dispatch(clientActions.destroyClient(popup.id));
+    dispatch(tourActions.destroyTour(client_id, popup.id));
     handleClose();
   }
 
-  if (props.loading) {
-    return <div className="page_loading">Loading..</div>
-  }
+  // if (props.loading) {
+  //   return <div className="page_loading">Loading..</div>
+  // }
 
   return (
    <div  className="container">
       <div className="page_header d-flex align-items-center justify-content-between py-3">
-        <h3>Tours</h3>
+        <h5>Tours</h5>
         <Link to={`/admin/clients/${client_id}/tours/new`}>
           <Button variant="primary" size="sm">Add Tour</Button>
         </Link>
@@ -43,8 +43,9 @@ function ClientList(props) {
       <Table bordered size="sm responsive">
         <thead>
           <tr>
-            <th className="text-center" style={{width: '5%'}}>S.No</th>
+            <th className="text-center" style={{width: '3%'}}>S.No</th>
             <th>Tour Name</th>
+            <th>Location</th>
             <th style={{width: '5%'}} className="text-center">Actions</th>
           </tr>
         </thead>
@@ -54,7 +55,14 @@ function ClientList(props) {
               return (
                 <tr key={index}>
                   <td className="text-center">{index + 1}</td>
-                  <td>{data.name}{data.id}</td>
+                  <td>{data.name}</td>
+                  <td>
+                    {data && data.tour_stops.map((data, index) => {
+                      return(
+                          <div>{data.location && data.location.name}</div>
+                        )
+                    })}
+                  </td>
                   <td>
                     <div className="d-flex align-items-center justify-content-center">
                       <Link to={`/admin/clients/${client_id}/tours/${data.id}/edit`}>
