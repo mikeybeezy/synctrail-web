@@ -7,8 +7,10 @@ import { client } from './client.reducer';
 import { site } from './site.reducer';
 import { guard } from './guard.reducer';
 import { tour } from './tour.reducer';
+import { chat } from './chat.reducer';
 
 const rootReducer = combineReducers({
+  chat,
   tour,
   guard,
   site,

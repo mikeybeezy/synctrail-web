@@ -86,8 +86,8 @@ function App() {
             <PrivateRoute exact path='/admin/clients/:client_id/tours' component={TourList} />
             <PrivateRoute exact path='/admin/clients/:client_id/tours/new' component={TourNew} />
             <PrivateRoute exact path='/admin/clients/:client_id/tours/:tour_id/edit' component={TourEdit} />
-            <PrivateRoute exact path='/admin/chat-history' component={ChatHistory} />
-            <PrivateRoute exact path='/admin/chat-history/conversation' component={Conversation} />
+            <PrivateRoute exact path='/admin/chats' component={ChatHistory} />
+            <PrivateRoute exact path='/admin/chats/:conversation_id' component={Conversation} />
             <Redirect from="*" to="/" />
           </Switch>
         </div>

@@ -102,11 +102,19 @@ main {
   color: #dc3545
 }
 
+.form-errors .ck.ck-editor__main>.ck-editor__editable:not(.ck-focused) {
+  border-color: #cf1717;
+}
+
 .form-group {
   margin-bottom: 10px
 }
 
 @import "~bootstrap/scss/bootstrap";
+
+p{
+  margin-bottom: 0px;
+}
 
 .form-control:focus {
   border-color: #403866 !important;
@@ -182,7 +190,6 @@ h1, h2, h3, h4, h5, h6 {
   width: 100%;
   padding-top: 0px !important;
   position: relative;
-  min-height: 100vh;
   padding-bottom: 0px;
 }
 
@@ -596,18 +603,24 @@ label {
 
 .chat-bot {
   border: 1px solid #ddd;
-  height: 86vh;
+  height: 83vh;
   border-radius: 4px;
-  min-height: 500px;
+  min-height: 400px;
   background-color: #fff;
 }
 
 .cht-header {
-  height: 50px;
+  height: 45px;
   padding: 10px 15px;;
   border-bottom: 1px solid #ddd;
   display: flex;
-  align-items:center
+  align-items:center;
+  background-color: #eee;
+}
+
+.chat-composer {
+  background-color: #ddd;
+  padding: 5px 10px;
 }
 
 .conversation-user-list {
@@ -625,9 +638,11 @@ label {
 }
 
 .box {
-  height: 70vh;
+  height: 63vh;
   border-radius: 3px;
   overflow-y: auto;
+  min-height: 346px;
+  margin-bottom: 5px;
 }
 
 .box .inner {
@@ -638,7 +653,7 @@ label {
   height: 100%;
   align-content: flex-end;
   min-height: min-content;
-  padding-top: 15px;
+  padding: 15px;
 }
 
 .box .reference {
@@ -662,7 +677,7 @@ label {
 }
 
 .chat-body {
-  margin: 0px 15px;
+  margin: 0px 0px;
 }
 
 .chat-right {
@@ -673,9 +688,20 @@ label {
   justify-content: flex-end;
 }
 
-
 .chat-image {
   width: 100px;
   height: 100px;
   border-radius: 3px;
+}
+
+.ck.ck-editor {
+  width: 80% !important;
+}
+
+.ck-editor__editable_inline {
+  min-height: 50px;
+}
+
+.css-b62m3t-container {
+  width: 100%;
 }

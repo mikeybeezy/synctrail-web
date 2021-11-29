@@ -1,47 +1,49 @@
 import React, {useState, useEffect} from 'react';
 import { Button } from 'react-bootstrap';
 import fileUpload from '../../../images/file-upload.png'
+import { CKEditor } from '@ckeditor/ckeditor5-react';
+import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 
 function ChatComposer(props) {
   const hiddenFileInput = React.useRef(null);
   const [inputValue, setInputValue] = useState("");
   const handleClick = event => { hiddenFileInput.current.click()}
   const [inputFile, setInputFile] = useState();
-  
-  const handleSubmit = event => {
-    event.preventDefault();
-    props.submitted(inputValue);
-    setInputValue("")
-  };
+  const [error, setError] = useState();
 
-  const handleCompose = event => {
-    let typedValue = event.target.value;
-    if (typedValue != "" && typedValue != " ") {
-      setInputValue(event.target.value)
+  const handleChange = (e, editor) => {
+    const data = editor.getData()
+    setInputValue(data)
+  }
+
+  const handleEditor = () => {
+    if(inputValue != "") {
+      props.submitted({content: inputValue, message_type: 'text'})
+      setInputValue("")
+      setError("")
+    }else {
+      setError("Pleaser write a message")
     }
-  };
+  }
 
   const setUploadFile = e => {
-    console.log(e.target.files)
-    setInputFile(URL.createObjectURL(e.target.files[0]))
-    console.log(URL.createObjectURL(e.target.files[0]))
-    console.log(URL.createObjectURL(e.target.files[0]))
-    props.submitted(inputFile);
+    props.submitted({file: e.target.files[0], message_type: 'file'});
   }
 
   return (
-     <form onSubmit={handleSubmit}>
-      <div className="d-flex align-items-center">
+     <form className={error ? "form-errors" : null}>
+      <div className="d-flex align-items-center chat-composer">
         <div onClick={handleClick} className="cursor-pointer">
-          <img src={fileUpload} alt="upload pic" style={{maxHeight: '30px', marginRight: '10px'}}/>
+          <img src={fileUpload} alt="upload-pic" style={{maxHeight: '30px', marginRight: '10px'}}/>
+          <input type="file" onChange={setUploadFile} ref={hiddenFileInput} style={{display: 'none'}}/>
         </div>
-        <input
-          placeholder="Please type & hit enter"
-          onChange={handleCompose}
-          value={inputValue}
-          className="search_history"
+        <CKEditor
+          editor={ ClassicEditor }
+          config={{ removePlugins: ["EasyImage","ImageUpload","MediaEmbed", "resize"]}}
+          data={inputValue}
+          onChange={handleChange}
         />
-        <input type="file" onChange={setUploadFile} ref={hiddenFileInput} style={{display: 'none'}}/>
+        <Button variant="primary" size="sm" onClick={() => handleEditor()} style={{marginLeft: '10px'}}> Submit</Button>
       </div>
     </form>
   );
