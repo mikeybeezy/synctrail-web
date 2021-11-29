@@ -102,11 +102,19 @@ main {
   color: #dc3545
 }
 
+.form-errors .ck.ck-editor__main>.ck-editor__editable:not(.ck-focused) {
+  border-color: #cf1717;
+}
+
 .form-group {
   margin-bottom: 10px
 }
 
 @import "~bootstrap/scss/bootstrap";
+
+p{
+  margin-bottom: 0px;
+}
 
 .form-control:focus {
   border-color: #403866 !important;
@@ -182,7 +190,6 @@ h1, h2, h3, h4, h5, h6 {
   width: 100%;
   padding-top: 0px !important;
   position: relative;
-  min-height: 100vh;
   padding-bottom: 0px;
 }
 
@@ -537,4 +544,164 @@ label {
   display: flex;
   align-items: center;
   justify-content: flex-end;
+}
+
+.search_history {
+  width: 100%;
+  border: 1px solid #ddd;
+  border-radius: 3px;
+  padding: 8px 10px;
+}
+
+.conversation-btn {
+  width: 160px;
+  padding: 9px;
+  margin-left: 10px
+}
+
+.histroy-header {
+  display: flex;
+  align-items: center;
+}
+
+.message-row {
+  border-bottom: 1px solid #ddd;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+.conversation-user {
+  font-size: 14px;
+  color: #222;
+  font-weight: 500;
+}
+
+.conversation-message {
+  font-size: 13px;
+  color: #787878;
+}
+
+.conversation-date {
+  font-size: 12px;
+  color: #787878
+}
+
+.message-row .btn-primary {
+  padding: 2px 10px 3px;
+  font-size: 12px;
+}
+
+.unreact_count {
+  width: 25px;
+  height: 25px;
+  background-color: #ddd;
+  border-radius: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.chat-bot {
+  border: 1px solid #ddd;
+  height: 83vh;
+  border-radius: 4px;
+  min-height: 400px;
+  background-color: #fff;
+}
+
+.cht-header {
+  height: 45px;
+  padding: 10px 15px;;
+  border-bottom: 1px solid #ddd;
+  display: flex;
+  align-items:center;
+  background-color: #eee;
+}
+
+.chat-composer {
+  background-color: #ddd;
+  padding: 5px 10px;
+}
+
+.conversation-user-list {
+  border-right: 1px solid #ddd;
+  height: 86vh;
+  min-height: 500px;
+}
+
+.conver-user-img {
+  width: 30px;
+  max-height: 30px;
+  height: 35px;
+  border-radius: 100px;
+  margin-right: 10px;
+}
+
+.box {
+  height: 63vh;
+  border-radius: 3px;
+  overflow-y: auto;
+  min-height: 346px;
+  margin-bottom: 5px;
+}
+
+.box .inner {
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  flex-basis: 100%;
+  height: 100%;
+  align-content: flex-end;
+  min-height: min-content;
+  padding: 15px;
+}
+
+.box .reference {
+  display: flex;
+  flex-direction: row;
+  flex-basis: 100%;
+}
+
+.chat-left {
+  display: flex;
+  flex: 1;
+  flex-direction: row;
+  margin-bottom: 20px;
+}
+
+.chat-text {
+  padding: 5px 10px 3px;
+  border-radius: 2px;
+  background: #ddd;
+  position: relative;
+}
+
+.chat-body {
+  margin: 0px 0px;
+}
+
+.chat-right {
+  display: flex;
+  flex: 1;
+  flex-direction: row;
+  margin-bottom: 20px;
+  justify-content: flex-end;
+}
+
+.chat-image {
+  width: 100px;
+  height: 100px;
+  border-radius: 3px;
+}
+
+.ck.ck-editor {
+  width: 80% !important;
+}
+
+.ck-editor__editable_inline {
+  min-height: 50px;
+}
+
+.css-b62m3t-container {
+  width: 100%;
 }

@@ -39,5 +39,12 @@ export const userConstants = {
 	TOUR_DATA :'tour list',
 	TOUR_DESTROY: 'delete tour',
 	TOUR_EDIT: 'tour edit',
-	TOUR_UPDATE: 'tour update'
+	TOUR_UPDATE: 'tour update',
+
+	GET_CHAT_USERS: 'chat users',
+	CREATE_CONVERSATION: 'new conversation',
+	GET_CHAT_MESSAGES: 'get message',
+	SENDER_MESSAGE: 'create send mesage',
+	SENDER_ERROR: 'message error',
+	NEW_MESSAGE: ' new message',
 };
