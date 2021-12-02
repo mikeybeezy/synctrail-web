@@ -28,16 +28,16 @@ function ChatHistory(props) {
                 <div  className="message-row d-flex align-items-center justify-content-between"> 
                   <div>
                     <div className="d-flex" key={key}>
-                      {data.conversation_participants.map((cp) => {
+                      {data.conversation_participants.map((cp, index) => {
                         return (
-                          <div className="conversation-user"> {cp.user.username} , </div>
+                          <div className="conversation-user" key={index}> {cp.user.username} , </div>
                         )
                       })}
                     </div>
                       {data.latest_messages.map((me, index, {length}) => {
                         if(index + 1 === length) {
                           return (
-                            <div>
+                            <div key={index}>
                               <div className="conversation-message">{ReactHtmlParser(me.content)}</div>
                               <div className="conversation-date">{dateFormat(me.created_at, "mmmm dd yyyy - h:MM TT")}</div>
                             </div>
@@ -46,7 +46,10 @@ function ChatHistory(props) {
                       })}
                   </div>
                   <div className="d-flex align-items-center">
-                    <div className="unreact_count mx-4">5</div>
+                    {data.unread_message_count > 0 ?
+                      <div className="unreact_count mx-4">{data.unread_message_count}</div>
+                      : null
+                    }
                      <Link to={`/admin/chats/${data.id}`}>
                       <Button variant="primary" size="sm">View</Button>
                     </Link>

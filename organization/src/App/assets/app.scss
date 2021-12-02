@@ -198,7 +198,7 @@ h1, h2, h3, h4, h5, h6 {
   margin: 0;
   z-index: 22;
   border-radius: 0px;
-  padding: 20px 20px;
+  padding: 20px 20px 0px 20px;
 }
 
 .main_content .navbar {
@@ -603,14 +603,14 @@ label {
 
 .chat-bot {
   border: 1px solid #ddd;
-  height: 83vh;
+  height: 86vh;
   border-radius: 4px;
   min-height: 400px;
   background-color: #fff;
 }
 
 .cht-header {
-  height: 45px;
+  height: 35px;
   padding: 10px 15px;;
   border-bottom: 1px solid #ddd;
   display: flex;
@@ -619,7 +619,7 @@ label {
 }
 
 .chat-composer {
-  background-color: #ddd;
+  background-color: #f5f1ee;
   padding: 5px 10px;
 }
 
@@ -638,7 +638,7 @@ label {
 }
 
 .box {
-  height: 63vh;
+  height: 64.1vh;
   border-radius: 3px;
   overflow-y: auto;
   min-height: 346px;
@@ -672,7 +672,6 @@ label {
 .chat-text {
   padding: 5px 10px 3px;
   border-radius: 2px;
-  background: #ddd;
   position: relative;
 }
 
@@ -686,6 +685,16 @@ label {
   flex-direction: row;
   margin-bottom: 20px;
   justify-content: flex-end;
+}
+
+.chat-left .chat-text {
+  border-radius: 10px 10px 10px 0px;
+  background: #ddd;
+}
+
+.chat-right .chat-text {
+  border-radius: 10px 10px 0 10px;
+  background: #dcf8c6;
 }
 
 .chat-image {
@@ -705,3 +714,14 @@ label {
 .css-b62m3t-container {
   width: 100%;
 }
+
+.date-format {
+  font-size: 11px;
+  color: #6c757d;
+}
+
+.chat-user-name {
+  font-size: 12px;
+  color: #6c757d;
+}
+
