@@ -9,6 +9,7 @@
     "axios": "^0.24.0",
     "bootstrap": "^5.1.1",
     "cra-template": "1.1.2",
+    "customize-cra": "^1.0.0",
     "dateformat": "^5.0.2",
     "dotenv": "^10.0.0",
     "font-awesome": "^4.7.0",
@@ -18,6 +19,7 @@
     "node-sass": "^6.0.1",
     "rc-time-picker": "^3.7.3",
     "react": "^17.0.2",
+    "react-app-rewired": "^2.1.0",
     "react-actioncable-provider": "^2.0.0",
     "react-bootstrap": "^2.0.1",
     "react-datepicker": "^4.3.0",
@@ -62,8 +64,6 @@
     ]
   },
   "devDependencies": {
-    "customize-cra": "^1.0.0",
-    "react-app-rewired": "^2.1.8",
     "web-vitals": "^2.1.2"
   }
 }
