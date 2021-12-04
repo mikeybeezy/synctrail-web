@@ -36,6 +36,10 @@ import TourEdit from './components/tours/edit'
 import ChatHistory from './components/chat/history'
 import Conversation from './components/chat/conversation'
 
+import ScheduleList from './components/guard-schedule/list'
+import ScheduleNew from './components/guard-schedule/new'
+import ScheduleEdit from './components/guard-schedule/edit'
+
 function App() {
   const dispatch = useDispatch();
   const alert = useSelector((state) => state.alert);
@@ -88,6 +92,9 @@ function App() {
             <PrivateRoute exact path='/admin/clients/:client_id/tours/:tour_id/edit' component={TourEdit} />
             <PrivateRoute exact path='/admin/chats' component={ChatHistory} />
             <PrivateRoute exact path='/admin/chats/:conversation_id' component={Conversation} />
+            <PrivateRoute exact path='/admin/guard/schedule/list' component={ScheduleList} />
+            <PrivateRoute exact path='/admin/guard/schedule/new' component={ScheduleNew} />
+            <PrivateRoute exact path='/admin/guard/schedule/:schedule_id/edit' component={ScheduleEdit} />
             <Redirect from="*" to="/" />
           </Switch>
         </div>

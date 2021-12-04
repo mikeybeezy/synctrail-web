@@ -47,4 +47,13 @@ export const userConstants = {
 	SENDER_MESSAGE: 'create send mesage',
 	SENDER_ERROR: 'message error',
 	NEW_MESSAGE: ' new message',
+
+	GUARD_SCHEDULE_LIST: 'guard schedule list',
+	SCHEDULE_INITIAL_DATA: 'schedule initial data',
+	GET_SITES: 'get location list',
+	NEW_GUARD_SCHEDULE: 'create guard schedule',
+	DESTROY_SCHEDULE: 'destroy schedule',
+	EDIT_SCHEDULE: 'edit schedule',
+	UPDATE_SCHEDULE: 'update schedule',
+	SCHEDULE_ERROR: 'schedule error show'
 };
