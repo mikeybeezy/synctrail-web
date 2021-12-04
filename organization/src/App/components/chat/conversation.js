@@ -31,7 +31,16 @@ function ChatConversation(props) {
             <ChatUsers particpantsUsers={particpantsUsers && particpantsUsers} />
           </div> 
           <div className="col-md-8" style={{paddingLeft:'0px'}}>
-            <div className="cht-header"> <h5>John Doe</h5></div>
+            <div className="cht-header">
+
+            
+              {particpantsUsers && particpantsUsers.map((data, key) => {
+                return (
+                   <div key={key}> {data.username} </div>
+                  )
+                })
+              }
+            </div>
             <div className="chat-body">
               <ChatWindow/>
               <ChatComposer submitted={submitted} />

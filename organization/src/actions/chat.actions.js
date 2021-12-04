@@ -8,6 +8,7 @@ export const chatActions = {
   createConversation,
   getChatMessages,
   senderMessage,
+  messageRead
 };
 
 
@@ -59,7 +60,6 @@ export function createConversation(reqparams) {
 export function getChatMessages(conversation_id) {
   return function (dispatch) {
     try{
-      dispatch({ type: userConstants.PAGE_LOADING });
       makeGETRequest(`/api/v1/get_messages/${conversation_id}`)
       .then(response => {
         dispatch({
@@ -80,7 +80,6 @@ export function getChatMessages(conversation_id) {
 export function senderMessage(reqparams, conversation_id) {
   return dispatch => {
     try{
-      dispatch({ type: userConstants.PAGE_LOADING });
       makeFormDataPOSTRequest(`/api/v1/create_message/${conversation_id}`, reqparams)
       .then(response => {
         if(response.data.status === "ok"){
@@ -100,3 +99,20 @@ export function senderMessage(reqparams, conversation_id) {
 }
 
 
+export function messageRead(id) {
+  return dispatch => {
+    try{
+      makePOSTRequest(`/api/v1/message_read/${id}`)
+      .then(response => {
+        if(response.data.status === "ok"){
+          console.log("sucess")
+        }
+      })
+    }catch(e){
+      dispatch( {
+        type: userConstants.AUTHENTICATION_FAILURE,
+        payload: console.log(e),
+      })
+    }
+  }
+}
