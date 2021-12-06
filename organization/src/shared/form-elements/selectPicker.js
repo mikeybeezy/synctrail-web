@@ -1,16 +1,22 @@
-import React from "react";
-import { connect, useDispatch } from 'react-redux';
+import React, {useEffect} from "react";
+import { connect, useDispatch, useSelector } from 'react-redux';
 import { scheduleActions } from '../../actions';
 
 const SelectField = ({ placeholder, disableOption,  formStatus, input, onChange,  label, options, optionname,  type, meta: { touched, error } }) => {
   const dispatch = useDispatch();
+  const editSchedule = useSelector(state => state.schedule.editSchedule);  
 
   const checkValue = (event) => {
     if(optionname === "clientId"){
       dispatch(scheduleActions.getSites(event.target.value));
     }
     input.onChange(event)
+  } 
+
+  if(editSchedule){
+    dispatch(scheduleActions.getSites(editSchedule && editSchedule.client_id));
   }
+
   return (
     <div className="form-group">
       <label className="mb-1" style={{fontSize: "14px"}}> {label} </label>

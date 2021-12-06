@@ -8,15 +8,20 @@ import { guarantorValidation } from 'shared-lib/src/validation';
 import { reduxForm, Field, change } from "redux-form";
 import moment from "moment";
 
-function GuardForm(props) {
+function ScheduleForm(props) {
   const dispatch = useDispatch();
-  const { handleSubmit, initialize, formStatus, guardSchedule } = props
+  const { handleSubmit, initialize, loading, formStatus, guardSchedule, editSchedule } = props
   const clientData = useSelector(state => state.schedule.clientData);  
   useEffect(() => {
     if(formStatus === "newForm") {
-      dispatch(change("guards_schedule", "ongoing", false))
+      initialize({ ScheduleForm: "" })
+      // dispatch(change("guards_schedule", "ongoing", false))
     }
   }, []);
+
+  if (loading) {
+    return <div className="page_loading">Loading..</div>
+  }
 
   return (
     <form onSubmit={handleSubmit}>
@@ -29,7 +34,6 @@ function GuardForm(props) {
             options={guardSchedule && guardSchedule.guard_profile} 
             placeholder="Select guard..."
             optionname="guardProfile"
-
           />
         </div>
         <div className="col-md-6">
@@ -40,6 +44,7 @@ function GuardForm(props) {
             options={guardSchedule && guardSchedule.client_list}  
             placeholder="Select client..."
             optionname="clientId"
+            getClientId={editSchedule && editSchedule.client_id} 
           />
         </div>
       </div>
@@ -104,7 +109,7 @@ function GuardForm(props) {
           {clientData && clientData.tours.map((data, key) => {
             return (
               <label key={key} className="checkgox-div">
-                <Field name="tour_id" component="input" type="radio" value={data.id.toString()}  />
+                <Field name="tour_id" component="input" type="radio" value={data.id.toString()} checked={1}/>
                 <span className="checkbox-name">{data.name}</span>
               </label>
             )
@@ -125,13 +130,13 @@ function GuardForm(props) {
 }
 
 
-GuardForm =  reduxForm({
+ScheduleForm =  reduxForm({
   form: 'guards_schedule',
   validate: guarantorValidation
-})(GuardForm);
+})(ScheduleForm);
 
-GuardForm = connect(
+ScheduleForm = connect(
   state => ({ initialValues: state.schedule.editSchedule }),
-)(GuardForm)
+)(ScheduleForm)
 
-export default GuardForm
+export default ScheduleForm

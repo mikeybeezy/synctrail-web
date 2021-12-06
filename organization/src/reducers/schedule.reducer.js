@@ -29,6 +29,7 @@ export function schedule(state = initialState, action) {
     case userConstants.GET_SITES: {
       return {
         ...state,
+        loading: false,
         clientData: action.payload.data
       }
     }
@@ -36,6 +37,7 @@ export function schedule(state = initialState, action) {
     case userConstants.EDIT_SCHEDULE: {
       return {
         ...state,
+        loading: false,
         editSchedule: action.payload.data.data
       }
     }

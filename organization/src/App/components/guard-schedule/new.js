@@ -5,7 +5,7 @@ import ScheduleForm from "../guard-schedule/form";
 
 function GuardScheduleNew(props) {
   const dispatch = useDispatch();
-  const { guardSchedule } = props
+  const { guardSchedule, loading } = props
 
   useEffect(() => {
     dispatch(scheduleActions.scheduleInitialData());
@@ -15,15 +15,12 @@ function GuardScheduleNew(props) {
     dispatch(scheduleActions.createGuardSchedule(values));
   }
 
-  if (props.loading) {
-    return <div className="page_loading">Loading..</div>
-  }
-
   return (
     <div className="container">
       <ScheduleForm 
         onSubmit={showResults} 
         formStatus="newForm" 
+        loading={props.loading}
         guardSchedule={guardSchedule && guardSchedule}
       />
     </div>

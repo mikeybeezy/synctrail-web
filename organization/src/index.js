@@ -7,7 +7,7 @@ import 'font-awesome/css/font-awesome.min.css';
 import { ActionCableProvider } from 'react-actioncable-provider';
 
 render(
-  <ActionCableProvider url={'ws://localhost:3000/cable'}>
+  <ActionCableProvider url={process.env.REACT_APP_CABLE_URL}>
   <Provider store={store}>
       <App />
   </Provider>,
