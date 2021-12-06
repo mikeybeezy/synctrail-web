@@ -1,18 +1,22 @@
 import React, {useState, useEffect} from 'react';
-import ReactHtmlParser from 'react-html-parser'
 import { ActionCableConsumer } from 'react-actioncable-provider';
 import { userConstants } from '../../../constants';
-import { connect, useSelector,  useDispatch } from 'react-redux';
+import { chatActions } from '../../../actions';
+import { useDispatch } from 'react-redux';
+import { useParams } from 'react-router-dom';
 
 function ActionCable(props) {
   const dispatch = useDispatch();
+  const { conversation_id } = useParams();
 
   const handleReceivedLists=(res)=> {
+    dispatch(chatActions.messageRead(res.data.id));
     dispatch({type: userConstants.NEW_MESSAGE, payload: res});
   }
   return (
     <ActionCableConsumer
-    channel={{ channel: "ChatRoomChannel" }}
+    key={conversation_id}
+    channel={{ channel: "ChatRoomChannel", room_id: conversation_id }}
     onConnected={() => "Connected to server."}
     onReceived={handleReceivedLists} />
   );
