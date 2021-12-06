@@ -57,7 +57,7 @@ function ScheduleList(props) {
           {scheduleList && scheduleList.length > 0 ? 
             scheduleList.map((data, index) => {
               return(
-                <tr>
+                <tr key={index}>
                   <td className="text-center">{index + 1}</td>
                   <td>{data.guard_profile && data.guard_profile.first_name}</td>
                   <td>{data.location && data.location.name}</td>

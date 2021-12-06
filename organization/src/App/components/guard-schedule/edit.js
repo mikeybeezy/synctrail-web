@@ -18,21 +18,14 @@ function GuardScheduleEdit(props) {
     dispatch(scheduleActions.updateGuardSchedule(schedule_id, values));
   }
 
-  if (props.loading) {
-    return <div className="page_loading">Loading..</div>
-  }
-
-  console.log(editSchedule)
-  console.log(editSchedule)
-  console.log(editSchedule)
-  console.log(editSchedule)
-
   return (
     <div className="container">
       <ScheduleForm 
         onSubmit={showResults} 
         formStatus="editForm" 
         guardSchedule={guardSchedule && guardSchedule}
+        editSchedule={editSchedule && editSchedule}
+        loading={props.loading}
       />
     </div>
   );
