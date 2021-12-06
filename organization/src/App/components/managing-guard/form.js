@@ -2,7 +2,7 @@ import React, { useEffect} from 'react';
 import { Link } from 'react-router-dom';
 import { connect, useSelector  } from 'react-redux';
 import { Button } from 'react-bootstrap';
-import { selectPicker, fileUpload } from '../../../shared/form-elements';
+import { pricePicker, fileUpload } from '../../../shared/form-elements';
 import { textInput, datePicker } from 'shared-lib/src/form-elements';
 import { guarantorValidation } from 'shared-lib/src/validation';
 import { reduxForm, Field } from "redux-form";
@@ -136,7 +136,7 @@ function GuardForm(props) {
       <div>
         <Field 
           name="salary_frequency" 
-          component={selectPicker} 
+          component={pricePicker} 
           label="Salary Type" 
           options={guardSalary} 
           placeholder="Salary type..."

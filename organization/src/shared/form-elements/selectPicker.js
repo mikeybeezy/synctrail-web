@@ -1,49 +1,34 @@
-import React, {useEffect} from "react";
+import React from "react";
+import { connect, useDispatch } from 'react-redux';
+import { scheduleActions } from '../../actions';
 
-const SelectField = ({ placeholder, formStatus, input, onChange,  label, options, optionname,  type, meta: { touched, error } }) => {
-  const [active, setActive] = React.useState(false)
-  const [price, setPrice] = React.useState()
+const SelectField = ({ placeholder, disableOption,  formStatus, input, onChange,  label, options, optionname,  type, meta: { touched, error } }) => {
+  const dispatch = useDispatch();
+
   const checkValue = (event) => {
-    setActive(true)
-    const getObject = options && options.find(item => item.name === event.target.value)
-    setPrice(getObject && getObject.price)
+    if(optionname === "clientId"){
+      dispatch(scheduleActions.getSites(event.target.value));
+    }
     input.onChange(event)
   }
-
-  useEffect(() => {
-   if(formStatus === "editForm") {
-     setActive(true)
-     const getObject = options && options.find(item => item.name === input.value)
-     setPrice(getObject && getObject.price)
-   }
-  }, []);
-
   return (
-    <div className="row">
-      <div className={active === true ? "col-md-8" : "col-md-12"}>
-        <label className="mb-1"> {label} </label>
-        <select {...input} className="form-control" onChange = { (e) => checkValue(e)}>
-          <option value="">{label}</option>
-          {options && options.map(option => (
-            <option key={option.name} value={option.name} price={option.name}>
-              {option.name}
+    <div className="form-group">
+      <label className="mb-1" style={{fontSize: "14px"}}> {label} </label>
+      <select {...input} className="form-control" onChange = { (e) => checkValue(e)} disabled={disableOption}>
+        <option value="">{placeholder}</option>
+        {options && options.map((data, key) => {
+          return (
+            <option key={data.id} value={data.id}>
+              {optionname === "guardProfile" ? data.first_name : optionname === "clientId" ? data.business_name : data.name}
             </option>
-          ))}
-        </select>
-        {touched && error && (<span className="form-error">{error}</span>)}
-      </div>
-        {active && 
-          <div className="col-md-4">
-            <div>
-              <label className="mb-1">Salary</label>
-              <input type="text" placeholder={placeholder} className="form-control" value={price} disabled/>
-            </div>
-          </div>
-        }
+          )
+        })}
+      </select>
+      {touched && error && (
+       <span className="form-error">{error}</span>
+      )}
     </div>
   )
 }
 
 export default SelectField
-
-
