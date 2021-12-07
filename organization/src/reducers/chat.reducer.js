@@ -30,7 +30,6 @@ export function chat(state = initialState, action) {
     case userConstants.SENDER_MESSAGE: {
       return {
         ...state,
-        loading: false,
         senderMessages: action.payload.data
       }
     }
@@ -38,7 +37,6 @@ export function chat(state = initialState, action) {
     case userConstants.GET_CHAT_MESSAGES: {
       return {
         ...state,
-        loading: false,
         getMessages: action.payload.data.data,
         particpantsUsers: action.payload.data.particpants_users
       }

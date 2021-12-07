@@ -35,6 +35,7 @@ import TourEdit from './components/tours/edit'
 
 import ChatHistory from './components/chat/history'
 import Conversation from './components/chat/conversation'
+import ActionCable from './components/chat/actionCable'
 
 import ScheduleList from './components/guard-schedule/list'
 import ScheduleNew from './components/guard-schedule/new'
@@ -69,6 +70,7 @@ function App() {
               <button type="button" className="btn-close" onClick={clearAlert}></button>
             </div>
           )}
+          <PrivateRoute path="/admin/chats/:conversation_id" component={ActionCable} />
           <Switch>
             <PrivateRoute exact path='/' component={Dashboard} />
             <Route path='/login' component={Login} />
