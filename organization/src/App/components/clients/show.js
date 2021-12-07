@@ -4,6 +4,7 @@ import { clientActions } from '../../../actions';
 import { useParams } from 'react-router-dom';
 import SiteDetails from "../sites/list";
 import TourDetails from "../tours/list";
+import OrderTemplateDetails from "../order-template/list";
 
 function ClientShow(props) {
   const { currentClient } = props
@@ -24,6 +25,7 @@ function ClientShow(props) {
       </div>
       <SiteDetails />
       <TourDetails />
+      <OrderTemplateDetails clientId={client_id}/>
     </div>
   );
 }

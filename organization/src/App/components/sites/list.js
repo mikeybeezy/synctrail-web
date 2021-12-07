@@ -34,7 +34,7 @@ function SiteList(props) {
 
   return (
    <div  className="container">
-      <div className="page_header d-flex align-items-center justify-content-between py-3">
+      <div className="page_header d-flex align-items-center justify-content-between py-2">
         <h5>Sites</h5>
         <Link to={{ pathname: `/admin/clients/${client_id}/site/new`}}>
           <Button variant="primary">Add Site</Button>

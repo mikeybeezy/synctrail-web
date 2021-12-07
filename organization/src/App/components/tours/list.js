@@ -34,7 +34,7 @@ function ClientList(props) {
 
   return (
    <div  className="container">
-      <div className="page_header d-flex align-items-center justify-content-between py-3">
+      <div className="page_header d-flex align-items-center justify-content-between py-2">
         <h5>Tours</h5>
         <Link to={`/admin/clients/${client_id}/tours/new`}>
           <Button variant="primary" size="sm">Add Tour</Button>
@@ -59,7 +59,7 @@ function ClientList(props) {
                   <td>
                     {data && data.tour_stops.map((data, index) => {
                       return(
-                          <div>{data.location && data.location.name}</div>
+                          <div key={index}>{data.location && data.location.name}</div>
                         )
                     })}
                   </td>

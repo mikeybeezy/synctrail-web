@@ -139,6 +139,7 @@ function ScheduleForm(props) {
 
 ScheduleForm =  reduxForm({
   form: 'guards_schedule',
+  enableReinitialize: true,
   validate: scheduleValidation
 })(ScheduleForm);
 

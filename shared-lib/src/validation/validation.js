@@ -24,6 +24,10 @@ const validation = (values) => {
     errors.platform_notes = 'required'
   }
 
+  if(!values.order_title) {
+    errors.order_title = 'required'
+  }
+
   return errors;
 };
 
