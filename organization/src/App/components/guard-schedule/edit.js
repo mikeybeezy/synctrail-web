@@ -6,7 +6,7 @@ import ScheduleForm from "../guard-schedule/form";
 
 function GuardScheduleEdit(props) {
   const dispatch = useDispatch();
-  const { guardSchedule, editSchedule } = props
+  const { guardSchedule, editSchedule, loading } = props
   const { schedule_id } = useParams();
 
   useEffect(() => {
@@ -18,6 +18,10 @@ function GuardScheduleEdit(props) {
     dispatch(scheduleActions.updateGuardSchedule(schedule_id, values));
   }
 
+  if (props.loading) {
+    return <div className="page_loading">Loading..</div>
+  }
+  
   return (
     <div className="container">
       <ScheduleForm 
@@ -26,6 +30,7 @@ function GuardScheduleEdit(props) {
         guardSchedule={guardSchedule && guardSchedule}
         editSchedule={editSchedule && editSchedule}
         loading={props.loading}
+
       />
     </div>
   );

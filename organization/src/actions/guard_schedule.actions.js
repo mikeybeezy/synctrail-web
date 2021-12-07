@@ -16,7 +16,6 @@ export const scheduleActions = {
 export function getScheduleData() {
   return dispatch => {
     try{
-      dispatch({ type: userConstants.PAGE_LOADING });
       makeGETRequest('/api/v1/guards_schedule')
       .then(response => {
         if(response.data.status === "ok"){
@@ -37,7 +36,6 @@ export function getScheduleData() {
 export function scheduleInitialData() {
   return dispatch => {
     try{
-      dispatch({ type: userConstants.PAGE_LOADING });
       makeGETRequest('/api/v1/initial_schedule')
       .then(response => {
         if(response.data.status === "ok"){
@@ -58,7 +56,6 @@ export function scheduleInitialData() {
 export function getSites(client_id) {
   return dispatch => {
     try{
-      dispatch({ type: userConstants.PAGE_LOADING });
       makePOSTRequest(`/api/v1/guards_schedule/sites/${client_id}`)
       .then(response => {
         if(response.data.status === "ok"){
@@ -77,7 +74,6 @@ export function getSites(client_id) {
 export function createGuardSchedule(reqparams) {
   return dispatch => {
     try{
-      dispatch({ type: userConstants.PAGE_LOADING });
       makePOSTRequest(`/api/v1/guards_schedule`, reqparams)
       .then(response => {
         if(response.data.status === "ok"){
@@ -101,7 +97,6 @@ export function createGuardSchedule(reqparams) {
 export function destroySchedule(id) {
   return function (dispatch) {
     try{
-      dispatch({ type: userConstants.PAGE_LOADING });
       makeDELETERequest(`/api/v1/guards_schedule/${id}`)
       .then(response => {
         dispatch({
@@ -125,10 +120,9 @@ export function scheduleEdit(id) {
       dispatch({ type: userConstants.PAGE_LOADING });
       makeGETRequest(`/api/v1/guards_schedule/${id}`)
       .then(response => {
-        dispatch({
-          type: userConstants.EDIT_SCHEDULE,
-          payload: response
-        })
+        if(response.data.status === "ok"){
+          dispatch({ type: userConstants.EDIT_SCHEDULE,payload: response})
+        }
       })
     }catch(e){
       dispatch( {
@@ -142,7 +136,6 @@ export function scheduleEdit(id) {
 export function updateGuardSchedule(id, reqparams) {
   return function (dispatch) {
     try{
-      dispatch({ type: userConstants.PAGE_LOADING });
       makePUTRequest(`/api/v1/guards_schedule/${id}`, reqparams)
       .then(response => {
         if(response.data.status === "ok"){
