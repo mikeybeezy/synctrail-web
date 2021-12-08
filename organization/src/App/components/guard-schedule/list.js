@@ -13,10 +13,6 @@ function ScheduleList(props) {
     dispatch(scheduleActions.getScheduleData());
   }, []);
 
-  console.log(scheduleList)
-  console.log(scheduleList)
-  console.log(scheduleList)
-
   /* Popup Modal */
   const [popup, setPopUp] = useState({show: false, id: null});
 
@@ -43,34 +39,57 @@ function ScheduleList(props) {
         <thead>
           <tr>
             <th className="text-center" style={{width: '3%'}}>S.No</th>
-            <th>Guard Name</th>
+            <th>Guard</th>
+            <th>Client</th>
             <th>Location</th>
-            <th>Tour</th>
-            <th>Ongoing</th>
-            <th>From Date</th>
+            <th>Start Date</th>
             <th>End Date</th>
-            <th style={{width: '5%'}} className="text-center">Actions</th>
+            <th width="20%">Days</th>
+            <th>Tour</th>
+            <th style={{width: '10%'}} className="text-center">Actions</th>
           </tr>
         </thead>
         <tbody>
-
           {scheduleList && scheduleList.length > 0 ? 
             scheduleList.map((data, index) => {
               return(
                 <tr key={index}>
                   <td className="text-center">{index + 1}</td>
                   <td>{data.guard_profile && data.guard_profile.first_name}</td>
+                  <td>{data.client && data.client.business_name}</td>
                   <td>{data.location && data.location.name}</td>
-                  <td>{data.tour && data.tour.name}</td>
-                  <td>{data.ongoing}</td>
                   <td>{data.from_date}</td>
-                  <td>{data.to_date}</td>
+                  <td>{data.to_date ? data.to_date : <span className="on-going">OnGoing</span>}</td>
+                  <td>
+                    { data.days_shift.map((data, index) => {
+                        if(data === 1){
+                          return (<span className="days_shift">M</span>)
+                        }else if (data === 2) {
+                          return (<span className="days_shift">T</span>)
+                        }else if (data === 3) {
+                          return (<span className="days_shift">W</span>)
+                        }else if (data === 4) {
+                          return (<span className="days_shift">Th</span>)
+                        }else if (data ===5 ) {
+                          return (<span className="days_shift">F</span>)
+                        }else if (data ===6 ) {
+                          return (<span className="days_shift">S</span>)
+                        }else if (data === 7 ) {
+                          return (<span className="days_shift">Su</span>)
+                        }
+                      })
+                    }
+                  </td>
+                  <td>{data.tour && data.tour.name}</td>
                   <td>
                     <div className="d-flex align-items-center justify-content-center">
                       <Link to={`/admin/guard/schedule/${data.id}/edit`}>
+                        Orders
+                      </Link>
+                      <Link to={`/admin/guard/schedule/${data.id}/edit`} className="px-2">
                         <i className="fa fa-pencil-square-o" aria-hidden="true"></i>
                       </Link>
-                      <div onClick={() => handleShow(data.id)} className="ml-10 cursor-pointer">
+                      <div onClick={() => handleShow(data.id)} className="cursor-pointer">
                        <i className="fa fa-trash-o" aria-hidden="true"></i>
                       </div>
                     </div>
@@ -97,7 +116,6 @@ function ScheduleList(props) {
 
 const mapStateToProps = (state) => {
   return {
-    loading: state.tour.loading,
     scheduleList: state.schedule.scheduleList
   };
 };

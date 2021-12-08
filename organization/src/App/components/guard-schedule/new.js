@@ -15,13 +15,17 @@ function GuardScheduleNew(props) {
     dispatch(scheduleActions.createGuardSchedule(values));
   }
 
+  if (props.loading) {
+    return <div className="page_loading">Loading..</div>
+  }
+
   return (
     <div className="container">
       <ScheduleForm 
         onSubmit={showResults} 
         formStatus="newForm" 
-        loading={props.loading}
         guardSchedule={guardSchedule && guardSchedule}
+        loading={props.loading}
       />
     </div>
   );

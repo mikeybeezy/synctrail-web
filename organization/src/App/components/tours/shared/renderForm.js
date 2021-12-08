@@ -4,7 +4,7 @@ import { textInput, selectField } from 'shared-lib/src/form-elements';
 
 class renderWorkspace extends React.Component {
   render() {
-    const { fields, workspace, locationData, formStatus } = this.props;
+    const { fields, locationData, formStatus } = this.props;
     const removeName = (index, location) => {
       if (formStatus === 'editForm') {
         this.props.change(location + '._destroy', true)

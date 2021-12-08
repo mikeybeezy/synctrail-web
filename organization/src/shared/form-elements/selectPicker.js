@@ -1,10 +1,10 @@
-import React, {useEffect} from "react";
-import { connect, useDispatch, useSelector } from 'react-redux';
+import React from "react";
+import { useDispatch, useSelector } from 'react-redux';
 import { scheduleActions } from '../../actions';
 
 const SelectField = ({ placeholder, disableOption,  formStatus, input, onChange,  label, options, optionname,  type, meta: { touched, error } }) => {
   const dispatch = useDispatch();
-  const editSchedule = useSelector(state => state.schedule.editSchedule);  
+  const editSchedule = useSelector(state => state.schedule.editSchedule);
 
   const checkValue = (event) => {
     if(optionname === "clientId"){

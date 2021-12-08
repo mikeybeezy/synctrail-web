@@ -1,7 +1,7 @@
 import { alertActions } from './';
 import { history } from '../helpers';
 import { userConstants } from '../constants';
-import { makeFormDataPOSTRequest, makeGETRequest, makePOSTRequest, makeFormDataPUTRequest } from 'shared-lib/src/Axios';
+import { makeFormDataPOSTRequest, makeGETRequest, makePOSTRequest } from 'shared-lib/src/Axios';
 
 export const chatActions = { 
   getChatUsers,

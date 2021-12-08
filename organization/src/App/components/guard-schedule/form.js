@@ -2,22 +2,37 @@ import React, { useEffect} from 'react';
 import { Link } from 'react-router-dom';
 import { connect, useSelector, useDispatch  } from 'react-redux';
 import { Button } from 'react-bootstrap';
-import { selectPicker, fileUpload, checkBox } from '../../../shared/form-elements';
+import { selectPicker, fileUpload, checkBox, radioInput } from '../../../shared/form-elements';
 import { textInput, datePicker } from 'shared-lib/src/form-elements';
-import { guarantorValidation } from 'shared-lib/src/validation';
+import { scheduleValidation } from 'shared-lib/src/validation';
 import { reduxForm, Field, change } from "redux-form";
 import moment from "moment";
 
 function ScheduleForm(props) {
   const dispatch = useDispatch();
   const { handleSubmit, initialize, loading, formStatus, guardSchedule, editSchedule } = props
-  const clientData = useSelector(state => state.schedule.clientData);  
+  const clientData = useSelector(state => state.schedule.clientData); 
+
   useEffect(() => {
     if(formStatus === "newForm") {
-      initialize({ ScheduleForm: "" })
-      // dispatch(change("guards_schedule", "ongoing", false))
+      initialize({ ScheduleForm: "", days_shift: "" })
+    }else {
+      initialize({
+        days_shift: editSchedule && editSchedule.days_shift,
+        tour_id: editSchedule && editSchedule.tour_id.toString(),
+        guard_profile_id: editSchedule && editSchedule.guard_profile_id,
+        client_id: editSchedule && editSchedule.client_id,
+        location_id: editSchedule && editSchedule.location_id,
+        from_date: editSchedule && editSchedule.from_date,
+        to_date: editSchedule && editSchedule.to_date,
+        ongoing: editSchedule && editSchedule.ongoing,
+      });
     }
   }, []);
+
+  const clearForm = () => {
+     initialize({ days_shift: "" })
+  }
 
   if (loading) {
     return <div className="page_loading">Loading..</div>
@@ -66,7 +81,7 @@ function ScheduleForm(props) {
         </div>
       </div>
       <div className="row d-flex align-items-center mt-3">
-        <div className="col-md-5">
+        <div className="col-md-6">
           <Field
             name="from_date"
             normalize={value => (value ? moment(value).format('DD-MM-YYYY') : null)}
@@ -78,18 +93,8 @@ function ScheduleForm(props) {
             inputValueFormat="DD-MM-YYYY"
           />
         </div>
-        <div className="col-md-2 d-flex align-items-center justify-content-center">
-          <div className="form-check form-switch mt-4">
-            <Field
-              name="ongoing"
-              type="checkbox"
-              component="input"
-              className="form-check-input"
-            />
-            <label className="form-check-label">Ongoing</label>
-          </div>
-        </div>
-        <div className="col-md-5">
+        
+        <div className="col-md-6">
           <Field
             name="to_date"
             normalize={value => (value ? moment(value).format('DD-MM-YYYY') : null)}
@@ -106,14 +111,16 @@ function ScheduleForm(props) {
       <div className="row mt-3">
         <div className="col-md-12">
           {clientData && clientData.tours.length > 0 ? <h5 className="py-2">Set Tour Route</h5> : null}
-          {clientData && clientData.tours.map((data, key) => {
-            return (
-              <label key={key} className="checkgox-div">
-                <Field name="tour_id" component="input" type="radio" value={data.id.toString()} checked={1}/>
-                <span className="checkbox-name">{data.name}</span>
-              </label>
-            )
-          })}
+          <div className="d-flex align-items-center">
+            {clientData && clientData.tours.map((data, key) => {
+              return (
+                <label key={key} className="checkgox-div d-flex align-items-center">
+                  <Field name="tour_id" component="input" type="radio" value={data.id.toString()}/>
+                  <span className="checkbox-name">{data.name}</span>
+                </label>
+              )
+            })}
+          </div>
         </div>
       </div>
 
@@ -121,7 +128,7 @@ function ScheduleForm(props) {
         <Button variant="primary" type="submit">
           {formStatus === "newForm" ? 'Save' : 'Update'}
         </Button>
-        <Link to="/admin/guard/schedule/list" className="px-3">
+        <Link to="/admin/guard/schedule/list" className="px-3" onClick={() => clearForm()}>
           <Button variant="default">Cancel</Button>
         </Link>
       </div>
@@ -132,11 +139,9 @@ function ScheduleForm(props) {
 
 ScheduleForm =  reduxForm({
   form: 'guards_schedule',
-  validate: guarantorValidation
+  enableReinitialize: true,
+  validate: scheduleValidation
 })(ScheduleForm);
 
-ScheduleForm = connect(
-  state => ({ initialValues: state.schedule.editSchedule }),
-)(ScheduleForm)
 
 export default ScheduleForm

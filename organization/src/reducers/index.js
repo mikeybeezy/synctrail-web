@@ -9,6 +9,7 @@ import { guard } from './guard.reducer';
 import { tour } from './tour.reducer';
 import { chat } from './chat.reducer';
 import { schedule } from './schedule.reducer';
+import { order_template } from './order_template.reducer';
 
 const rootReducer = combineReducers({
   chat,
@@ -20,6 +21,7 @@ const rootReducer = combineReducers({
   user,
   initial,
   schedule,
+  order_template,
   form: formReducer
 });
 

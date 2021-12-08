@@ -6,7 +6,7 @@ export function schedule(state = initialState, action) {
     case userConstants.PAGE_LOADING: {
       return { 
         ...state, 
-        loading: false 
+        loading: true 
       };
     }
 
@@ -14,23 +14,21 @@ export function schedule(state = initialState, action) {
       return {
         ...state,
         loading: false,
-        guardSchedule: action.payload.data
+        guardSchedule: action.payload.data,
       }
     }
 
     case userConstants.GUARD_SCHEDULE_LIST: {
       return {
         ...state,
-        loading: false,
-        scheduleList: action.payload.data.data
+        scheduleList: action.payload.data.data,
       }
     }
 
     case userConstants.GET_SITES: {
       return {
         ...state,
-        loading: false,
-        clientData: action.payload.data
+        clientData: action.payload.data,
       }
     }
 
@@ -38,7 +36,7 @@ export function schedule(state = initialState, action) {
       return {
         ...state,
         loading: false,
-        editSchedule: action.payload.data.data
+        editSchedule: action.payload.data.data,
       }
     }
 

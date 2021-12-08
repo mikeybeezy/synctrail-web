@@ -55,5 +55,12 @@ export const userConstants = {
 	DESTROY_SCHEDULE: 'destroy schedule',
 	EDIT_SCHEDULE: 'edit schedule',
 	UPDATE_SCHEDULE: 'update schedule',
-	SCHEDULE_ERROR: 'schedule error show'
+	SCHEDULE_ERROR: 'schedule error show',
+
+
+	ORDER_TEMPLATES_DATA: 'list order template data',
+	NEW_ORDER_TEMPLATES: 'create new order template',
+	ORDER_TEMPLATE_DESTROY: 'destroy order template',
+	ORDER_TEMPLATE_EDIT: 'edit order template',
+	ORDER_TEMPLATE_UPDATE: 'order template update'
 };

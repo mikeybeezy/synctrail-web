@@ -6,7 +6,6 @@ import { buildFormDataFromObject } from 'shared-lib/src/formData';
 import ChatComposer from "../chat/chatComposer";
 import ChatWindow from "../chat/chatWindow";
 import ChatUsers from "../chat/chatUsers";
-import ActionCable from "../chat/actionCable";
 
 function ChatConversation(props) {
   const { particpantsUsers } = props
@@ -24,7 +23,6 @@ function ChatConversation(props) {
   };
   return (
     <div className="container">
-      <ActionCable/>
       <div className="chat-bot">
         <div className="row">
           <div className="col-md-4" style={{paddingRight: '0px'}}>
