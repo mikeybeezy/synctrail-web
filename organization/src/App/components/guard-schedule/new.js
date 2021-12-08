@@ -23,7 +23,7 @@ function GuardScheduleNew(props) {
     <div className="container">
       <ScheduleForm 
         onSubmit={showResults} 
-        formStatus="newForm" 
+        newForm="newForm" 
         guardSchedule={guardSchedule && guardSchedule}
         loading={props.loading}
       />

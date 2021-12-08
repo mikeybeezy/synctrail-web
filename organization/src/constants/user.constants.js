@@ -62,5 +62,11 @@ export const userConstants = {
 	NEW_ORDER_TEMPLATES: 'create new order template',
 	ORDER_TEMPLATE_DESTROY: 'destroy order template',
 	ORDER_TEMPLATE_EDIT: 'edit order template',
-	ORDER_TEMPLATE_UPDATE: 'order template update'
+	ORDER_TEMPLATE_UPDATE: 'order template update',
+
+	GET_ORDER_TEMPLATES_DATA: 'get order templates data',
+	NEW_ORDER: 'create new order',
+	GET_ORDERS: 'guard orders list',
+	ORDER_DESTROY: 'desroy order',
+	UPDATE_ORDER: 'update order'
 };

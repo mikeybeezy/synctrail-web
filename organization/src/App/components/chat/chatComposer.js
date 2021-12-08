@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, { useState } from 'react';
 import { Button } from 'react-bootstrap';
 import fileUpload from '../../../images/file-upload.png'
 import { CKEditor } from '@ckeditor/ckeditor5-react';

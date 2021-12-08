@@ -26,11 +26,8 @@ function GuardScheduleEdit(props) {
     <div className="container">
       <ScheduleForm 
         onSubmit={showResults} 
-        formStatus="editForm" 
         guardSchedule={guardSchedule && guardSchedule}
-        editSchedule={editSchedule && editSchedule}
         loading={props.loading}
-
       />
     </div>
   );

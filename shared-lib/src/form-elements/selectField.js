@@ -7,8 +7,8 @@ export const selectField = ({ input, label, options, optionname,  type, meta: { 
       <select {...input} className="form-control">
         <option value="">{label}</option>
           {options && options.map(option => (
-            <option key={option.id} value={option.id}>
-              {option.name}
+            <option key={option.id} value={  optionname === "guardOrder" ? option.name : option.id}>
+              { optionname === "guardOrder" ? option.order_title : option.name}
             </option>
           ))}
       </select>
