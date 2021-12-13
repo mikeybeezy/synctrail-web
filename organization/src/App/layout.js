@@ -16,7 +16,6 @@ import ResetPassword from './components/auth/resetPassword';
 import ResendConfirmation from './components/auth/resendConfirmation'
 import RequestUnlock from './components/auth/requestUnlock'
 import Confirmation from './components/auth/confirmation'
-
 import ClientList from './components/clients/list'
 import ClientNew from './components/clients/new'
 import ClientEdit from './components/clients/edit'
@@ -24,22 +23,21 @@ import ClientShow from './components/clients/show'
 import SiteList from './components/sites/list'
 import SiteNew from './components/sites/new'
 import SiteEdit from './components/sites/edit'
-
 import GuardList from './components/managing-guard/list'
 import GuardNew from './components/managing-guard/new'
 import GuardEdit from './components/managing-guard/edit'
-
 import TourList from './components/tours/list'
 import TourNew from './components/tours/new'
 import TourEdit from './components/tours/edit'
-
 import ChatHistory from './components/chat/history'
 import Conversation from './components/chat/conversation'
 import ActionCable from './components/chat/actionCable'
-
 import ScheduleList from './components/guard-schedule/list'
 import ScheduleNew from './components/guard-schedule/new'
 import ScheduleEdit from './components/guard-schedule/edit'
+
+import GuardOrderList from './components/guard-orders/list'
+import GuardOrderNew from './components/guard-orders/new'
 
 function App() {
   const dispatch = useDispatch();
@@ -97,6 +95,8 @@ function App() {
             <PrivateRoute exact path='/admin/guard/schedule/list' component={ScheduleList} />
             <PrivateRoute exact path='/admin/guard/schedule/new' component={ScheduleNew} />
             <PrivateRoute exact path='/admin/guard/schedule/:schedule_id/edit' component={ScheduleEdit} />
+            <PrivateRoute exact path='/admin/guard/schedule/:schedule_id/orders' component={GuardOrderList} />
+            <PrivateRoute exact path='/admin/guard/schedule/:schedule_id/orders/new' component={GuardOrderNew} />
             <Redirect from="*" to="/" />
           </Switch>
         </div>

@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React from 'react';
 import { ActionCableConsumer } from 'react-actioncable-provider';
 import { userConstants } from '../../../constants';
 import { chatActions } from '../../../actions';

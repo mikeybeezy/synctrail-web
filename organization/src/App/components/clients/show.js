@@ -4,7 +4,7 @@ import { clientActions } from '../../../actions';
 import { useParams } from 'react-router-dom';
 import SiteDetails from "../sites/list";
 import TourDetails from "../tours/list";
-import OrderTemplateDetails from "../order-template/list";
+import OrderTemplateDetails from "../guard-order-templates/list";
 
 function ClientShow(props) {
   const { currentClient } = props

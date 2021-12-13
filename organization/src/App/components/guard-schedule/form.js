@@ -10,29 +10,19 @@ import moment from "moment";
 
 function ScheduleForm(props) {
   const dispatch = useDispatch();
-  const { handleSubmit, initialize, loading, formStatus, guardSchedule, editSchedule } = props
+  const { handleSubmit, initialize, loading, newForm, guardSchedule, editSchedule } = props
   const clientData = useSelector(state => state.schedule.clientData); 
 
   useEffect(() => {
-    if(formStatus === "newForm") {
-      initialize({ ScheduleForm: "", days_shift: "" })
-    }else {
-      initialize({
-        days_shift: editSchedule && editSchedule.days_shift,
-        tour_id: editSchedule && editSchedule.tour_id.toString(),
-        guard_profile_id: editSchedule && editSchedule.guard_profile_id,
-        client_id: editSchedule && editSchedule.client_id,
-        location_id: editSchedule && editSchedule.location_id,
-        from_date: editSchedule && editSchedule.from_date,
-        to_date: editSchedule && editSchedule.to_date,
-        ongoing: editSchedule && editSchedule.ongoing,
-      });
+    if(newForm === "newForm") {
+      dispatch(change("guards_schedule", "guard_profile_id", ''))
+      dispatch(change("guards_schedule", "client_id", ''))
+      dispatch(change("guards_schedule", "location_id", ''))
+      dispatch(change("guards_schedule", "from_date", ''))
+      dispatch(change("guards_schedule", "to_date", ''))
+      dispatch(change("guards_schedule", "days_shift", ['']))
     }
   }, []);
-
-  const clearForm = () => {
-     initialize({ days_shift: "" })
-  }
 
   if (loading) {
     return <div className="page_loading">Loading..</div>
@@ -108,27 +98,11 @@ function ScheduleForm(props) {
         </div>
       </div>
 
-      <div className="row mt-3">
-        <div className="col-md-12">
-          {clientData && clientData.tours.length > 0 ? <h5 className="py-2">Set Tour Route</h5> : null}
-          <div className="d-flex align-items-center">
-            {clientData && clientData.tours.map((data, key) => {
-              return (
-                <label key={key} className="checkgox-div d-flex align-items-center">
-                  <Field name="tour_id" component="input" type="radio" value={data.id.toString()}/>
-                  <span className="checkbox-name">{data.name}</span>
-                </label>
-              )
-            })}
-          </div>
-        </div>
-      </div>
-
       <div className="mb-3 mt-4 form-footer">
         <Button variant="primary" type="submit">
-          {formStatus === "newForm" ? 'Save' : 'Update'}
+          {newForm === "newForm" ? 'Save' : 'Update'}
         </Button>
-        <Link to="/admin/guard/schedule/list" className="px-3" onClick={() => clearForm()}>
+        <Link to="/admin/guard/schedule/list" className="px-3">
           <Button variant="default">Cancel</Button>
         </Link>
       </div>
@@ -142,6 +116,12 @@ ScheduleForm =  reduxForm({
   enableReinitialize: true,
   validate: scheduleValidation
 })(ScheduleForm);
+
+
+ScheduleForm = connect(
+  state => ({ initialValues: state.schedule.editSchedule }),
+)(ScheduleForm)
+
 
 
 export default ScheduleForm

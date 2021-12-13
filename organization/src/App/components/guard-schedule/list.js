@@ -45,7 +45,6 @@ function ScheduleList(props) {
             <th>Start Date</th>
             <th>End Date</th>
             <th width="20%">Days</th>
-            <th>Tour</th>
             <th style={{width: '10%'}} className="text-center">Actions</th>
           </tr>
         </thead>
@@ -80,13 +79,12 @@ function ScheduleList(props) {
                       })
                     }
                   </td>
-                  <td>{data.tour && data.tour.name}</td>
                   <td>
                     <div className="d-flex align-items-center justify-content-center">
-                      <Link to={`/admin/guard/schedule/${data.id}/edit`}>
+                      <Link to={`/admin/guard/schedule/${data.id}/orders`} className="link-list">
                         Orders
                       </Link>
-                      <Link to={`/admin/guard/schedule/${data.id}/edit`} className="px-2">
+                      <Link to={`/admin/guard/schedule/${data.id}/edit`} className="px-3">
                         <i className="fa fa-pencil-square-o" aria-hidden="true"></i>
                       </Link>
                       <div onClick={() => handleShow(data.id)} className="cursor-pointer">
