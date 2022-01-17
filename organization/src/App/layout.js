@@ -1,5 +1,7 @@
 import './assets/app.scss';
 import './assets/datepicker.scss';
+import './assets/ckeditor.scss';
+import './assets/chat.scss';
 import React, { useEffect } from 'react';
 import { Router, Switch, Route, Redirect } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
