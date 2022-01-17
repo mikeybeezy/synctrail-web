@@ -5,7 +5,7 @@ function ChatUsers(props) {
   const { particpantsUsers } = props
   return (
     <div className="conversation-user-list">
-      <div className="cht-header"><h6>Group chats</h6></div>
+      <div className="cht-header"><h6>Chat Members</h6></div>
       {particpantsUsers && particpantsUsers.map((data, key) => {
         return (
           <div className="px-3 py-2 message-row d-flex align-items-center justify-content-between" key={key}>
