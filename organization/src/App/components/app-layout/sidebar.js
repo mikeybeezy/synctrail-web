@@ -1,5 +1,6 @@
 import React from 'react';
 import { NavLink } from "react-router-dom";
+import logo from '../../../images/logo.png';
 
 function SideNavebar(props) {
  
@@ -14,7 +15,9 @@ function SideNavebar(props) {
   return (
     <nav className="sidebar">
       <div className="app-logo">
-        <a href="/"> SyncTrail</a>
+        <a href="/">
+          <img src={logo} alt="SyncTrail Logo" style={{maxHeight: '32px'}}/>
+        </a>
         <div className="sidebar_close_icon d-lg-none" onClick={openOffcanvas}>
           <i className="fa fa-times"></i>
         </div>
