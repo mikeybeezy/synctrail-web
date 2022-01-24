@@ -16,7 +16,7 @@ function SideNavebar(props) {
     <nav className="sidebar">
       <div className="app-logo">
         <a href="/">
-          <img src={logo} alt="SyncTrail Logo" style={{maxHeight: '32px'}}/>
+          <img src={logo} alt="SyncTrail Logo" style={{maxHeight: '47px'}}/>
         </a>
         <div className="sidebar_close_icon d-lg-none" onClick={openOffcanvas}>
           <i className="fa fa-times"></i>

@@ -34,7 +34,7 @@ function ChatComposer(props) {
      <form className={error ? "form-errors" : null}>
       <div className="d-flex align-items-center chat-composer">
         <div onClick={handleClick} className="cursor-pointer">
-          <img src={fileUpload} alt="upload-pic" style={{maxHeight: '30px', marginRight: '10px'}}/>
+          <img src={fileUpload} alt="upload-pic" style={{maxHeight: '40px', marginRight: '10px'}}/>
           <input type="file" onChange={setUploadFile} ref={hiddenFileInput} style={{display: 'none'}}/>
         </div>
         <CKEditor
