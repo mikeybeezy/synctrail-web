@@ -1,4 +1,4 @@
-const scheduleValidation = (values) => {
+export const scheduleValidation = (values) => {
   const errors = {};
 
   if(!values.guard_profile_id) {
