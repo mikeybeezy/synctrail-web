@@ -50,6 +50,14 @@ export function client(state = initialState, action) {
       }
     }
 
+    case userConstants.GUARD_LOCATIONS: {
+      return {
+        ...state,
+        loading: false,
+        guardLocation: action.payload.data
+      }
+    }
+
     default:
       return state
   }

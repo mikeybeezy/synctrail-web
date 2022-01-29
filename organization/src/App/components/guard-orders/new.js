@@ -28,7 +28,7 @@ function SiteNew(props) {
         <Link to={`/admin/guard/schedule/${schedule_id}/orders`}>
           <Button variant="default">Cancel</Button>
         </Link>
-        <Button variant="primary" onClick={handleSubmitValue} style={{marginLeft: '20px'}}> Save</Button>
+        <Button variant="primary" onClick={handleSubmitValue} style={{marginLeft: '20px'}} disabled={orderlist && !orderlist.length && 'disabled'}> Save</Button>
       </div>
     </div>
   );

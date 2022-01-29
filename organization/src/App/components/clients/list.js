@@ -61,7 +61,7 @@ function ClientList(props) {
                   <td>{index + 1}</td>
                   <td>
                     <Link to={`/admin/clients/${data.id}/show`}  className="link-list">
-                      {data.business_name}
+                      {data.business_name} {data.id}
                     </Link>
                   </td>
                   <td>{data.phone_number}</td>
@@ -77,6 +77,11 @@ function ClientList(props) {
                       </Link>
                       <div onClick={() => handleShow(data.id)} className="ml-10 cursor-pointer">
                        <i className="fa fa-trash-o" aria-hidden="true"></i>
+                      </div>
+                      <div className="ml-10 cursor-pointer">
+                        <Link to={`/admin/clients/location`}>
+                          track
+                        </Link>
                       </div>
                     </div>
                   </td>
