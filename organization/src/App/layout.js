@@ -40,6 +40,8 @@ import ScheduleEdit from './components/guard-schedule/edit'
 import GuardOrderList from './components/guard-orders/list'
 import GuardOrderNew from './components/guard-orders/new'
 
+import LocationCable from './components/clients/locationCable'
+
 function App() {
   const dispatch = useDispatch();
   const alert = useSelector((state) => state.alert);
@@ -70,6 +72,7 @@ function App() {
             </div>
           )}
           <PrivateRoute path="/admin/chats/:conversation_id" component={ActionCable} />
+          <PrivateRoute path="/admin/clients/:client_id" component={LocationCable} />
           <Switch>
             <PrivateRoute exact path='/' component={Dashboard} />
             <Route path='/login' component={Login} />
@@ -79,8 +82,7 @@ function App() {
             <Route exact path='/admin/users/unlock/request' component={RequestUnlock} />
             <Route exact path='/users/confirmation' component={Confirmation} />
             <PrivateRoute exact path='/admin/clients/list' component={ClientList} />
-            <PrivateRoute exact path='/admin/clients/location' component={GuardLocation} />
-
+            <PrivateRoute exact path='/admin/clients/:client_id/location' component={GuardLocation} />
             <PrivateRoute exact path='/admin/clients/new' component={ClientNew} />
             <PrivateRoute exact path='/admin/clients/:client_id/edit' component={ClientEdit} />
             <PrivateRoute exact path='/admin/clients/:client_id/show' component={ClientShow} />

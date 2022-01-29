@@ -79,7 +79,7 @@ function ClientList(props) {
                        <i className="fa fa-trash-o" aria-hidden="true"></i>
                       </div>
                       <div className="ml-10 cursor-pointer">
-                        <Link to={`/admin/clients/location`}>
+                        <Link to={`/admin/clients/${data.id}/location`}>
                           track
                         </Link>
                       </div>

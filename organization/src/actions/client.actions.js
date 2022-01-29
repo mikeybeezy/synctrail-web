@@ -123,12 +123,11 @@ export function destroyClient(id) {
   }
 }
 
-
-export function getGuardLocation() {
+export function getGuardLocation(id) {
   return dispatch => {
     try{
       dispatch({ type: userConstants.PAGE_LOADING });
-      makeGETRequest('/api/v1/guard_locations')
+      makeGETRequest(`/api/v1/guard_locations/${id}`)
       .then(response => {
         if(response.data.status === "ok"){
           dispatch({

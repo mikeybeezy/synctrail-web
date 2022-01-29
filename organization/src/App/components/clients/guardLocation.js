@@ -4,20 +4,18 @@ import { Link } from "react-router-dom";
 import { connect, useDispatch } from 'react-redux';
 import { clientActions } from '../../../actions';
 import CustomMarker from './marker'
+import { useParams } from 'react-router-dom';
 
 
 function CustomMarkers(props) {
   const { guardLocation } = props
-
-  console.log("===============")
-  console.log(guardLocation)
-  console.log("===============")
+  const { client_id } = useParams();
    
   const dispatch = useDispatch();
   const [CenterMarker, setCenterMarker] = useState({lat: 13.046640,lng: 80.111649});
   
   useEffect(() => {
-    dispatch(clientActions.getGuardLocation());
+    dispatch(clientActions.getGuardLocation(client_id));
   }, []);
   return (
     <div style={{ height: "86vh", width: "100%", borderRadius: 4}}>
