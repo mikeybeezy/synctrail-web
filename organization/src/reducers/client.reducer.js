@@ -49,15 +49,7 @@ export function client(state = initialState, action) {
         editClient: action.payload.data.data
       }
     }
-
-    case userConstants.GUARD_LOCATIONS: {
-      return {
-        ...state,
-        loading: false,
-        guardLocation: action.payload.data
-      }
-    }
-
+    
     default:
       return state
   }

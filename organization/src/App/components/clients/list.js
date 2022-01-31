@@ -80,7 +80,7 @@ function ClientList(props) {
                       </div>
                       <div className="ml-10 cursor-pointer">
                         <Link to={`/admin/clients/${data.id}/location`}>
-                          track
+                          Track
                         </Link>
                       </div>
                     </div>

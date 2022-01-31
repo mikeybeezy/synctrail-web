@@ -70,5 +70,9 @@ export const userConstants = {
 	ORDER_DESTROY: 'desroy order',
 	UPDATE_ORDER: 'update order',
 
-	GUARD_LOCATIONS: 'get guard location'
+	GUARD_LOCATIONS: 'get guard location',
+
+	CLIENT_LIST: 'all clients',
+	CLIENT_LOCATIONS: 'client location',
+	ALL_GUARDS_DETAILS: 'all guards details'
 };

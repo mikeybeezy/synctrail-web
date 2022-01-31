@@ -20,7 +20,6 @@ import ClientList from './components/clients/list'
 import ClientNew from './components/clients/new'
 import ClientEdit from './components/clients/edit'
 import ClientShow from './components/clients/show'
-import GuardLocation from './components/clients/guardLocation'
 import SiteList from './components/sites/list'
 import SiteNew from './components/sites/new'
 import SiteEdit from './components/sites/edit'
@@ -40,7 +39,9 @@ import ScheduleEdit from './components/guard-schedule/edit'
 import GuardOrderList from './components/guard-orders/list'
 import GuardOrderNew from './components/guard-orders/new'
 
-import LocationCable from './components/clients/locationCable'
+import TrackGuardLocation from './components/clients/trackGuardLocation'
+import LocationCable from './components/track/locationCable'
+import Track from './components/track/client'
 
 function App() {
   const dispatch = useDispatch();
@@ -72,7 +73,7 @@ function App() {
             </div>
           )}
           <PrivateRoute path="/admin/chats/:conversation_id" component={ActionCable} />
-          <PrivateRoute path="/admin/clients/:client_id" component={LocationCable} />
+          <PrivateRoute path="/admin" component={LocationCable} />
           <Switch>
             <PrivateRoute exact path='/' component={Dashboard} />
             <Route path='/login' component={Login} />
@@ -82,7 +83,7 @@ function App() {
             <Route exact path='/admin/users/unlock/request' component={RequestUnlock} />
             <Route exact path='/users/confirmation' component={Confirmation} />
             <PrivateRoute exact path='/admin/clients/list' component={ClientList} />
-            <PrivateRoute exact path='/admin/clients/:client_id/location' component={GuardLocation} />
+            <PrivateRoute exact path='/admin/clients/:client_id/location' component={TrackGuardLocation} />
             <PrivateRoute exact path='/admin/clients/new' component={ClientNew} />
             <PrivateRoute exact path='/admin/clients/:client_id/edit' component={ClientEdit} />
             <PrivateRoute exact path='/admin/clients/:client_id/show' component={ClientShow} />
@@ -102,6 +103,7 @@ function App() {
             <PrivateRoute exact path='/admin/guard/schedule/:schedule_id/edit' component={ScheduleEdit} />
             <PrivateRoute exact path='/admin/guard/schedule/:schedule_id/orders' component={GuardOrderList} />
             <PrivateRoute exact path='/admin/guard/schedule/:schedule_id/orders/new' component={GuardOrderNew} />
+            <PrivateRoute exact path='/admin/track' component={Track} />
             <Redirect from="*" to="/" />
           </Switch>
         </div>

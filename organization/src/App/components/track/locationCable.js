@@ -7,14 +7,14 @@ import { useParams } from 'react-router-dom';
 
 function ActionCable(props) {
   const dispatch = useDispatch();
-  const { client_id } = useParams();
+  // const { client_id } = useParams();
+  const client_id = 0
   const handleReceivedLists=(res)=> {
-    console.log("res...........")
+    console.log("res................")
     console.log(res)
     console.log(res)
-    console.log("res...........")
-    // dispatch(chatActions.messageRead(res.data.id));
-    // dispatch({type: userConstants.NEW_MESSAGE, payload: res});
+    console.log("res................")
+    dispatch({type: userConstants.GUARD_LOCATIONS, payload: res});
   }
   return (
     <ActionCableConsumer
