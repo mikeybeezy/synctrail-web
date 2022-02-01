@@ -2,10 +2,11 @@ import React, { useEffect, useState } from "react";
 import { connect, useDispatch } from 'react-redux';
 import { trackActions } from '../../../actions';
 import GuardLocation from './guardLocation'
+import { userConstants } from '../../../constants';
 
 function TrakGuardLocation(props) {
   const dispatch = useDispatch();
-  const { clientList, clientLocations, allGuards } = props
+  const { clientList, clientLocations, allGuards, arrayLocation } = props
   const [ id, setId ] = useState()
   const [ guardDetails, setGuardDetails ] = useState()
   
@@ -23,16 +24,14 @@ function TrakGuardLocation(props) {
 
   const handleRow = (id) => {
     setId(id)
-    const filterData = allGuards && allGuards.filter((item) => item.guard_profile.id == id);
-    setGuardDetails(filterData)
+    // const filterData = allGuards && allGuards.filter((item) => item.guard_profile.id == id);
+     dispatch({type: userConstants.FILTER_GUARD_PROIFLE, payload: id});
   }
   
   useEffect(() => {
     let filterGuard = allGuards && allGuards[0];
     const id = filterGuard && filterGuard.guard_profile.id
     setId(id)
-    const filterData = allGuards && allGuards.filter((item) => item.guard_profile.id == id);
-    setGuardDetails(filterData)
   }, [allGuards])
 
   return (
@@ -76,7 +75,7 @@ function TrakGuardLocation(props) {
       </div>
       {allGuards && allGuards.length > 0 ? 
         <div>
-          <GuardLocation guardLocation={guardDetails && guardDetails}/>
+          <GuardLocation guardLocation={arrayLocation && arrayLocation}/>
           <div className="row">
             <div className="col-md-6">
               <h6 className="py-2">Assign Guard List</h6>
@@ -93,28 +92,11 @@ function TrakGuardLocation(props) {
                       onClick={ () => handleRow(data.guard_profile.id)}
                     >
                       <div className="index_value">{index + 1}</div>
-                      <div className="guard_name">{data.guard_profile.name}</div>
+                      <div className="guard_name">{data.guard_profile.name} {data.guard_profile.id} </div>
                     </div>
                   )
                 })}
               </div>
-            </div>
-            <div className="col-md-6">
-              <h6 className="py-4"></h6>
-              {guardDetails && guardDetails.map((data, i) => {
-                return (
-                  <div key={i}>
-                    <div className="form-group">
-                      <label className="mb-1">Start-In-Time</label>
-                      <div className="time-div">{data && data.guard_profile.guard_session.start_at}</div>
-                    </div>
-                    <div className="form-group">
-                      <label className="mb-1">Sign-Out-Time</label>
-                      <div className="time-div">{data && data.guard_profile.guard_session.end_at}</div>
-                    </div>
-                  </div>
-                )
-              })}
             </div>
           </div>
         </div>
@@ -130,6 +112,8 @@ const mapStateToProps = (state) => {
     clientList: state.track.clientList,
     clientLocations: state.track.clientLocations,
     allGuards: state.track.allGuards,
+    guardLocation: state.track.guardLocation,
+    arrayLocation: state.track.arrayLocation,
   };
 };
 

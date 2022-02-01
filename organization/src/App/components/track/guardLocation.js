@@ -14,15 +14,11 @@ function GuardLocation(props) {
         defaultCenter={CenterMarker}
         defaultZoom={16}
       >
-       {guardLocation && guardLocation.map(item => {
-          return (
-            item.guard_profile.guard_locations.map((data, i) => {
-              return (
-                  <CustomMarker  key={i} lat={data.latitude} lng={data.longitude} />
-                )
-             })
-            )
-        })}
+      {guardLocation && guardLocation.map((data, i) => {
+        return (
+          <CustomMarker key={i} lat={data.latitude} lng={data.longitude} />
+        )
+      })}
       </GoogleMapReact>
     </div>
   );

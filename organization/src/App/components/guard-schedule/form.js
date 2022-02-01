@@ -2,7 +2,7 @@ import React, { useEffect} from 'react';
 import { Link } from 'react-router-dom';
 import { connect, useSelector, useDispatch  } from 'react-redux';
 import { Button } from 'react-bootstrap';
-import { selectPicker, fileUpload, checkBox, radioInput } from '../../../shared/form-elements';
+import { selectPicker, fileUpload, checkBox, radioInput, timepicker } from '../../../shared/form-elements';
 import { textInput, datePicker } from 'shared-lib/src/form-elements';
 import { scheduleValidation } from 'shared-lib/src/validation';
 import { reduxForm, Field, change } from "redux-form";
@@ -10,8 +10,9 @@ import moment from "moment";
 
 function ScheduleForm(props) {
   const dispatch = useDispatch();
-  const { handleSubmit, initialize, loading, newForm, guardSchedule, editSchedule } = props
+  const { handleSubmit, initialize, loading, newForm, guardSchedule } = props
   const clientData = useSelector(state => state.schedule.clientData); 
+  const editSchedule = useSelector(state => state.schedule.editSchedule); 
 
   useEffect(() => {
     if(newForm === "newForm") {
@@ -21,6 +22,8 @@ function ScheduleForm(props) {
       dispatch(change("guards_schedule", "from_date", ''))
       dispatch(change("guards_schedule", "to_date", ''))
       dispatch(change("guards_schedule", "days_shift", ['']))
+      dispatch(change("guards_schedule", "start_time", ''))
+      dispatch(change("guards_schedule", "end_time", ''))
     }
   }, []);
 
@@ -94,6 +97,26 @@ function ScheduleForm(props) {
             showMonthDropdown
             showYearDropdown
             inputValueFormat="DD-MM-YYYY"
+          />
+        </div>
+      </div>
+
+      <div className="row d-flex align-items-center mt-3">
+        <div className="col-md-6">
+          <Field
+            name="start_time"
+            component={timepicker}
+            label="Start Time"
+            placeholder="Select start time"
+          />
+        </div>
+        
+        <div className="col-md-6">
+          <Field
+            name="end_time"
+            component={timepicker}
+            label="End Time"
+            placeholder="Select end time"
           />
         </div>
       </div>
