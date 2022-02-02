@@ -106,11 +106,11 @@ function TrakGuardLocation(props) {
                   <div key={i}>
                     <div className="form-group">
                       <label className="mb-1">Start-In-Time</label>
-                      <div className="time-div">{data && data.guard_profile.guard_session.start_at}</div>
+                      <div className="time-div">{data && data.guard_sessions[0].schedule_start_at}</div>
                     </div>
                     <div className="form-group">
                       <label className="mb-1">Sign-Out-Time</label>
-                      <div className="time-div">{data && data.guard_profile.guard_session.end_at}</div>
+                      <div className="time-div">{data && data.guard_sessions[0].schedule_end_at}</div>
                     </div>
                   </div>
                 )

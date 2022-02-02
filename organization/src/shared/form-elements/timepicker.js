@@ -8,8 +8,8 @@ const SelectField = ({ placeholder,input, onChange, label, type, meta: { touched
       const  h = step > 9 ? step : "0"+step
       const mm = 30
       const dd = step > 12 ? "PM" : "AM"
-      list_time.push(h+":"+"00"+" "+dd)
-      list_time.push(h+":"+mm+" "+dd)
+      list_time.push(h+":"+"00")
+      list_time.push(h+":"+mm)
     }
     return list_time
   }
