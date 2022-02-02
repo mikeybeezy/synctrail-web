@@ -29,6 +29,7 @@ function SideNavebar(props) {
         <li onClick={openOffcanvas}><NavLink exact to="/admin/guard/list"  activeClassName="selected">Guard Management</NavLink></li>
         <li onClick={openOffcanvas}><NavLink exact to="/admin/guard/schedule/list"  activeClassName="selected">Guard Schedule</NavLink></li>
         <li onClick={openOffcanvas}><NavLink exact to="/admin/chats"  activeClassName="selected">Chat</NavLink></li>
+        <li onClick={openOffcanvas}><NavLink exact to="/admin/track"  activeClassName="selected">Guard Track</NavLink></li>
       </ul>
     </nav>
   );

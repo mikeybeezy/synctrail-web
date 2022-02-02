@@ -11,8 +11,10 @@ import { chat } from './chat.reducer';
 import { schedule } from './schedule.reducer';
 import { order_template } from './order_template.reducer';
 import { guard_order } from './guard_order.reducer';
+import { track } from './track.reducer';
 
 const rootReducer = combineReducers({
+  track,
   chat,
   tour,
   guard,

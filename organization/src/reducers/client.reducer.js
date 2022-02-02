@@ -49,7 +49,7 @@ export function client(state = initialState, action) {
         editClient: action.payload.data.data
       }
     }
-
+    
     default:
       return state
   }

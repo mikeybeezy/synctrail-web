@@ -8,7 +8,8 @@ export const clientActions = {
   getClientData, 
   destroyClient , 
   editClient,
-  updateClient
+  updateClient,
+  getGuardLocation
 }
 
 export function newClient(reqparams, from) {
@@ -112,6 +113,30 @@ export function destroyClient(id) {
           payload: response
         })
         dispatch(alertActions.success(response.data.message));
+      })
+    }catch(e){
+      dispatch( {
+        type: userConstants.AUTHENTICATION_FAILURE,
+        payload: console.log(e),
+      })
+    }
+  }
+}
+
+export function getGuardLocation(id) {
+  return dispatch => {
+    try{
+      dispatch({ type: userConstants.PAGE_LOADING });
+      makeGETRequest(`/api/v1/guard_locations/${id}`)
+      .then(response => {
+        if(response.data.status === "ok"){
+          dispatch({
+            type: userConstants.GUARD_LOCATIONS, 
+            payload: response.data
+          })
+        }else {
+          dispatch(alertActions.error(response.data.error));
+        }
       })
     }catch(e){
       dispatch( {

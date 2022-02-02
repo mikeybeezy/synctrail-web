@@ -24,6 +24,14 @@ export const scheduleValidation = (values) => {
   if(!values.days_shift){
     errors.days_shift = 'required'
   }
+
+  if(!values.start_time) {
+    errors.start_time = 'required'
+  }
+
+  if(!values.end_time) {
+    errors.end_time = 'required'
+  }
  
   return errors;
 };

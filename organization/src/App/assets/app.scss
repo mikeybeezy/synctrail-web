@@ -435,7 +435,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .btn-primary, .btn-default {
-  padding: 6px 20px 5px;
+  padding: 4px 8px 3px;
   border-radius: 2px;
   font-size: 14px
 }
@@ -755,3 +755,67 @@ label {
   color: #6c757d;
 }
 
+.google_map_frame {
+  height: 47vh;
+  width: 100%;
+  overflow: hidden;
+  border: 0px solid #eee;
+  border-radius: 3px;
+  box-shadow: 0px 0px 1px #555;
+  margin-top: 5px;
+  min-height: 300px
+}
+
+.gurds_row {
+  display: flex;
+  align-items: center;
+}
+
+.scroll_guard {
+  height: 165px;
+  overflow-y: auto;
+  background: #fff;
+}
+
+.guard_name {
+  margin-left: 15px
+}
+
+.table-header {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  background: #000;
+  height: 30px;
+  border-radius: 3px;
+  color: #fff;
+  font-size: 12px;
+  line-height: 10px;
+}
+
+.index_value {
+  width: 10%;
+  text-align: center;
+  border-right: 1px solid #ddd;
+}
+
+.table_body {
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid #eee;
+  font-size: 12px;
+  height: 28px;
+  cursor: pointer
+}
+
+.highligh_guard {
+  background-color: rgb(0 0 0 / 20%);
+}
+
+.time-div {
+  background: #fff;
+  padding: 10px;
+  border-radius: 3px;
+  font-size: 14px;
+  line-height: 20px;
+}

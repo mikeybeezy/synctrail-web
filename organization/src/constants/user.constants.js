@@ -68,5 +68,12 @@ export const userConstants = {
 	NEW_ORDER: 'create new order',
 	GET_ORDERS: 'guard orders list',
 	ORDER_DESTROY: 'desroy order',
-	UPDATE_ORDER: 'update order'
+	UPDATE_ORDER: 'update order',
+
+	GUARD_LOCATIONS: 'get guard location',
+
+	CLIENT_LIST: 'all clients',
+	CLIENT_LOCATIONS: 'client location',
+	ALL_GUARDS_DETAILS: 'all guards details',
+	FILTER_GUARD_PROIFLE: 'filter guard'
 };
