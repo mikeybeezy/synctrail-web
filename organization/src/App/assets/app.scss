@@ -815,3 +815,26 @@ label {
   font-size: 14px;
   line-height: 20px;
 }
+
+.site_drawing_map {
+  overflow: hidden;
+  border: 0px solid #eee;
+  border-radius: 3px;
+  box-shadow: 0px 0px 1px #555;
+  margin-top: 0px;
+}
+
+.delet_point_btn, .delet_point_btn:hover {
+  background: #dc3545;
+  border-color: red;
+  padding: 3px 5px 1px;
+  font-size: 11px;
+  border-radius: 3px;
+}
+
+.list_point{
+  background: #ffff;
+  margin-left: 0px;
+  margin-right: 0px;
+  padding: 10px 0px 0px;
+}
