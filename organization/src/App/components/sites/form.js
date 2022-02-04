@@ -1,37 +1,56 @@
-import React, {useEffect, useState} from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Button } from 'react-bootstrap';
 import { textInput, checkBox } from 'shared-lib/src/form-elements';
+import { connect, useDispatch, useSelector } from 'react-redux';
 import { siteValidation } from 'shared-lib/src/validation';
 import { reduxForm, Field, change } from "redux-form";
-import { connect, useDispatch, useSelector } from 'react-redux';
 import Map from "./map";
-
-const center = {
-  lat: 38.9065495,
-  lng: -77.0518192
-};
+import Geocode from "react-geocode";
 
 function LocationForm(props) {
   const dispatch = useDispatch();
-  const { handleSubmit, initialize, formStatus , client_id} = props
   const editSite = useSelector(state => state.site.editSite); 
-  const [paths, setPaths] = useState([])
+  const { handleSubmit, initialize, formStatus , client_id} = props
+  const [ paths, setPaths ] = useState([])
+  const [ centerPoint, setCenterPoint ] = useState({lat: 12.8797, lng: 121.7740})
 
   useEffect(() => {
     if(formStatus === "newForm") {
       initialize({ LocationForm: "" })
     }else {
       setPaths(editSite && editSite.geofence_data)
-      dispatch(change("locationform", "geofence_data", editSite && editSite.geofence_data))
+      dispatch(change("lform", "geofence_data", editSite && editSite.geofence_data))
+      handlFormAddress(editSite && editSite.address_line_2)
+      // Geocode.setApiKey(process.env.REACT_APP_MAP_API_KEY);
+      // Geocode.setLanguage("en");
     }
   }, []);
 
   const handlePaths = (paths) => {
     setPaths(paths)
-    dispatch(change("locationform", "geofence_data", paths))
+    dispatch(change("lform", "geofence_data", paths))
   }
 
+  const handleAddressOne = (event) => {
+    handlFormAddress(event.target.value)
+  }
+
+  const handleAddressTwo = (event) => {
+    handlFormAddress(event.target.value)
+  }
+
+  const handlFormAddress = (address) => {
+    Geocode.fromAddress(address).then(
+      (response) => {
+        const { lat, lng } = response.results[0].geometry.location;
+        setCenterPoint({lat: lat, lng: lng})
+      },
+      (error) => {
+        alert(error)
+      }
+    );
+  }
   return (
     <form onSubmit={handleSubmit}>
       <h5 className="py-2">Add Site</h5>
@@ -66,8 +85,9 @@ function LocationForm(props) {
               name="address_line_1" 
               type="text" 
               component={textInput} 
-              label="Address Line 1" 
-              placeholder="Address..."
+              label="Address line 1" 
+              placeholder="Address line 1..."
+              onBlur={e => handleAddressOne(e)}
             />
           </div>
         </div>
@@ -77,8 +97,9 @@ function LocationForm(props) {
               name="address_line_2" 
               type="text" 
               component={textInput} 
-              label="Address Line 2" 
-              placeholder="Address..."
+              label="Address line 2" 
+              placeholder="Address line 2..."
+              onBlur={e => handleAddressTwo(e)}
             />
           </div>
         </div>
@@ -130,7 +151,7 @@ function LocationForm(props) {
         <div className="google-map col-md-12">
          <Map
           apiKey={process.env.REACT_APP_MAP_API_KEY}
-          center={center}
+          center={centerPoint}
           paths={paths}
           point={paths => handlePaths(paths)}
         />
@@ -171,7 +192,7 @@ function LocationForm(props) {
 }
 
 LocationForm =  reduxForm({
-  form: 'locationform',
+  form: 'lform',
   validate: siteValidation
 })(LocationForm);
 

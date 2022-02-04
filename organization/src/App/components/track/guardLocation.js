@@ -9,7 +9,7 @@ function GuardLocation(props) {
     <div className="google_map_frame">
       <GoogleMapReact
         bootstrapURLKeys={{
-          key: "AIzaSyBMNssCXhm3S4YiuN6vYDk3jv1iFzUiByU"
+          key: process.env.REACT_APP_MAP_API_KEY
         }}
         defaultCenter={CenterMarker}
         defaultZoom={16}

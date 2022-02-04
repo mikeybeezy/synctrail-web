@@ -1,5 +1,16 @@
-import React, { useState, useRef, useEffect, useCallback } from "react";
-import { LoadScript, GoogleMap, DrawingManager, Polygon, Marker } from "@react-google-maps/api";
+import React, { 
+  useState, 
+  useRef, 
+  useEffect, 
+  useCallback 
+} from "react";
+import { 
+  LoadScript, 
+  GoogleMap, 
+  DrawingManager, 
+  Polygon, 
+  Marker 
+} from "@react-google-maps/api";
 
 const libraries = ["drawing"];
 const containerStyle = {
@@ -126,7 +137,7 @@ function Map({ onChange, apiKey, center, paths = [], point }) {
       >
         <GoogleMap
           mapContainerStyle={containerStyle}
-          center="chennai"
+          center={center}
           zoom={10}
           version="weekly"
         >
