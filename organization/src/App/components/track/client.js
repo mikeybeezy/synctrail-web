@@ -6,7 +6,13 @@ import { userConstants } from '../../../constants';
 
 function TrakGuardLocation(props) {
   const dispatch = useDispatch();
-  const { clientList, clientLocations, allGuards, arrayLocation } = props
+  const { 
+    clientList, 
+    clientLocations, 
+    allGuards, 
+    centerLocation,
+    arrayLocation 
+  } = props
   const [ id, setId ] = useState()
   const [ guardDetails, setGuardDetails ] = useState()
   
@@ -75,7 +81,10 @@ function TrakGuardLocation(props) {
       </div>
       {allGuards && allGuards.length > 0 ? 
         <div>
-          <GuardLocation guardLocation={arrayLocation && arrayLocation}/>
+          <GuardLocation 
+            guardLocation={arrayLocation && arrayLocation}
+            centerPointer={centerLocation && centerLocation}
+          />
           <div className="row">
             <div className="col-md-6">
               <h6 className="py-2">Assign Guard List</h6>
@@ -112,8 +121,8 @@ const mapStateToProps = (state) => {
     clientList: state.track.clientList,
     clientLocations: state.track.clientLocations,
     allGuards: state.track.allGuards,
-    guardLocation: state.track.guardLocation,
     arrayLocation: state.track.arrayLocation,
+    centerLocation: state.track.centerLocation,
   };
 };
 

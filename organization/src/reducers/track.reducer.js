@@ -34,7 +34,8 @@ export function track(state = initialState, action) {
       return {
         ...state,
         allGuards: action.payload.data,
-        arrayLocation: arrayLocation
+        arrayLocation: arrayLocation,
+        centerLocation: action.payload.center_location
       }
     }
 

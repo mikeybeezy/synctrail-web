@@ -768,9 +768,9 @@ label {
 }
 
 .scroll_guard {
-  height: 165px;
   overflow-y: auto;
   background: #fff;
+  max-height: 165px
 }
 
 .guard_name {

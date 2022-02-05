@@ -7,6 +7,8 @@ import { siteValidation } from 'shared-lib/src/validation';
 import { reduxForm, Field, change } from "redux-form";
 import Map from "./map";
 import Geocode from "react-geocode";
+      Geocode.setApiKey(process.env.REACT_APP_MAP_API_KEY);
+      Geocode.setLanguage("en");
 
 function LocationForm(props) {
   const dispatch = useDispatch();
@@ -22,8 +24,6 @@ function LocationForm(props) {
       setPaths(editSite && editSite.geofence_data)
       dispatch(change("lform", "geofence_data", editSite && editSite.geofence_data))
       handlFormAddress(editSite && editSite.address_line_2)
-      // Geocode.setApiKey(process.env.REACT_APP_MAP_API_KEY);
-      // Geocode.setLanguage("en");
     }
   }, []);
 
@@ -150,7 +150,7 @@ function LocationForm(props) {
         </div>
         <div className="google-map col-md-12">
          <Map
-          apiKey={process.env.REACT_APP_MAP_API_KEY}
+          apiKey="AIzaSyAA-uRhI-Xv4P3naESnuYo5FccgccEfbgI"
           center={centerPoint}
           paths={paths}
           point={paths => handlePaths(paths)}

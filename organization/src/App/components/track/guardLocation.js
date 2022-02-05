@@ -3,16 +3,15 @@ import GoogleMapReact from "google-map-react";
 import CustomMarker from './marker'
 
 function GuardLocation(props) {
-  const { guardLocation } = props 
-  const [CenterMarker, setCenterMarker] = useState({lat: 13.046640,lng: 80.111649});
+  const { guardLocation, centerPointer } = props 
   return (
     <div className="google_map_frame">
       <GoogleMapReact
         bootstrapURLKeys={{
           key: process.env.REACT_APP_MAP_API_KEY
         }}
-        defaultCenter={CenterMarker}
-        defaultZoom={16}
+        defaultCenter={centerPointer}
+        defaultZoom={12}
       >
       {guardLocation && guardLocation.map((data, i) => {
         return (
