@@ -44,7 +44,7 @@ export function track(state = initialState, action) {
       const filderGuard = state.allGuards.find(x => x.guard_profile_id === id)
       let arrayLocation = []
       filderGuard && filderGuard.guard_sessions.map((data) => {
-        arrayLocation = data.guard_session_location.locations
+        arrayLocation = data.guard_session_location.locations &&  data.guard_session_location.locations
       })
       return {
         ...state,

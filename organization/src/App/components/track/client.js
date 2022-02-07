@@ -3,6 +3,7 @@ import { connect, useDispatch } from 'react-redux';
 import { trackActions } from '../../../actions';
 import GuardLocation from './guardLocation'
 import { userConstants } from '../../../constants';
+import moment from 'moment';
 
 function TrakGuardLocation(props) {
   const dispatch = useDispatch();
@@ -30,14 +31,17 @@ function TrakGuardLocation(props) {
 
   const handleRow = (id) => {
     setId(id)
-    // const filterData = allGuards && allGuards.filter((item) => item.guard_profile.id == id);
-     dispatch({type: userConstants.FILTER_GUARD_PROIFLE, payload: id});
+    const filterGuard = allGuards && allGuards.find(x => x.guard_profile_id === id)
+    setGuardDetails(filterGuard)
+    dispatch({type: userConstants.FILTER_GUARD_PROIFLE, payload: id});
+
   }
   
   useEffect(() => {
     let filterGuard = allGuards && allGuards[0];
     const id = filterGuard && filterGuard.guard_profile.id
     setId(id)
+    setGuardDetails(filterGuard && filterGuard)
   }, [allGuards])
 
   return (
@@ -106,6 +110,23 @@ function TrakGuardLocation(props) {
                   )
                 })}
               </div>
+            </div>
+            <div className="col-md-6">
+             {guardDetails && guardDetails.guard_sessions.map((se ,i ) => {
+              return (
+                <div className="mt-3">
+                  <div className="form-group">
+                    <label>Sign-In Time</label>
+                    <div className="time-div">{moment(se.schedule_start_at).format('HH - MM -SS')}</div>
+                  </div>
+                  <div className="form-group">
+                    <label>Sign-In Time</label>
+                    <div className="time-div">{moment(se.schedule_end_at).format('HH - MM -SS')}</div>
+                  </div>
+                </div>
+              )
+             })}
+             
             </div>
           </div>
         </div>

@@ -7,8 +7,8 @@ import { siteValidation } from 'shared-lib/src/validation';
 import { reduxForm, Field, change } from "redux-form";
 import Map from "./map";
 import Geocode from "react-geocode";
-      Geocode.setApiKey(process.env.REACT_APP_MAP_API_KEY);
-      Geocode.setLanguage("en");
+Geocode.setApiKey(process.env.REACT_APP_MAP_API_KEY);
+Geocode.setLanguage("en");
 
 function LocationForm(props) {
   const dispatch = useDispatch();
