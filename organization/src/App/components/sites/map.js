@@ -123,9 +123,6 @@ function Map({ onChange, apiKey, center, paths = [], point }) {
     listenersRef.current.forEach(lis => lis.remove());
     polygonRef.current = null;
   }, []);
-
-  console.log(path);
-
   return (
     <div className="site_drawing_map">
       <LoadScriptOnlyIfNeeded
@@ -168,6 +165,7 @@ function Map({ onChange, apiKey, center, paths = [], point }) {
               onUnmount={onUnmount}
             />
           )}
+         <Marker  position={center} />
           {path &&
             path.map((pos, key) => {
               return <Marker key={key} label={"" + key} position={pos} />;

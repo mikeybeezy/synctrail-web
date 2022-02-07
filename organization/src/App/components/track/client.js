@@ -34,7 +34,6 @@ function TrakGuardLocation(props) {
     const filterGuard = allGuards && allGuards.find(x => x.guard_profile_id === id)
     setGuardDetails(filterGuard)
     dispatch({type: userConstants.FILTER_GUARD_PROIFLE, payload: id});
-
   }
   
   useEffect(() => {
