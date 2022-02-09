@@ -100,14 +100,14 @@ function TrakGuardLocation(props) {
           />
           <div className="row">
             <div className="col-md-6">
-              <h6 className="py-2">Assign Guard List</h6>
+              <h6 className="py-2">Assigned Guard List</h6>
               <div className="scroll_guard">
                 <div className="table-header">
                   <div className="index_value">S.No</div>
                   <div className="guard_name">Guard Name</div>
                 </div>
                 {allGuards && allGuards.length > 0 ?
-                  allGuards.map((data, index) => {
+                  allGuards.filter((d,i,b) => b.findIndex(t => (t.guard_profile.id === d.guard_profile.id))==i).map((data, index) => {
                     return (
                       <div
                         className={id === data.guard_profile.id ? "table_body highligh_guard" : "table_body"}
@@ -126,18 +126,20 @@ function TrakGuardLocation(props) {
             </div>
             <div className="col-md-6">
              {guardDetails && guardDetails.guard_sessions.map((se ,i ) => {
-              return (
-                <div className="mt-3">
-                  <div className="form-group">
-                    <label>Sign-In Time</label>
-                    <div className="time-div">{moment(se.schedule_start_at).format('HH - MM -SS')}</div>
-                  </div>
-                  <div className="form-group">
-                    <label>Sign-In Time</label>
-                    <div className="time-div">{moment(se.schedule_end_at).format('HH - MM -SS')}</div>
-                  </div>
-                </div>
-              )
+               if(moment().isSame(se.schedule_start_at, 'day')){
+                 return (
+                   <div className="mt-3">
+                     <div className="form-group">
+                       <label>Sign-In Time</label>
+                       <div className="time-div">{moment(se.schedule_start_at).format('hh:mm A')}</div>
+                     </div>
+                     <div className="form-group">
+                       <label>Sign-In Time</label>
+                       <div className="time-div">{moment(se.schedule_end_at).format('hh:mm A')}</div>
+                     </div>
+                   </div>
+                 )
+               }
              })}
              
             </div>
