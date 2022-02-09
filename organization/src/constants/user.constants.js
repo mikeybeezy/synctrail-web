@@ -75,5 +75,7 @@ export const userConstants = {
 	CLIENT_LIST: 'all clients',
 	CLIENT_LOCATIONS: 'client location',
 	ALL_GUARDS_DETAILS: 'all guards details',
-	FILTER_GUARD_PROIFLE: 'filter guard'
+	FILTER_GUARD_PROIFLE: 'filter guard',
+
+	GUEST_HISTORY_LIST: 'list guest history'
 };

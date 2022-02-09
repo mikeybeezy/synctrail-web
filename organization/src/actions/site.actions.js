@@ -8,7 +8,8 @@ export const siteActions = {
   getSiteData,
   destroySite,
   editSite,
-  updateSite
+  updateSite,
+  historyGuests
 }
 
 export function newSite(reqparams, id) {
@@ -115,6 +116,30 @@ export function updateSite(client_id, id, reqparams) {
     }catch(e){
       dispatch( {
         type: userConstants.PROJECT_FAILURE,
+        payload: console.log(e),
+      })
+    }
+  }
+}
+
+export function historyGuests(site_id) {
+  return dispatch => {
+    try{
+      dispatch({ type: userConstants.PAGE_LOADING });
+      makeGETRequest(`/api/v1/guests_history/${site_id}`)
+      .then(response => {
+        if(response.data.status === "ok"){
+          dispatch({
+            type: userConstants.GUEST_HISTORY_LIST, 
+            payload: response.data
+          })
+        }else {
+          dispatch(alertActions.error(response.data.error));
+        }
+      })
+    }catch(e){
+      dispatch( {
+        type: userConstants.AUTHENTICATION_FAILURE,
         payload: console.log(e),
       })
     }

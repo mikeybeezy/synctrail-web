@@ -73,10 +73,10 @@ function SiteList(props) {
                       <div onClick={() => handleShow(data.id)} className="ml-10 cursor-pointer">
                        <i className="fa fa-trash-o" aria-hidden="true"></i>
                       </div>
-                       <Link to={`/admin/clients/${client_id}/site/${data.id}/guests`} className="ml-10 cursor-pointer">
+                       <Link to={`/admin/clients/${client_id}/site/${data.id}/guest`} className="ml-10 cursor-pointer">
                         Guests
                       </Link>
-                       <Link to={`/admin/clients/${client_id}/site/${data.id}/reports`} className="ml-10 cursor-pointer">
+                       <Link to={`/admin/clients/${client_id}/site/${data.id}/edit`} className="ml-10 cursor-pointer">
                         Reports
                       </Link>
                     </div>

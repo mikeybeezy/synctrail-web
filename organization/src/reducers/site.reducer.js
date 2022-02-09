@@ -50,6 +50,14 @@ export function site(state = initialState, action) {
       }
     }
 
+    case userConstants.GUEST_HISTORY_LIST: {
+      return {
+        ...state,
+        loading: false,
+        guestes: action.payload.data
+      }
+    }
+
     default:
       return state
   }

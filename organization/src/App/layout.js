@@ -23,6 +23,9 @@ import ClientShow from './components/clients/show'
 import SiteList from './components/sites/list'
 import SiteNew from './components/sites/new'
 import SiteEdit from './components/sites/edit'
+
+
+
 import GuardList from './components/managing-guard/list'
 import GuardNew from './components/managing-guard/new'
 import GuardEdit from './components/managing-guard/edit'
@@ -39,9 +42,10 @@ import ScheduleEdit from './components/guard-schedule/edit'
 import GuardOrderList from './components/guard-orders/list'
 import GuardOrderNew from './components/guard-orders/new'
 
-import TrackGuardLocation from './components/clients/trackGuardLocation'
 import LocationCable from './components/track/locationCable'
 import Track from './components/track/client'
+import Guests from './components/sites/guests'
+import Reports from './components/sites/reports'
 
 function App() {
   const dispatch = useDispatch();
@@ -83,7 +87,6 @@ function App() {
             <Route exact path='/admin/users/unlock/request' component={RequestUnlock} />
             <Route exact path='/users/confirmation' component={Confirmation} />
             <PrivateRoute exact path='/admin/clients/list' component={ClientList} />
-            <PrivateRoute exact path='/admin/clients/:client_id/location' component={TrackGuardLocation} />
             <PrivateRoute exact path='/admin/clients/new' component={ClientNew} />
             <PrivateRoute exact path='/admin/clients/:client_id/edit' component={ClientEdit} />
             <PrivateRoute exact path='/admin/clients/:client_id/show' component={ClientShow} />
@@ -104,6 +107,8 @@ function App() {
             <PrivateRoute exact path='/admin/guard/schedule/:schedule_id/orders' component={GuardOrderList} />
             <PrivateRoute exact path='/admin/guard/schedule/:schedule_id/orders/new' component={GuardOrderNew} />
             <PrivateRoute exact path='/admin/track' component={Track} />
+            <PrivateRoute exact path='/admin/clients/:client_id/site/:site_id/guests' component={Guests} />
+            <PrivateRoute exact path='/admin/clients/:client_id/site/:site_id/reports' component={Reports} />
             <Redirect from="*" to="/" />
           </Switch>
         </div>
