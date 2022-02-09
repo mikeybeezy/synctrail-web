@@ -16,17 +16,22 @@ function TrakGuardLocation(props) {
   } = props
   const [ id, setId ] = useState()
   const [ guardDetails, setGuardDetails ] = useState()
+  const [ showMap, setShowMap ] = useState(false)
   
   useEffect(() => {
     dispatch(trackActions.getAllClients());
   }, []);
+
+  const activeMap = () => {
+    setShowMap(true)
+  }
 
   const checkValue = (event) => {
     dispatch(trackActions.getClientLocation(event.target.value));
   } 
 
   const checkLocationValue = (event) => {
-    dispatch(trackActions.getGuards(event.target.value));
+    dispatch(trackActions.getGuards(event.target.value, activeMap));
   }
 
   const handleRow = (id) => {
@@ -42,6 +47,10 @@ function TrakGuardLocation(props) {
     setId(id)
     setGuardDetails(filterGuard && filterGuard)
   }, [allGuards])
+  
+  // if (props.loading) {
+  //   return <div className="page_loading">Loading..</div>
+  // }
 
   return (
     <div className="container">
@@ -82,7 +91,8 @@ function TrakGuardLocation(props) {
           </div>
         </div>
       </div>
-      {allGuards && allGuards.length > 0 ? 
+
+      {showMap && (
         <div>
           <GuardLocation 
             guardLocation={arrayLocation && arrayLocation}
@@ -96,18 +106,22 @@ function TrakGuardLocation(props) {
                   <div className="index_value">S.No</div>
                   <div className="guard_name">Guard Name</div>
                 </div>
-                { allGuards && allGuards.map((data, index) => {
-                  return (
-                    <div
-                      className={id === data.guard_profile.id ? "table_body highligh_guard" : "table_body"}
-                      key={data.id} 
-                      onClick={ () => handleRow(data.guard_profile.id)}
-                    >
-                      <div className="index_value">{index + 1}</div>
-                      <div className="guard_name">{data.guard_profile.name} {data.guard_profile.id} </div>
-                    </div>
-                  )
-                })}
+                {allGuards && allGuards.length > 0 ?
+                  allGuards.map((data, index) => {
+                    return (
+                      <div
+                        className={id === data.guard_profile.id ? "table_body highligh_guard" : "table_body"}
+                        key={data.id} 
+                        onClick={ () => handleRow(data.guard_profile.id)}
+                      >
+                        <div className="index_value">{index + 1}</div>
+                        <div className="guard_name">{data.guard_profile.name} {data.guard_profile.id} </div>
+                      </div>
+                    )
+                  })
+                : 
+                  <div className="empty_content">No data yet </div>
+                }
               </div>
             </div>
             <div className="col-md-6">
@@ -129,8 +143,7 @@ function TrakGuardLocation(props) {
             </div>
           </div>
         </div>
-        : null
-      }
+      )}
     </div>
   );
 }

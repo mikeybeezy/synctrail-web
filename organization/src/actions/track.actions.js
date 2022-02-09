@@ -62,7 +62,7 @@ export function getClientLocation(id) {
   }
 }
 
-export function getGuards(id) {
+export function getGuards(id, activeMap) {
   return dispatch => {
     try{
       dispatch({ type: userConstants.PAGE_LOADING });
@@ -73,6 +73,7 @@ export function getGuards(id) {
             type: userConstants.ALL_GUARDS_DETAILS,
             payload: response.data
           })
+          activeMap()
         }else {
           dispatch(alertActions.error(response.data.error));
         }

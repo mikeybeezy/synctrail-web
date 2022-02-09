@@ -7,7 +7,7 @@ import {
 import HumanMarker from '../../../images/humar-marker.png'
 const containerStyle = {
   width: '100%',
-  height: '350px'
+  height: '320px'
 };
 
 class LoadScriptOnlyIfNeeded extends LoadScript {

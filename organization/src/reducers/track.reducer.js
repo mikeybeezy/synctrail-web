@@ -21,7 +21,8 @@ export function track(state = initialState, action) {
     case userConstants.CLIENT_LOCATIONS: {
       return {
         ...state,
-        clientLocations: action.payload.data
+        clientLocations: action.payload.data,
+        loading: false,
       }
     }
 
@@ -35,7 +36,8 @@ export function track(state = initialState, action) {
         ...state,
         allGuards: action.payload.data,
         arrayLocation: arrayLocation,
-        centerLocation: action.payload.center_location
+        centerLocation: action.payload.center_location,
+        loading: false,
       }
     }
 
@@ -44,14 +46,12 @@ export function track(state = initialState, action) {
       const filderGuard = state.allGuards.find(x => x.guard_profile_id === id)
       let arrayLocation = []
       filderGuard && filderGuard.guard_sessions.map((data) => {
-        console.log("datadatadatadata")
-        console.log(data)
-        console.log("datadata........")
-        // arrayLocation = data.guard_session_location.locations &&  data.guard_session_location.locations
+        arrayLocation = data.guard_session_location.locations &&  data.guard_session_location.locations
       })
       return {
         ...state,
-        arrayLocation: arrayLocation
+        arrayLocation: arrayLocation,
+        loading: false,
       }
     }
 
@@ -78,8 +78,8 @@ export function track(state = initialState, action) {
       })
       return {
         ...state,
+        arrayLocation: arrayLocation,
         loading: false,
-        arrayLocation: arrayLocation
       }
     }
 
