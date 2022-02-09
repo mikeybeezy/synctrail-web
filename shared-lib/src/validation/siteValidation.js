@@ -36,10 +36,6 @@ const siteValidation = (values) => {
     errors.phone_number = 'required'
   }
 
-  if(!values.geo_fence_enabled) {
-    errors.geo_fence_enabled = 'required'
-  }
-
   return errors;
 };
 
