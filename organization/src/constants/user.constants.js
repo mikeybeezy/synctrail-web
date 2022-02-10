@@ -77,5 +77,6 @@ export const userConstants = {
 	ALL_GUARDS_DETAILS: 'all guards details',
 	FILTER_GUARD_PROIFLE: 'filter guard',
 
-	GUEST_HISTORY_LIST: 'list guest history'
+	GUEST_HISTORY_LIST: 'list guest history',
+	REPORTS_HISTORY_LIST: 'list report history'
 };

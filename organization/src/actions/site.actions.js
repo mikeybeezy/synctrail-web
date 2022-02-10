@@ -9,7 +9,8 @@ export const siteActions = {
   destroySite,
   editSite,
   updateSite,
-  historyGuests
+  historyGuests,
+  historyReports
 }
 
 export function newSite(reqparams, id) {
@@ -131,6 +132,30 @@ export function historyGuests(site_id) {
         if(response.data.status === "ok"){
           dispatch({
             type: userConstants.GUEST_HISTORY_LIST, 
+            payload: response.data
+          })
+        }else {
+          dispatch(alertActions.error(response.data.error));
+        }
+      })
+    }catch(e){
+      dispatch( {
+        type: userConstants.AUTHENTICATION_FAILURE,
+        payload: console.log(e),
+      })
+    }
+  }
+}
+
+export function historyReports(site_id) {
+  return dispatch => {
+    try{
+      dispatch({ type: userConstants.PAGE_LOADING });
+      makeGETRequest(`/api/v1/reports_history/${site_id}`)
+      .then(response => {
+        if(response.data.status === "ok"){
+          dispatch({
+            type: userConstants.REPORTS_HISTORY_LIST, 
             payload: response.data
           })
         }else {

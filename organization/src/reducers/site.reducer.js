@@ -58,6 +58,14 @@ export function site(state = initialState, action) {
       }
     }
 
+    case userConstants.REPORTS_HISTORY_LIST: {
+      return {
+        ...state,
+        loading: false,
+        reports: action.payload.data
+      }
+    }
+
     default:
       return state
   }

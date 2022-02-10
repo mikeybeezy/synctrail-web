@@ -23,9 +23,6 @@ import ClientShow from './components/clients/show'
 import SiteList from './components/sites/list'
 import SiteNew from './components/sites/new'
 import SiteEdit from './components/sites/edit'
-
-
-
 import GuardList from './components/managing-guard/list'
 import GuardNew from './components/managing-guard/new'
 import GuardEdit from './components/managing-guard/edit'

@@ -3,6 +3,7 @@ import { Link, useParams } from 'react-router-dom';
 import { connect, useDispatch } from 'react-redux';
 import { Table} from 'react-bootstrap';
 import { siteActions } from '../../../actions';
+import moment from 'moment';
 
 function SiteList(props) {
 	const dispatch = useDispatch();
@@ -12,6 +13,7 @@ function SiteList(props) {
   useEffect(() => {
     dispatch(siteActions.historyGuests(site_id));
   }, []);
+
   return (
    <div  className="container">
       <div className="page_header d-flex align-items-center justify-content-between py-2">
@@ -21,8 +23,8 @@ function SiteList(props) {
         <thead>
           <tr>
             <th className="text-center" style={{width: '3%'}}>S.No</th>
-            <th>First Name</th>
-            <th>Email</th>
+            <th width="15%">First Name</th>
+            <th width="20%">Email</th>
             <th>Phone Number</th>
             <th>Contact Person</th>
             <th>Department Name</th>
@@ -45,8 +47,8 @@ function SiteList(props) {
                   <td>{data.department_name}</td>
                   <td>{data.company}</td>
                   <td>{data.full_address}</td>
-                  <td>{data.checkin_at}</td>
-                  <td>{data.checkout_at}</td>
+                  <td>{moment(data.checkin_at).format('DD-MM-YYYY hh:mm A')}</td>
+                  <td>{ data.checkout_at ? moment(data.checkout_at).format('DD-MM-YYYY hh:mm A') : '-'}</td>
                 </tr>
               )
             })
