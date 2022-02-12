@@ -15,6 +15,8 @@ function LocationForm(props) {
   const editSite = useSelector(state => state.site.editSite); 
   const { handleSubmit, initialize, formStatus , client_id} = props
   const [ paths, setPaths ] = useState([])
+  const [ addr1, setAddr1 ] = useState('')
+  const [ addr2, setAddr2 ] = useState('')
   const [ centerPoint, setCenterPoint ] = useState({lat: 12.8797, lng: 121.7740})
 
   useEffect(() => {
@@ -23,7 +25,7 @@ function LocationForm(props) {
     }else {
       setPaths(editSite && editSite.geofence_data)
       dispatch(change("lform", "geofence_data", editSite && editSite.geofence_data))
-      handlFormAddress(editSite && editSite.address_line_2)
+      handlFormAddress(editSite && (editSite.address_line_1 + editSite.address_line_2))
     }
   }, []);
 
@@ -33,11 +35,13 @@ function LocationForm(props) {
   }
 
   const handleAddressOne = (event) => {
-    handlFormAddress(event.target.value)
+    setAddr1(event.target.value)
+    handlFormAddress(addr1 + addr2)
   }
 
   const handleAddressTwo = (event) => {
-    handlFormAddress(event.target.value)
+    setAddr2(event.target.value)
+    handlFormAddress(addr1 + addr2)
   }
 
   const handlFormAddress = (address) => {
@@ -47,7 +51,8 @@ function LocationForm(props) {
         setCenterPoint({lat: lat, lng: lng})
       },
       (error) => {
-        alert(error)
+        console.log("Map - Find Lat & Lon: ")
+        console.log(error)
       }
     );
   }

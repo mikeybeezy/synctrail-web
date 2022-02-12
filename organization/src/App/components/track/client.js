@@ -36,14 +36,14 @@ function TrakGuardLocation(props) {
 
   const handleRow = (id) => {
     setId(id)
-    const filterGuard = allGuards && allGuards.find(x => x.guard_profile_id === id)
+    const filterGuard = allGuards && allGuards.find(x => x.id === id)
     setGuardDetails(filterGuard)
     dispatch({type: userConstants.FILTER_GUARD_PROIFLE, payload: id});
   }
   
   useEffect(() => {
     let filterGuard = allGuards && allGuards[0];
-    const id = filterGuard && filterGuard.guard_profile.id
+    const id = filterGuard && filterGuard.id
     setId(id)
     setGuardDetails(filterGuard && filterGuard)
   }, [allGuards])
@@ -51,7 +51,6 @@ function TrakGuardLocation(props) {
   // if (props.loading) {
   //   return <div className="page_loading">Loading..</div>
   // }
-
   return (
     <div className="container">
       <div className="row">
@@ -107,15 +106,15 @@ function TrakGuardLocation(props) {
                   <div className="guard_name">Guard Name</div>
                 </div>
                 {allGuards && allGuards.length > 0 ?
-                  allGuards.filter((d,i,b) => b.findIndex(t => (t.guard_profile.id === d.guard_profile.id))==i).map((data, index) => {
+                  allGuards.map((data, index) => {
                     return (
                       <div
-                        className={id === data.guard_profile.id ? "table_body highligh_guard" : "table_body"}
+                        className={(id === data.id || (!id && index === 0)) ? "table_body highligh_guard" : "table_body"}
                         key={data.id} 
-                        onClick={ () => handleRow(data.guard_profile.id)}
+                        onClick={ () => handleRow(data.id)}
                       >
                         <div className="index_value">{index + 1}</div>
-                        <div className="guard_name">{data.guard_profile.name} {data.guard_profile.id} </div>
+                        <div className="guard_name">{data.guard_profile.name} - {moment(data.schedule_start_at).format("Do MMM YY hh:mma")} </div>
                       </div>
                     )
                   })
@@ -125,23 +124,17 @@ function TrakGuardLocation(props) {
               </div>
             </div>
             <div className="col-md-6">
-             {guardDetails && guardDetails.guard_sessions.map((se ,i ) => {
-               if(moment().isSame(se.schedule_start_at, 'day')){
-                 return (
-                   <div className="mt-3">
-                     <div className="form-group">
-                       <label>Sign-In Time</label>
-                       <div className="time-div">{moment(se.schedule_start_at).format('hh:mm A')}</div>
-                     </div>
-                     <div className="form-group">
-                       <label>Sign-In Time</label>
-                       <div className="time-div">{moment(se.schedule_end_at).format('hh:mm A')}</div>
-                     </div>
-                   </div>
-                 )
-               }
-             })}
-             
+             {guardDetails && <div className="mt-3">
+                <div className="form-group">
+                  <label>Sign-In Time</label>
+                  <div className="time-div">{moment(guardDetails.schedule_start_at).format('hh:mm A')}</div>
+                </div>
+                <div className="form-group">
+                  <label>Sign-In Time</label>
+                  <div className="time-div">{moment(guardDetails.schedule_end_at).format('hh:mm A')}</div>
+                </div>
+              </div>
+             } 
             </div>
           </div>
         </div>
