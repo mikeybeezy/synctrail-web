@@ -135,7 +135,7 @@ function Map({ onChange, apiKey, center, paths = [], point }) {
         <GoogleMap
           mapContainerStyle={containerStyle}
           center={center}
-          zoom={10}
+          zoom={15}
           version="weekly"
         >
           {path && path.length === 0 ? (

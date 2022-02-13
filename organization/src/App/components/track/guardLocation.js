@@ -44,7 +44,7 @@ function GuardLocation({ guardLocation, centerPointer  }) {
         <GoogleMap
           mapContainerStyle={containerStyle}
           center={centerPointer}
-          zoom={10}
+          zoom={15}
           version="weekly"
         >
         <Marker position={centerPointer} />
