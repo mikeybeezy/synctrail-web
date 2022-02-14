@@ -12,7 +12,8 @@ function TrakGuardLocation(props) {
     clientLocations, 
     allGuards, 
     centerLocation,
-    arrayLocation 
+    arrayLocation,
+    listGuards
   } = props
   const [ id, setId ] = useState()
   const [ guardDetails, setGuardDetails ] = useState()
@@ -36,17 +37,19 @@ function TrakGuardLocation(props) {
 
   const handleRow = (id) => {
     setId(id)
-    const filterGuard = allGuards && allGuards.find(x => x.id === id)
+    const filterGuard = listGuards && listGuards.find(x => x.id === id)
     setGuardDetails(filterGuard)
     dispatch({type: userConstants.FILTER_GUARD_PROIFLE, payload: id});
   }
   
-  useEffect(() => {
-    let filterGuard = allGuards && allGuards[0];
-    const id = filterGuard && filterGuard.id
-    setId(id)
-    setGuardDetails(filterGuard && filterGuard)
-  }, [allGuards])
+  // useEffect(() => {
+  //   let filterGuard = allGuards && allGuards[0];
+  //   const id = filterGuard && filterGuard.id
+  //   setId(id)
+  //   setGuardDetails(filterGuard && filterGuard)
+  // }, [allGuards])
+
+
   
   // if (props.loading) {
   //   return <div className="page_loading">Loading..</div>
@@ -94,8 +97,8 @@ function TrakGuardLocation(props) {
       {showMap && (
         <div>
           <GuardLocation 
-            guardLocation={arrayLocation && arrayLocation}
             centerPointer={centerLocation && centerLocation}
+            allGuards={allGuards && allGuards}
           />
           <div className="row">
             <div className="col-md-6">
@@ -105,11 +108,11 @@ function TrakGuardLocation(props) {
                   <div className="index_value">S.No</div>
                   <div className="guard_name">Guard Name</div>
                 </div>
-                {allGuards && allGuards.length > 0 ?
-                  allGuards.map((data, index) => {
+                {listGuards && listGuards.length > 0 ?
+                  listGuards.map((data, index) => {
                     return (
                       <div
-                        className={(id === data.id || (!id && index === 0)) ? "table_body highligh_guard" : "table_body"}
+                        className={ id === data.id  ? "table_body highligh_guard" : "table_body"}
                         key={data.id} 
                         onClick={ () => handleRow(data.id)}
                       >
@@ -124,14 +127,34 @@ function TrakGuardLocation(props) {
               </div>
             </div>
             <div className="col-md-6">
-             {guardDetails && <div className="mt-3">
-                <div className="form-group">
-                  <label>Sign-In Time</label>
-                  <div className="time-div">{moment(guardDetails.schedule_start_at).format('hh:mm A')}</div>
-                </div>
-                <div className="form-group">
-                  <label>Sign-In Time</label>
-                  <div className="time-div">{moment(guardDetails.schedule_end_at).format('hh:mm A')}</div>
+             <div className="row">
+               <div className="col-md-6">
+
+               </div>
+               <div className="col-md-6"> </div>
+             </div>
+             {guardDetails && <div className="mt-3 row">
+                <div className="row">
+                  <div className="col-md-6">
+                    <div className="form-group">
+                      <label>Sign-In Time</label>
+                      <div className="time-div">{moment(guardDetails.schedule_start_at).format('hh:mm A')}</div>
+                    </div>
+                    <div className="form-group">
+                      <label>Sign-Out Time</label>
+                      <div className="time-div">{moment(guardDetails.schedule_end_at).format('hh:mm A')}</div>
+                    </div>
+                  </div>
+                  <div className="col-md-6">
+                    <div className="form-group">
+                      <label>Check-In Time</label>
+                      <div className="time-div">{guardDetails.checkin_at ? moment(guardDetails.checkin_at).format('hh:mm A') : "-"}</div>
+                    </div>
+                    <div className="form-group">
+                      <label>Check-Out Time</label>
+                      <div className="time-div">{guardDetails.checkout_at ? moment(guardDetails.checkout_at).format('hh:mm A') :  "-"}</div>
+                    </div>
+                  </div>
                 </div>
               </div>
              } 
@@ -149,6 +172,7 @@ const mapStateToProps = (state) => {
     clientList: state.track.clientList,
     clientLocations: state.track.clientLocations,
     allGuards: state.track.allGuards,
+    listGuards: state.track.listGuards,
     arrayLocation: state.track.arrayLocation,
     centerLocation: state.track.centerLocation,
   };
