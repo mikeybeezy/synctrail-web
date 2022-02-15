@@ -17,10 +17,17 @@ function SiteList(props) {
     dispatch(siteActions.historyGuests(site_id))
   }, []);
 
-  const handleEvent = (event, picker) => {
-    console.log(picker.startDate);
-  };
+  useEffect(() => {
+    setGuestsDetails(guestes)
+  }, [guestes]);
 
+  const handleApply = (event, picker) => {
+    const StartDate = moment(picker.startDate).format("DD-MM-YYYY")
+    const EndDate = moment(picker.endDate).format("DD-MM-YYYY")
+    let filterArray = guestesDetails && guestesDetails.filter(el => moment(el.checkin_at).format("DD-MM-YYYY") >= StartDate && moment(el.checkin_at).format("DD-MM-YYYY") <= EndDate);
+    setGuestsDetails(filterArray)
+  }
+  
   const filterList = (event) => {
     let value = event.target.value;
     if (value !== "") {
@@ -37,7 +44,11 @@ function SiteList(props) {
     } else {
       setGuestsDetails(guestes);
     }
-  };
+  }
+
+  const onShow = () => {
+    setGuestsDetails(guestes && guestes)
+  }
 
   return (
     <div className="container">
@@ -46,20 +57,26 @@ function SiteList(props) {
       </div>
       <div className="row mb-3">
         <div className="col-md-6">
-          <DateRangePicker onEvent={handleEvent}>
-            <input type="text" className="form-control" id="fileinput" initialSettings={{ startDate: '', endDate: '' }} />
+          <DateRangePicker 
+            onApply={handleApply}
+            onShow={onShow}
+          >
+            <input 
+              type="text" 
+              className="form-control" 
+              id="fileinput" 
+            />
           </DateRangePicker>
         </div>
         <div className="col-md-6">
           <input
             type="text"
-            placeholder="Search name filter"
+            placeholder="Search visitor name"
             className="form-control"
             onChange={filterList}
           />
         </div>
       </div>
-
       <Table bordered size="sm responsive">
         <thead>
           <tr>
