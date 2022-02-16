@@ -11,6 +11,8 @@ function SiteList(props) {
   const dispatch = useDispatch();
   const guestes = useSelector((state) =>  state.site.guestes);
   const { client_id, site_id } = useParams();
+  const [drpStartDate, setdrpStartDate] = useState(moment().subtract(1,'month').format("MM-DD-YYYY"));
+  const [drpEndDate, setdrpEndDate] = useState(moment().format("MM-DD-YYYY"));
   const [guestesDetails, setGuestsDetails] = useState(guestes && guestes);
 
   useEffect(() => {
@@ -24,16 +26,20 @@ function SiteList(props) {
   const handleApply = (event, picker) => {
     const StartDate = moment(picker.startDate).format("DD-MM-YYYY")
     const EndDate = moment(picker.endDate).format("DD-MM-YYYY")
-    let filterArray = guestesDetails && guestesDetails.filter(el => moment(el.checkin_at).format("DD-MM-YYYY") >= StartDate && moment(el.checkin_at).format("DD-MM-YYYY") <= EndDate);
+    setdrpStartDate(StartDate)
+    setdrpEndDate(EndDate)
+    let filterArray = guestes && guestes.filter(el => moment(el.checkin_at).format("DD-MM-YYYY") >= StartDate && moment(el.checkin_at).format("DD-MM-YYYY") <= EndDate);
     setGuestsDetails(filterArray)
   }
   
   const filterList = (event) => {
     let value = event.target.value;
+    let filterArray = guestes && guestes.filter(el => moment(el.checkin_at).format("DD-MM-YYYY") >= drpStartDate && moment(el.checkin_at).format("DD-MM-YYYY") <= drpEndDate);
+    setGuestsDetails(filterArray)
     if (value !== "") {
       const newData =
-        guestesDetails &&
-        guestesDetails.filter(function (item) {
+      filterArray &&
+      filterArray.filter(function (item) {
           const itemData = item.first_name
             ? item.first_name.toUpperCase()
             : "".toUpperCase();
@@ -41,15 +47,13 @@ function SiteList(props) {
           return itemData.indexOf(textData) > -1;
         });
       setGuestsDetails(newData);
-    } else {
-      setGuestsDetails(guestes);
     }
   }
 
   const onShow = () => {
-    setGuestsDetails(guestes && guestes)
+    let filterArray = guestes && guestes.filter(el => moment(el.checkin_at).format("DD-MM-YYYY") >= drpStartDate && moment(el.checkin_at).format("DD-MM-YYYY") <= drpEndDate);
+    setGuestsDetails(filterArray)
   }
-
   return (
     <div className="container">
       <div className="page_header d-flex align-items-center justify-content-between py-2">
@@ -60,6 +64,7 @@ function SiteList(props) {
           <DateRangePicker 
             onApply={handleApply}
             onShow={onShow}
+            initialSettings={{ startDate: drpStartDate, endDate: drpEndDate }}
           >
             <input 
               type="text" 
