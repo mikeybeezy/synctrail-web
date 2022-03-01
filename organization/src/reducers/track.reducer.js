@@ -21,37 +21,32 @@ export function track(state = initialState, action) {
     case userConstants.CLIENT_LOCATIONS: {
       return {
         ...state,
-        clientLocations: action.payload.data
+        clientLocations: action.payload.data,
+        loading: false,
       }
     }
 
     case userConstants.ALL_GUARDS_DETAILS: {
-      let filderGuard = action.payload.data[0]
-      let arrayLocation = []
-      filderGuard && filderGuard.guard_sessions.map((data) => {
-        arrayLocation = data.guard_session_location && data.guard_session_location.locations
-      })
       return {
         ...state,
+        listGuards: action.payload.data,
         allGuards: action.payload.data,
-        arrayLocation: arrayLocation
+        centerLocation: action.payload.center_location,
+        loading: false,
       }
     }
 
     case userConstants.FILTER_GUARD_PROIFLE: {
       let id = action.payload
-      const filderGuard = state.allGuards.find(x => x.guard_profile_id === id)
-      let arrayLocation = []
-      filderGuard && filderGuard.guard_sessions.map((data) => {
-        arrayLocation = data.guard_session_location.locations
-      })
+      const singleGuard = state.listGuards.filter(x => x.id === id)
       return {
         ...state,
-        arrayLocation: arrayLocation
+        allGuards: singleGuard,
+        loading: false,
       }
     }
 
-    case userConstants.GUARD_LOCATIONS: {
+  case userConstants.GUARD_LOCATIONS: {
       let multiGuard = state.allGuards
       let singleGuard = action.payload
       let arrayLocation = []
@@ -72,10 +67,11 @@ export function track(state = initialState, action) {
           })
         }
       })
+    
       return {
         ...state,
+        arrayLocation: arrayLocation,
         loading: false,
-        arrayLocation: arrayLocation
       }
     }
 

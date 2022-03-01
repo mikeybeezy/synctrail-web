@@ -14,7 +14,6 @@ function CustomMarkers(props) {
     <div>
      <img style={{width: 40}} src={HumanMarker} alt="user pic"/>
      <div style={{color: 'red', fontSize: 20}}>{lat}</div>
-     }
     </div>
   );
 }

@@ -67,12 +67,18 @@ function SiteList(props) {
                   <td>{data.contact_person_email}</td>
                   <td>
                     <div className="d-flex align-items-center justify-content-center">
-                      <Link to={`/admin/clients/${client_id}/site/${data.id}/edit`}>
+                      <Link to={`/admin/clients/${client_id}/site/${data.id}/edit`} className="ml-10 cursor-pointer">
                         <i className="fa fa-pencil-square-o" aria-hidden="true"></i>
                       </Link>
                       <div onClick={() => handleShow(data.id)} className="ml-10 cursor-pointer">
                        <i className="fa fa-trash-o" aria-hidden="true"></i>
                       </div>
+                       <Link to={`/admin/clients/${client_id}/site/${data.id}/guests`} className="ml-10 cursor-pointer link-list">
+                        Guests
+                      </Link>
+                       <Link to={`/admin/clients/${client_id}/site/${data.id}/reports`} className="ml-10 cursor-pointer link-list">
+                        Reports
+                      </Link>
                     </div>
                   </td>
                 </tr>

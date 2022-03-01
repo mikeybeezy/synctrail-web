@@ -3,37 +3,57 @@ import { connect, useDispatch } from 'react-redux';
 import { trackActions } from '../../../actions';
 import GuardLocation from './guardLocation'
 import { userConstants } from '../../../constants';
+import moment from 'moment';
 
 function TrakGuardLocation(props) {
   const dispatch = useDispatch();
-  const { clientList, clientLocations, allGuards, arrayLocation } = props
+  const { 
+    clientList, 
+    clientLocations, 
+    allGuards, 
+    centerLocation,
+    arrayLocation,
+    listGuards
+  } = props
   const [ id, setId ] = useState()
   const [ guardDetails, setGuardDetails ] = useState()
+  const [ showMap, setShowMap ] = useState(false)
   
   useEffect(() => {
     dispatch(trackActions.getAllClients());
   }, []);
+
+  const activeMap = () => {
+    setShowMap(true)
+  }
 
   const checkValue = (event) => {
     dispatch(trackActions.getClientLocation(event.target.value));
   } 
 
   const checkLocationValue = (event) => {
-    dispatch(trackActions.getGuards(event.target.value));
+    dispatch(trackActions.getGuards(event.target.value, activeMap));
   }
 
   const handleRow = (id) => {
     setId(id)
-    // const filterData = allGuards && allGuards.filter((item) => item.guard_profile.id == id);
-     dispatch({type: userConstants.FILTER_GUARD_PROIFLE, payload: id});
+    const filterGuard = listGuards && listGuards.find(x => x.id === id)
+    setGuardDetails(filterGuard)
+    dispatch({type: userConstants.FILTER_GUARD_PROIFLE, payload: id});
   }
   
-  useEffect(() => {
-    let filterGuard = allGuards && allGuards[0];
-    const id = filterGuard && filterGuard.guard_profile.id
-    setId(id)
-  }, [allGuards])
+  // useEffect(() => {
+  //   let filterGuard = allGuards && allGuards[0];
+  //   const id = filterGuard && filterGuard.id
+  //   setId(id)
+  //   setGuardDetails(filterGuard && filterGuard)
+  // }, [allGuards])
 
+
+  
+  // if (props.loading) {
+  //   return <div className="page_loading">Loading..</div>
+  // }
   return (
     <div className="container">
       <div className="row">
@@ -73,35 +93,75 @@ function TrakGuardLocation(props) {
           </div>
         </div>
       </div>
-      {allGuards && allGuards.length > 0 ? 
+
+      {showMap && (
         <div>
-          <GuardLocation guardLocation={arrayLocation && arrayLocation}/>
+          <GuardLocation 
+            centerPointer={centerLocation && centerLocation}
+            allGuards={allGuards && allGuards}
+          />
           <div className="row">
             <div className="col-md-6">
-              <h6 className="py-2">Assign Guard List</h6>
+              <h6 className="py-2">Assigned Guard List</h6>
               <div className="scroll_guard">
                 <div className="table-header">
                   <div className="index_value">S.No</div>
                   <div className="guard_name">Guard Name</div>
                 </div>
-                { allGuards && allGuards.map((data, index) => {
-                  return (
-                    <div
-                      className={id === data.guard_profile.id ? "table_body highligh_guard" : "table_body"}
-                      key={data.id} 
-                      onClick={ () => handleRow(data.guard_profile.id)}
-                    >
-                      <div className="index_value">{index + 1}</div>
-                      <div className="guard_name">{data.guard_profile.name} {data.guard_profile.id} </div>
-                    </div>
-                  )
-                })}
+                {listGuards && listGuards.length > 0 ?
+                  listGuards.map((data, index) => {
+                    return (
+                      <div
+                        className={ id === data.id  ? "table_body highligh_guard" : "table_body"}
+                        key={data.id} 
+                        onClick={ () => handleRow(data.id)}
+                      >
+                        <div className="index_value">{index + 1}</div>
+                        <div className="guard_name">{data.guard_profile.name} - {moment(data.schedule_start_at).format("Do MMM YY hh:mma")} </div>
+                      </div>
+                    )
+                  })
+                : 
+                  <div className="empty_content">No data yet </div>
+                }
               </div>
+            </div>
+            <div className="col-md-6">
+             <div className="row">
+               <div className="col-md-6">
+
+               </div>
+               <div className="col-md-6"> </div>
+             </div>
+             {guardDetails && <div className="mt-3 row">
+                <div className="row">
+                  <div className="col-md-6">
+                    <div className="form-group">
+                      <label>Sign-In Time</label>
+                      <div className="time-div">{moment(guardDetails.schedule_start_at).format('hh:mm A')}</div>
+                    </div>
+                    <div className="form-group">
+                      <label>Sign-Out Time</label>
+                      <div className="time-div">{moment(guardDetails.schedule_end_at).format('hh:mm A')}</div>
+                    </div>
+                  </div>
+                  <div className="col-md-6">
+                    <div className="form-group">
+                      <label>Check-In Time</label>
+                      <div className="time-div">{guardDetails.checkin_at ? moment(guardDetails.checkin_at).format('hh:mm A') : "-"}</div>
+                    </div>
+                    <div className="form-group">
+                      <label>Check-Out Time</label>
+                      <div className="time-div">{guardDetails.checkout_at ? moment(guardDetails.checkout_at).format('hh:mm A') :  "-"}</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+             } 
             </div>
           </div>
         </div>
-        : null
-      }
+      )}
     </div>
   );
 }
@@ -112,8 +172,9 @@ const mapStateToProps = (state) => {
     clientList: state.track.clientList,
     clientLocations: state.track.clientLocations,
     allGuards: state.track.allGuards,
-    guardLocation: state.track.guardLocation,
+    listGuards: state.track.listGuards,
     arrayLocation: state.track.arrayLocation,
+    centerLocation: state.track.centerLocation,
   };
 };
 

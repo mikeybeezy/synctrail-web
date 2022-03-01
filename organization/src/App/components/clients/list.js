@@ -78,11 +78,6 @@ function ClientList(props) {
                       <div onClick={() => handleShow(data.id)} className="ml-10 cursor-pointer">
                        <i className="fa fa-trash-o" aria-hidden="true"></i>
                       </div>
-                      <div className="ml-10 cursor-pointer">
-                        <Link to={`/admin/clients/${data.id}/location`}>
-                          Track
-                        </Link>
-                      </div>
                     </div>
                   </td>
                 </tr>
