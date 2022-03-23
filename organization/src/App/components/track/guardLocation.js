@@ -7,10 +7,7 @@ import {
   InfoWindow
 } from "@react-google-maps/api"; 
 import icons0 from '../../../images/0.png'
-import icons1 from '../../../images/1.png'
-import icons2 from '../../../images/2.png'
-import icons3 from '../../../images/3.png'
-import icons4 from '../../../images/4.png'
+import icons1 from '../../../images/trail_tail.png'
 
 const containerStyle = {
   width: '100%',
@@ -73,14 +70,8 @@ function GuardLocation({ guardLocation, centerPointer, allGuards  }) {
                 let  icons = ''
                 if(i === 0) {
                   icons = icons0
-                }else if(i === 1) {
+                } else {
                   icons = icons1
-                }else if(i === 2) {
-                  icons = icons2
-                }else if(i === 3) {
-                  icons = icons3
-                }else if(i === 4) {
-                  icons = icons4
                 }
                 return(
                   <Marker 
