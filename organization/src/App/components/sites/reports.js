@@ -150,10 +150,19 @@ function SiteList(props) {
             {incidentImages &&
               incidentImages.map((data, i) => {
                 let filename = data.image.url.substring(data.image.url.lastIndexOf('/')+1);
+                filename = filename.substring(0, filename.indexOf('?'));
+                let extension = filename.substring(filename.lastIndexOf(".") + 1);
+                let isImage = ["png", "jpg", "jpeg", "gif"].includes(extension);
+
                 return (
                   <div key={data.id} className="col-md-12">
                     <div className="d-flex justify-content-between pb-1 mb-2" style={{borderBottom: '1px solid #ddd'}}>
-                      <div style={{fontSize: '14px'}}> {filename}</div>
+                      <div style={{fontSize: '14px'}}>
+                        {filename}
+                        { isImage &&
+                          <img src={data.image.url} style={{maxWidth: "100%"}} />
+                        }
+                      </div>
                       <a
                         href={data.image.url}
                         target="_blank"
