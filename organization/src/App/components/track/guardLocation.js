@@ -68,7 +68,7 @@ function GuardLocation({ guardLocation, centerPointer, allGuards  }) {
           { allGuards && allGuards.map((data, i) => {
             console.log(data.guard_session_location)
             return (
-              data.guard_session_location && data.guard_session_location.locations.slice(0).slice(-5).map((pos, i) => {
+              data.guard_session_location && data.guard_session_location.locations.slice(0).slice(-90).map((pos, i) => {
                 const position = {lat: pos.latitude, lng: pos.longitude }
                 let  icons = ''
                 if(i === 0) {
